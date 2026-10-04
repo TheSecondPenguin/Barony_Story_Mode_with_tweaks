@@ -91,6 +91,27 @@
       "status": "handoff_recorded",
       "task_id": "qa-harness.002.qa",
       "worker_id": "/root/qa_harness_qa"
+    },
+    {
+      "dispatch_id": "7c2f8f37a1da42c0af8de9f75dd60a02",
+      "recorded_at": "2026-10-04T09:56:04+00:00",
+      "status": "handoff_recorded",
+      "task_id": "runtime-bridge.001.runtime",
+      "worker_id": "/root/runtime_operator"
+    },
+    {
+      "dispatch_id": "55f1eafee3db4c278c7f8f21e460f356",
+      "recorded_at": "2026-10-04T09:56:04+00:00",
+      "status": "handoff_recorded",
+      "task_id": "runtime-bridge.001.resolver",
+      "worker_id": "/root/blocker_resolver"
+    },
+    {
+      "dispatch_id": "42db94cd56fd4be7a60ca3847a3255eb",
+      "recorded_at": "2026-10-04T10:01:47+00:00",
+      "status": "handoff_recorded",
+      "task_id": "runtime-bridge.001.review",
+      "worker_id": "/root/runtime_route_reviewer"
     }
   ],
   "events": [
@@ -397,6 +418,66 @@
       "task_id": "qa-harness.002.qa",
       "type": "task.completed",
       "worker_id": "/root/qa_harness_qa"
+    },
+    {
+      "at": "2026-10-04T09:56:04+00:00",
+      "revision": 46,
+      "task_id": "runtime-bridge.001.runtime",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T09:56:04+00:00",
+      "revision": 47,
+      "task_id": "runtime-bridge.001.resolver",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T09:56:04+00:00",
+      "revision": 48,
+      "task_id": "runtime-bridge.001.runtime",
+      "type": "task.claimed",
+      "worker_id": "/root/runtime_operator"
+    },
+    {
+      "at": "2026-10-04T09:56:04+00:00",
+      "revision": 49,
+      "task_id": "runtime-bridge.001.resolver",
+      "type": "task.claimed",
+      "worker_id": "/root/blocker_resolver"
+    },
+    {
+      "at": "2026-10-04T09:59:39+00:00",
+      "revision": 50,
+      "task_id": "runtime-bridge.001.review",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T10:00:37+00:00",
+      "revision": 51,
+      "task_id": "runtime-bridge.001.resolver",
+      "type": "task.completed",
+      "worker_id": "/root/blocker_resolver"
+    },
+    {
+      "at": "2026-10-04T10:01:47+00:00",
+      "revision": 52,
+      "task_id": "runtime-bridge.001.runtime",
+      "type": "task.completed",
+      "worker_id": "/root/runtime_operator"
+    },
+    {
+      "at": "2026-10-04T10:01:47+00:00",
+      "revision": 53,
+      "task_id": "runtime-bridge.001.review",
+      "type": "task.claimed",
+      "worker_id": "/root/runtime_route_reviewer"
+    },
+    {
+      "at": "2026-10-04T10:04:48+00:00",
+      "revision": 54,
+      "task_id": "runtime-bridge.001.review",
+      "type": "task.completed",
+      "worker_id": "/root/runtime_route_reviewer"
     }
   ],
   "evidence": [
@@ -438,7 +519,7 @@
     }
   ],
   "project": "barony-adventurer",
-  "revision": 45,
+  "revision": 54,
   "runs": [
     {
       "argv": [
@@ -1559,6 +1640,259 @@
       "write_paths": [
         "orchestrator/artifacts/qa-harness-002/qa"
       ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/runtime-bridge-001/runtime-options.json": null
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T09:56:04+00:00",
+      "claimed_by": "/root/runtime_operator",
+      "completed_at": "2026-10-04T10:01:47+00:00",
+      "completed_by": "/root/runtime_operator",
+      "created_at": "2026-10-04T09:56:04+00:00",
+      "depends_on": [],
+      "description": "Runtime connection investigation under integrated user directive; distinct native specialist. Preserve retail/saves and require actual independent playtest.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "runtime-options",
+            "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json",
+            "sha256": "76c6db47a3d8c441743bb929ff1ae0279397d9811ba093a8859afdd1657f5c71"
+          }
+        ],
+        "notes": [
+          "Browser cursor lock/controllers unsupported perofficialdocs; do not claim fullgamecontrol frombrowserconnection."
+        ],
+        "recorded_at": "2026-10-04T10:01:47+00:00",
+        "role": "researcher",
+        "status": "completed",
+        "summary": "The official Jump browser path is the narrowest reversible route to inspect the user's Windows Steam installation and run the existing isolated preflight, but it is currently unconnected and cannot support full Barony gameplay because browser cursor lock and controllers are unavailable. Next test is a user-approved direct screen-sharing link; even if it works, use it only for install/version/isolation and startup/menu evidence, leaving audio, camera, comfort, saves, and multiplayer to an independent native playtest.",
+        "task_id": "runtime-bridge.001.runtime",
+        "worker_id": "/root/runtime_operator"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "runtime-options",
+              "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json",
+              "sha256": "76c6db47a3d8c441743bb929ff1ae0279397d9811ba093a8859afdd1657f5c71"
+            }
+          ],
+          "notes": [
+            "Browser cursor lock/controllers unsupported perofficialdocs; do not claim fullgamecontrol frombrowserconnection."
+          ],
+          "recorded_at": "2026-10-04T10:01:47+00:00",
+          "role": "researcher",
+          "status": "completed",
+          "summary": "The official Jump browser path is the narrowest reversible route to inspect the user's Windows Steam installation and run the existing isolated preflight, but it is currently unconnected and cannot support full Barony gameplay because browser cursor lock and controllers are unavailable. Next test is a user-approved direct screen-sharing link; even if it works, use it only for install/version/isolation and startup/menu evidence, leaving audio, camera, comfort, saves, and multiplayer to an independent native playtest.",
+          "task_id": "runtime-bridge.001.runtime",
+          "worker_id": "/root/runtime_operator"
+        }
+      ],
+      "id": "runtime-bridge.001.runtime",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "docs/engineering",
+        "scripts/playtest",
+        "orchestrator/artifacts/playtests"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "runtime-options",
+          "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "researcher",
+      "status": "completed",
+      "title": "Windows Runtime Operator: establish existing interactive connection",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json": null,
+        "orchestrator/artifacts/runtime-bridge-001/resolver-result.json": null
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T09:56:04+00:00",
+      "claimed_by": "/root/blocker_resolver",
+      "completed_at": "2026-10-04T10:00:37+00:00",
+      "completed_by": "/root/blocker_resolver",
+      "created_at": "2026-10-04T09:56:04+00:00",
+      "depends_on": [],
+      "description": "Runtime connection investigation under integrated user directive; distinct native specialist. Preserve retail/saves and require actual independent playtest.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "attempt-ledger",
+            "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json",
+            "sha256": "c28bc13a3232120fceeace7f66d44d3b686693911d07e8a296a4baf08061d7be"
+          },
+          {
+            "name": "resolver-result",
+            "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json",
+            "sha256": "d956a515d3d83a335db38b6cb88d680670a6e611cd7223f1508320778d68a901"
+          }
+        ],
+        "notes": [
+          "Sharing endpoint remains unattempted; no password or token in chat.",
+          "Custom bridge deferred until existing sharing route tested."
+        ],
+        "recorded_at": "2026-10-04T10:00:37+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Investigated distinct connection routes; existing host-created Jump sharing link is the smallest next activation. Dashboard and CLI installer returned unavailable pages of unknown cause. No Windows connection or game execution.",
+        "task_id": "runtime-bridge.001.resolver",
+        "worker_id": "/root/blocker_resolver"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "attempt-ledger",
+              "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json",
+              "sha256": "c28bc13a3232120fceeace7f66d44d3b686693911d07e8a296a4baf08061d7be"
+            },
+            {
+              "name": "resolver-result",
+              "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json",
+              "sha256": "d956a515d3d83a335db38b6cb88d680670a6e611cd7223f1508320778d68a901"
+            }
+          ],
+          "notes": [
+            "Sharing endpoint remains unattempted; no password or token in chat.",
+            "Custom bridge deferred until existing sharing route tested."
+          ],
+          "recorded_at": "2026-10-04T10:00:37+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Investigated distinct connection routes; existing host-created Jump sharing link is the smallest next activation. Dashboard and CLI installer returned unavailable pages of unknown cause. No Windows connection or game execution.",
+          "task_id": "runtime-bridge.001.resolver",
+          "worker_id": "/root/blocker_resolver"
+        }
+      ],
+      "id": "runtime-bridge.001.resolver",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "docs/engineering",
+        "scripts/playtest",
+        "orchestrator/artifacts/playtests"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "attempt-ledger",
+          "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json"
+        },
+        {
+          "kind": "json",
+          "name": "resolver-result",
+          "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Blocker Resolver: identify materially different runtime paths",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json",
+        "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/runtime-bridge-001/review.json": null
+      },
+      "attempt_count": 1,
+      "category": "verification",
+      "claimed_at": "2026-10-04T10:01:47+00:00",
+      "claimed_by": "/root/runtime_route_reviewer",
+      "completed_at": "2026-10-04T10:04:48+00:00",
+      "completed_by": "/root/runtime_route_reviewer",
+      "created_at": "2026-10-04T09:59:39+00:00",
+      "depends_on": [
+        "runtime-bridge.001.runtime",
+        "runtime-bridge.001.resolver"
+      ],
+      "description": "Check actual transport observations, evidence limits and minimal user activation without game-runtime claims.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "review",
+            "path": "orchestrator/artifacts/runtime-bridge-001/review.json",
+            "sha256": "f82e751a312b9e47ffc58e61a03e30299413865d8f44fdad56e8bb5f27c4409d"
+          }
+        ],
+        "notes": [
+          "All runtime gates remain blocked.",
+          "Actual UTC timestamp and final source hashes bound in review."
+        ],
+        "recorded_at": "2026-10-04T10:04:48+00:00",
+        "role": "reviewer",
+        "status": "completed",
+        "summary": "Final runtime route review accepted with no open findings. Browser scope limited to connection/preflight/menu; full gameplay requires native relative input and auditable audio. Saved installer response independently verified; no network or game run repeated.",
+        "task_id": "runtime-bridge.001.review",
+        "worker_id": "/root/runtime_route_reviewer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "review",
+              "path": "orchestrator/artifacts/runtime-bridge-001/review.json",
+              "sha256": "f82e751a312b9e47ffc58e61a03e30299413865d8f44fdad56e8bb5f27c4409d"
+            }
+          ],
+          "notes": [
+            "All runtime gates remain blocked.",
+            "Actual UTC timestamp and final source hashes bound in review."
+          ],
+          "recorded_at": "2026-10-04T10:04:48+00:00",
+          "role": "reviewer",
+          "status": "completed",
+          "summary": "Final runtime route review accepted with no open findings. Browser scope limited to connection/preflight/menu; full gameplay requires native relative input and auditable audio. Saved installer response independently verified; no network or game run repeated.",
+          "task_id": "runtime-bridge.001.review",
+          "worker_id": "/root/runtime_route_reviewer"
+        }
+      ],
+      "id": "runtime-bridge.001.review",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "AGENTS.md",
+        "docs/player/STATUS.md",
+        "orchestrator/state/CURRENT_GOAL.md",
+        "orchestrator/artifacts/runtime-bridge-001"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "review",
+          "path": "orchestrator/artifacts/runtime-bridge-001/review.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "reviewer",
+      "status": "completed",
+      "title": "Independent runtime route and evidence review",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/runtime-bridge-001/review.json"
+      ]
     }
   ],
   "workers": [
@@ -1625,6 +1959,30 @@
       "registered_at": "2026-10-04T09:25:32+00:00",
       "role": "qa",
       "worker_id": "/root/qa_harness_qa"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T09:56:04+00:00",
+      "role": "researcher",
+      "worker_id": "/root/runtime_operator"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T09:56:04+00:00",
+      "role": "engineer",
+      "worker_id": "/root/blocker_resolver"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T10:01:47+00:00",
+      "role": "reviewer",
+      "worker_id": "/root/runtime_route_reviewer"
     }
   ]
 }
