@@ -1,0 +1,15 @@
+{
+  "scope": "project workspace only; no access to user Windows Steam installation established",
+  "game_executable_candidates": [],
+  "host": "Linux x86_64",
+  "tools": {
+    "Xvfb": null,
+    "xvfb-run": null,
+    "wine": null,
+    "steam": null,
+    "glxinfo": null
+  },
+  "native_desktop_control": "disabled by active computer tool capability",
+  "cloud_browser": "available, not a native game desktop",
+  "launch_attempted": false
+}
