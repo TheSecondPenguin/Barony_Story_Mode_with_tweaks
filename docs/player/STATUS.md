@@ -18,6 +18,10 @@ A fresh runtime-readiness check found no game executable in the project workspac
 
 ## Windows connection investigation
 
-The integrated directive is active. Independent Runtime Operator and Blocker Resolver investigated real Windows access. Existing Jump Desktop offers browser/CLI control, but this environment received an unavailable page from both the dashboard and official CLI installer. The next attempt is an existing host-created screen-sharing invitation with host approval. That connection is not yet established, and no game was launched. Previous review/QA and compiler results remain preserved.
+The integrated directive is active. Independent Runtime Operator and Blocker Resolver investigated real Windows access. Existing Jump Desktop offers browser/CLI control, but this environment received an unavailable page from both the dashboard and official CLI installer. That route was subsequently declined by the user; no personal-PC sharing invitation is requested. No game was launched. Previous review/QA and compiler results remain preserved.
 
 The Jump browser client has a documented cursor-lock limitation. A successful browser connection would enable installation inspection and startup/menu checks; full camera/gameplay validation still needs an appropriate input path.
+
+## Runtime approach update
+
+Personal-PC remote control is excluded following the user's latest instruction. A separate Windows test host is being assessed; no paid server has been provisioned or tested. An owner-operated isolated test build is an alternative without remote control. Actual Windows gameplay remains unverified.
