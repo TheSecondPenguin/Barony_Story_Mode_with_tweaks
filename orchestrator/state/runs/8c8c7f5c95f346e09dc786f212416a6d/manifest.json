@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "python3",
+    "scripts/qa/run_qa.py"
+  ],
+  "artifact_before": {
+    "orchestrator/artifacts/qa/harness-result.json": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+  },
+  "artifacts": [
+    {
+      "name": "qa.report",
+      "path": "orchestrator/artifacts/qa/harness-result.json",
+      "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+    }
+  ],
+  "attempt": 1,
+  "changed_paths": [
+    "orchestrator/artifacts/qa/build-gate-tests.log",
+    "orchestrator/artifacts/qa/harness-result.json",
+    "orchestrator/artifacts/qa/orchestrator-tests.log",
+    "orchestrator/artifacts/qa/playtest-tool-tests.log",
+    "orchestrator/artifacts/qa/qa-tests.log"
+  ],
+  "cwd": ".",
+  "duration_seconds": 2.971,
+  "exit_code": 0,
+  "outside_ownership": [],
+  "recorded_at": "2026-10-04T08:07:56+00:00",
+  "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+  "stale_artifacts": [],
+  "status": "completed",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64",
+  "task_id": "verify.quality.tests",
+  "timed_out": false,
+  "worker_id": "/root/qa_agent/local-verifier"
+}

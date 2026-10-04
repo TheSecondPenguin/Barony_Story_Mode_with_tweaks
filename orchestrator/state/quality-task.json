@@ -1,0 +1,43 @@
+{
+  "category": "verification",
+  "depends_on": [
+    "bootstrap.review"
+  ],
+  "description": "Execute the frozen explicit QA harness and preserve its canonical report.",
+  "execution": {
+    "argv": [
+      "python3",
+      "scripts/qa/run_qa.py"
+    ],
+    "cwd": ".",
+    "timeout_seconds": 900
+  },
+  "id": "verify.quality.tests",
+  "metadata": {
+    "verifies_tasks": [
+      "bootstrap.engine",
+      "fix.baseline.shape"
+    ]
+  },
+  "priority": 0,
+  "read_paths": [
+    "orchestrator",
+    "scripts",
+    "tests",
+    "patches"
+  ],
+  "required_artifacts": [
+    {
+      "kind": "json",
+      "name": "qa.report",
+      "path": "orchestrator/artifacts/qa/harness-result.json"
+    }
+  ],
+  "required_gates": [],
+  "role": "qa",
+  "title": "Run canonical quality verification",
+  "visibility": "internal",
+  "write_paths": [
+    "orchestrator/artifacts/qa"
+  ]
+}

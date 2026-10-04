@@ -1,0 +1,21 @@
+{
+  "id": "verify.vanilla.build",
+  "title": "Compile the pinned vanilla baseline",
+  "role": "engineer",
+  "description": "Run the documented vanilla build in a provisioned environment and preserve the complete log.",
+  "depends_on": [],
+  "required_gates": [],
+  "read_paths": ["CMakeLists.txt", "src", "scripts/build.py", "scripts/verify_vanilla.py"],
+  "write_paths": [".work", "artifacts"],
+  "required_artifacts": [
+    {"name": "build.log", "kind": "log", "path": "artifacts/build/vanilla.log"}
+  ],
+  "visibility": "internal",
+  "category": "verification",
+  "priority": 10,
+  "execution": {
+    "argv": ["python3", "scripts/verify_vanilla.py"],
+    "cwd": ".",
+    "timeout_seconds": 7200
+  }
+}

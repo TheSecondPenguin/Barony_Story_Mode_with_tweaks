@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-04",
+  "spoiler_policy": "player-safe",
+  "scope": [
+    "vanilla source build recipe",
+    "source and retail baseline identity",
+    "procedural and authored content extension boundaries",
+    "multiplayer and save architecture",
+    "camera and motion-comfort architecture",
+    "content-gap detector coverage and limits"
+  ],
+  "repository": {
+    "audited_head": "750e25210876efdbc20f6262e5e71dcd74342d40",
+    "branch": "automation/bootstrap-20261004",
+    "upstream_repository": "https://github.com/TurningWheel/Barony.git",
+    "recorded_upstream_commit": "962a5ce36d10207beef7d8673876e0cebf8e76e4",
+    "recorded_source_version": "v5.0.2",
+    "local_baseline_commit": "9c70dafa2da8715e4d59d90fabf1135c48ba1c19",
+    "local_baseline_object_present": true,
+    "restored_baseline_clean": true,
+    "recorded_upstream_object_present_in_project_clone": false,
+    "recorded_upstream_object_verified_in_official_checkout": true,
+    "recorded_upstream_commit_date": "2026-02-20T19:09:29-08:00",
+    "tree_comparison": {
+      "documented_exclusions_applied": [
+        ".github/**",
+        "**/*.sdf",
+        "VS-includes/Config.hpp",
+        "VS.2015/editor/editor.vcxproj",
+        "VS.2015/editor/editor.vcxproj.filters",
+        "src/wineditoricon.o",
+        "src/wingameicon.o"
+      ],
+      "matching_imported_paths": 381,
+      "changed_imported_paths": 0,
+      "explicitly_excluded_upstream_paths": [
+        "VS-includes/Config.hpp",
+        "VS.2015/editor/editor.vcxproj",
+        "VS.2015/editor/editor.vcxproj.filters",
+        "src/wineditoricon.o",
+        "src/wingameicon.o"
+      ]
+    },
+    "retail_version_match": "unverified",
+    "target_platform": "Windows",
+    "distribution": "Steam",
+    "provenance_assessment": "The local import is restorable and all 381 selected paths match the official upstream commit in blob ID and mode after applying the explicit exclusion set. Retain verifiable upstream tree evidence with the project."
+  },
+  "build": {
+    "status": "blocked",
+    "compiled": false,
+    "launched": false,
+    "current_recipe": [
+      "python3 scripts/build.py restore",
+      "python3 scripts/build.py vanilla"
+    ],
+    "configuration": {
+      "build_type": "Release",
+      "default_targets": [
+        "game",
+        "editor"
+      ],
+      "disabled_features": [
+        "FMOD",
+        "OpenAL",
+        "Steamworks",
+        "EOS",
+        "PlayFab"
+      ],
+      "classification": "unchanged-source compiler baseline, not retail feature parity"
+    },
+    "observed_environment": {
+      "compiler": "GCC/G++ 13.3.0",
+      "system_cmake": "missing",
+      "public_development_dependencies": "missing",
+      "local_cmake_attempt": "4.4.3",
+      "local_cmake_result": "configure rejected upstream cmake_minimum_required(VERSION 3.0) compatibility",
+      "compile_result": "not reached"
+    },
+    "reproducibility_gaps": [
+      "upstream object or signed archive/tree digest not retained in the project clone",
+      "target Windows toolchain is not provisioned or locked",
+      "toolchain and dependency versions not locked",
+      "GitHub hosted runner and apt state are mutable",
+      "configure and build logs with output hashes are absent",
+      "build date is embedded unless timestamp inputs are controlled"
+    ],
+    "required_manifest_fields": [
+      "source tree digest",
+      "Windows edition/build, architecture, and image/provisioning identity",
+      "Visual Studio/MSVC toolset, Windows SDK, compiler and linker version",
+      "CMake and generator version",
+      "dependency versions",
+      "environment and exact command",
+      "timestamp/locale/path policy",
+      "logs, output hashes, and license inventory"
+    ]
+  },
+  "assets": {
+    "retail_runtime_assets_in_repository": false,
+    "absent_runtime_roots": [
+      "books",
+      "data",
+      "fonts",
+      "images",
+      "items",
+      "maps",
+      "models",
+      "music",
+      "sound",
+      "editor"
+    ],
+    "assessment": "The open-source tree intentionally omits required retail data. This is distinct from missing source code. Every runtime test needs an isolated copy from a legitimate installation; no retail asset may be packaged."
+  },
+  "extension_boundaries": {
+    "reusable": [
+      "PhysFS mount and override path",
+      "existing editor and map format",
+      "seeded room and subroom assembly",
+      "bounded map-entity script interpreter",
+      "existing JSON data loaders",
+      "server-side script execution pattern"
+    ],
+    "requires_source_adapter": [
+      "motion-comfort controls and persistence",
+      "manifest-driven room eligibility/injection",
+      "content RNG isolation",
+      "content/protocol compatibility handshake",
+      "host-owned campaign state and journal",
+      "stable guest identity and reconnect snapshots",
+      "transactional rewards and migrations",
+      "player-safe log export"
+    ],
+    "current_authored_content": "none; placeholder files only"
+  },
+  "multiplayer": {
+    "default_player_slots": 4,
+    "transport_surfaces": [
+      "SDL_net UDP direct-connect",
+      "conditional Steam P2P",
+      "conditional EOS P2P"
+    ],
+    "observed_pattern": "server sends entity state; clients receive a seed and generate map data locally before server updates",
+    "compatibility_check": "human-readable game version plus service metadata mod count; no mandatory content-manifest hash",
+    "dedicated_server_target": false,
+    "service_disabled_baseline_limits": [
+      "no Steam invitations",
+      "no crossplay",
+      "no proprietary SDK validation",
+      "no NAT traversal claim"
+    ],
+    "save_model_gap": "existing multiplayer join/load semantics use participant-local save records and are not the required host-owned campaign model",
+    "runtime_validation": "not performed"
+  },
+  "camera": {
+    "architecture": [
+      "per-player view and viewport",
+      "player movement updates yaw, pitch, bob, and camera height",
+      "optional timer interpolation can update camera state during rendering",
+      "renderer loops local cameras and applies/restores transient motion",
+      "world and HUD use separate projection matrices"
+    ],
+    "known_motion_sources": [
+      "vertical bob",
+      "HUD-arm side sway",
+      "camera-height easing",
+      "mouse smoothing and rotation cap",
+      "quick turn",
+      "shake and special camera motion",
+      "render-time interpolation",
+      "split-screen FOV adjustment"
+    ],
+    "existing_controls": [
+      "bob toggle",
+      "shake toggle",
+      "FOV range 40-100"
+    ],
+    "staged_patch_status": "applies diagnostics only; not integrated, compiled, run, persisted, or proven comfortable",
+    "release_gate": "short same-condition A/B tests on target hardware, extended only when comfortable, with frame-time and input measurements"
+  },
+  "content_gap_detector": {
+    "status": "specified, not implemented",
+    "layers": [
+      {
+        "name": "pack_path_lint",
+        "covers": [
+          "missing files",
+          "duplicate opaque IDs",
+          "case collisions",
+          "forbidden paths",
+          "undeclared dependencies",
+          "unstable mount order",
+          "unexpected retail files"
+        ],
+        "cannot_prove": "resource correctness or quality"
+      },
+      {
+        "name": "schema_reference_graph",
+        "covers": [
+          "invalid types and ranges",
+          "dangling references",
+          "unreachable declared states",
+          "missing localization or accessibility references",
+          "forbidden cycles"
+        ],
+        "cannot_prove": "runtime interpretation"
+      },
+      {
+        "name": "engine_load_smoke",
+        "covers": [
+          "parser failures",
+          "unsupported map versions",
+          "invalid resource indices",
+          "fallback resources",
+          "unknown maps",
+          "script parse errors"
+        ],
+        "cannot_prove": "playability or comfort"
+      },
+      {
+        "name": "geometry_route_validation",
+        "covers": [
+          "connector mismatch",
+          "placement overlap and bounds",
+          "required-exit reachability",
+          "blocked interactions",
+          "missing recovery routes"
+        ],
+        "cannot_prove": "dynamic physics, AI, timing, or crowding"
+      },
+      {
+        "name": "deterministic_seed_sweep",
+        "covers": [
+          "generation crashes",
+          "empty candidate pools",
+          "invalid placements",
+          "nondeterministic canonical hashes",
+          "content RNG leakage"
+        ],
+        "cannot_prove": "all seeds"
+      },
+      {
+        "name": "state_reward_fault_checks",
+        "covers": [
+          "missing terminal or recovery paths",
+          "duplicate transaction IDs",
+          "non-idempotent replay",
+          "invalid migrations",
+          "save interruption recovery"
+        ],
+        "cannot_prove": "unbounded emergent interactions or narrative quality"
+      },
+      {
+        "name": "party_capability_matrix",
+        "covers": [
+          "declared progression locks",
+          "missing alternative actions",
+          "missing assistance or consumable fallbacks"
+        ],
+        "cannot_prove": "correctness of incomplete capability annotations"
+      },
+      {
+        "name": "four_peer_differential",
+        "covers": [
+          "protocol or manifest mismatch",
+          "host/client state divergence",
+          "transition and reconnect loss",
+          "duplicate rewards"
+        ],
+        "cannot_prove": "internet routing, service SDK behavior, latency extremes, or uninjected host loss"
+      },
+      {
+        "name": "presentation_export_policy",
+        "covers": [
+          "missing cue alternatives",
+          "unhandled camera overrides",
+          "missing public text",
+          "internal log leakage"
+        ],
+        "cannot_prove": "human comfort, clarity, balance, or discovery quality"
+      }
+    ],
+    "public_report_rule": "only capability status, opaque issue IDs, and test timings; no hidden identifiers, names, conditions, outcomes, filenames, or counts"
+  },
+  "findings": [
+    {
+      "id": "B0",
+      "severity": "information",
+      "title": "Selected source snapshot verified against official upstream tree",
+      "status": "resolved"
+    },
+    {
+      "id": "B1",
+      "severity": "blocker",
+      "title": "Target Windows vanilla compiler baseline has not configured or compiled",
+      "status": "open"
+    },
+    {
+      "id": "B2",
+      "severity": "blocker",
+      "title": "Owned retail runtime data and version match are unavailable",
+      "status": "open"
+    },
+    {
+      "id": "B3",
+      "severity": "blocker",
+      "title": "No isolated-profile launch, audio, editor, or save/reload evidence",
+      "status": "open"
+    },
+    {
+      "id": "B4",
+      "severity": "blocker",
+      "title": "Motion-comfort diagnostic remains staged and untested",
+      "status": "open"
+    },
+    {
+      "id": "B5",
+      "severity": "blocker",
+      "title": "Four-peer runtime and content compatibility are unverified",
+      "status": "open"
+    },
+    {
+      "id": "B6",
+      "severity": "blocker",
+      "title": "Campaign content and its validation tooling are not implemented",
+      "status": "open"
+    }
+  ],
+  "evidence": [
+    "upstream.lock.json:2-15",
+    "scripts/build.py:8-40",
+    "INSTALL.md:1-29,83-123",
+    ".github/workflows/vanilla.yml:1-19",
+    "CMakeLists.txt:156-191,347-405,417-484,684-704",
+    "README.upstream.md:7-13,23-31",
+    ".gitignore:1-20",
+    "src/game.hpp:26-31",
+    "src/init.cpp:60-127",
+    "src/mod_tools.cpp:7528-7589,7858-7862,11343-11532",
+    "src/maps.cpp:1197-1301,1537-1552,1771-1798,2355-2509",
+    "src/main.hpp:673-686,743-753",
+    "src/net.cpp:107-233,463-555,1525-1538,2392-2464",
+    "src/steam.cpp:1825-1917",
+    "src/eos.cpp:1665-1681",
+    "src/lobbies.cpp:148-216",
+    "src/scores.hpp:459-486",
+    "src/scores.cpp:6352-6366",
+    "src/draw.hpp:227-243",
+    "src/player.hpp:651-689,1824-1854",
+    "src/actplayer.cpp:3765-4269,4976-5032",
+    "src/game.cpp:6550-6823",
+    "src/opengl.cpp:1035-1104",
+    "src/interface/consolecommand.cpp:367-380,1000-1006"
+  ],
+  "primary_sources": [
+    "https://github.com/TurningWheel/Barony",
+    "https://github.com/TurningWheel/Barony/releases/tag/v5.0.2",
+    "https://github.com/TurningWheel/Barony/blob/master/INSTALL.md"
+  ]
+}

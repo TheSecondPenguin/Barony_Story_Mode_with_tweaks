@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "python3",
+    "scripts/qa/run_qa.py"
+  ],
+  "artifact_before": {
+    "orchestrator/artifacts/qa/harness-result.json": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+  },
+  "attempt": 1,
+  "cwd": ".",
+  "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+  "started_at": "2026-10-04T08:07:53+00:00",
+  "status": "running",
+  "task_id": "verify.quality.tests",
+  "worker_id": "/root/qa_agent/local-verifier"
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barony-orchestrator-task-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "role", "description", "write_paths"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]{1,79}$"},
+    "title": {"type": "string", "minLength": 1},
+    "role": {"enum": ["director", "researcher", "world_designer", "narrative_designer", "systems_designer", "engineer", "reviewer", "qa", "playtester", "critic"]},
+    "description": {"type": "string"},
+    "depends_on": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "required_gates": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "read_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "write_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "required_artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+    "visibility": {"enum": ["public", "internal", "hidden"]},
+    "category": {"type": "string"},
+    "priority": {"type": "integer"},
+    "metadata": {"type": "object"},
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["argv"],
+      "properties": {
+        "argv": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "cwd": {"type": "string"},
+        "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 7200}
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "kind", "path"],
+      "properties": {
+        "name": {"type": "string"},
+        "kind": {"enum": ["file", "json", "directory", "log", "report", "patch"]},
+        "path": {"type": "string"}
+      }
+    }
+  }
+}
+

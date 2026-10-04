@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "artifact_type": "director_final_gate_assessment",
+  "role": "director",
+  "worker_id": "/root/director",
+  "recorded_at": "2026-10-04T07:56:44.696189+00:00",
+  "repository_head": "750e25210876efdbc20f6262e5e71dcd74342d40",
+  "working_tree_note": "Uncommitted concurrent implementation; file hashes identify this assessment snapshot.",
+  "scope": "Spoiler-safe bootstrap acceptance and next-phase authorization; not a runtime or release attestation.",
+  "status": "conditional_acceptance_pending_final_review_and_qa",
+  "target": {
+    "os": "Windows",
+    "distribution": "Steam",
+    "basis": "user-reported context relayed by coordinator and recorded in upstream.lock.json",
+    "installed_version": "unknown",
+    "retail_source_compatibility": "unverified"
+  },
+  "observed_progress": [
+    "The coordinator has real task claims, native-worker identities, implementation handoffs and corrective-task handoffs.",
+    "The runtime worker recorded a capability-only blocked handoff rather than a fabricated playtest.",
+    "A refreshed automation harness at 2026-10-04T07:55:34.661558+00:00 passed its explicit suites and isolated comfort checker after the latest recorded corrective handoff.",
+    "The staged comfort checker covers policy C++ compilation and patch wiring; no full comfort game build is established.",
+    "External CI job/log evidence records successful unchanged editor and barony compilation on Ubuntu 24.04 in run 37186649995; no runtime ran and no Windows build is established."
+  ],
+  "observed_state_revision": 19,
+  "inspected_qa_timestamp": "2026-10-04T07:55:34.661558+00:00",
+  "final_review_artifact_present_at_inspection": false,
+  "decisions": {
+    "bootstrap_tooling": "conditionally_accept_after_C1_C2_C3",
+    "local_tooling_and_private_checkpoint": "proceed",
+    "baseline_compiler_attempts": "external_linux_compile_success_recorded_continue_target_build_preparation",
+    "vanilla_build_gate": "external_linux_game_and_editor_compile_success_not_yet_imported_to_coordinator_gate",
+    "vanilla_runtime_gate": "blocked",
+    "comfort_full_game_integration_and_runtime_gate": "hold_pending_accepted_baseline",
+    "four_player_runtime_gate": "untested",
+    "adventure_implementation_and_authored_content": "hold_pending_all_prerequisite_runtime_gates",
+    "public_posting_new_development_code_prompts_artifacts": "authorized_by_subsequent_explicit_user_instruction_preserve_spoiler_safe_public_boundary",
+    "playable_build_or_continuous_daemon_claim": "not_supported"
+  },
+  "conditions": [
+    {
+      "id": "C1",
+      "required": "Final independent code review identifies final source and closes or supersedes CRIT-001, CRIT-002, CRIT-003 and CRIT-004 plus implementation review findings. Author completion claims alone are insufficient."
+    },
+    {
+      "id": "C2",
+      "required": "After the final legacy null-baseline fix, freeze relevant source and record fresh independent QA against final reviewed source/artifact identities. Earlier passing harness results remain historical and do not cover that later edit."
+    },
+    {
+      "id": "C3",
+      "required": "Coordinator records final reviewer and QA handoffs with artifact identities and preserves runtime gates as blocked or untested. This director artifact must not itself be ingested as a game or runtime PASS."
+    }
+  ],
+  "remaining_blockers": [
+    {
+      "id": "BLOCK-REVIEW-001",
+      "summary": "A final legacy null-baseline edge is being corrected; final-source independent review closure and fresh QA handoffs remain pending."
+    },
+    {
+      "id": "BLOCK-BUILD-001",
+      "summary": "Local development packages remain unavailable. External unchanged Linux game/editor compilation succeeded; Windows target compilation is not established, and external CI evidence is not yet imported as a canonical coordinator gate manifest."
+    },
+    {
+      "id": "BLOCK-TARGET-001",
+      "summary": "Installed Windows Steam retail version and source/data compatibility remain unverified."
+    },
+    {
+      "id": "BLOCK-RUN-001",
+      "summary": "This host has no supplied game binary, complete retail data, native display or visible audio device; no launch or play session ran."
+    },
+    {
+      "id": "BLOCK-COMFORT-001",
+      "summary": "Player comfort, complete-game input/camera behavior and audiovisual feedback require target-machine observations."
+    },
+    {
+      "id": "BLOCK-COOP-001",
+      "summary": "Host plus three clients and reconnect/save lifecycle remain untested."
+    }
+  ],
+  "continuation_rules": [
+    "Continue authorized project work without repeating the resolved authorization question; preserve history and the spoiler-safe public export boundary.",
+    "Report an hourly bounded automation as active only after successful creation is observed; it is not a continuous daemon.",
+    "External Linux game/editor compilation is successful. It does not establish Windows runtime, sound, save behavior or comfort, and must not be misrepresented as a canonical imported gate.",
+    "Keep secret content generation closed until baseline runtime, comfort and four-player acceptance."
+  ],
+  "evidence": [
+    {
+      "path": "orchestrator/state/state.json",
+      "sha256": "6463d707e955a40caf23f801a1863c55b450d7e5a37cc38ab405520c1aa4cda0"
+    },
+    {
+      "path": "orchestrator/artifacts/qa/qa-summary.json",
+      "sha256": "ce2e40878d6c4805e2a23b56dbc27b0f50243b512d8c2c846bf62d6b4e738927"
+    },
+    {
+      "path": "orchestrator/artifacts/qa/harness-result.json",
+      "sha256": "b861a9d111d999126af3e9a32e75ca9cdcf785b4815f7f1bf734c1e5b503c199"
+    },
+    {
+      "path": "orchestrator/artifacts/playtests/runtime/result.json",
+      "sha256": "23d7b3a45fa12a8c5a873794f9f43e954d6d58cd997fd0fe5ed42a4c235ad03d"
+    },
+    {
+      "path": "orchestrator/artifacts/designs/critic-bootstrap.json",
+      "sha256": "2763d3a1c4a249dcdc909c5b174bb5be563675b758315b4bff188c085d8ef7a9"
+    },
+    {
+      "path": "orchestrator/engine.py",
+      "sha256": "d2cef9bf628e7645817671bec36c435034ee40f5729ee8bfa88ad08bac9fb3e8"
+    },
+    {
+      "path": "orchestrator/config/gates.json",
+      "sha256": "ed8d380d984725e0f42a6c1f7722f6b5ee22b7246b3854497da3a5295279fc5b"
+    },
+    {
+      "path": "scripts/build.py",
+      "sha256": "9ed3f2c673174008d4145f069bf29b397acedf068a1278b7de2362a4737916d2"
+    },
+    {
+      "path": "scripts/verify_vanilla.py",
+      "sha256": "93751a0169b66b0a035b5095baec13a9d7acd7e60061136353a296b64467ac2c"
+    },
+    {
+      "path": "scripts/comfort_check.py",
+      "sha256": "91aa2564bb3fb46a7cc3ac81945ab7d490baf65dee052721741f73388aeb44c9"
+    },
+    {
+      "path": "upstream.lock.json",
+      "sha256": "5350c11095be5bcbb638a75531fcb967f2ee16eef9b9939a264e8a29378496d1"
+    },
+    {
+      "path": "orchestrator/artifacts/qa/vanilla-external-ci.json",
+      "sha256": "bb377f7f9164ffb686c36f35a111fdee2bd7ece4c96136d0408fd30a37ca9bf7",
+      "scope": "Root-observed external GitHub Actions job and log; Linux compile only."
+    }
+  ],
+  "source_modified_by_director": false,
+  "hidden_content_created_by_director": false,
+  "runtime_attestation": false,
+  "final_approval": false,
+  "release_approval": false,
+  "updated_at": "2026-10-04T08:03:50.798931+00:00",
+  "update_basis": "Coordinator relayed subsequent explicit user authorization, provided observed external CI success artifact, and reported a final legacy null-baseline fix still in progress.",
+  "resolved_holds": [
+    {
+      "id": "BLOCK-PUBLISH-001",
+      "resolution": "The user subsequently explicitly authorized all project work and requested no repeated authorization questions. Previous public-posting hold is superseded; preserve spoiler-safe exports and existing repository history."
+    }
+  ]
+}

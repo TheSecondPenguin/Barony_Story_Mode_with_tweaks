@@ -1,0 +1,9 @@
+{
+  "task_id": "fix.baseline.shape",
+  "worker_id": "/root/orchestration_engineer",
+  "role": "engineer",
+  "status": "completed",
+  "summary": "Completion now validates artifact baselines unconditionally: exact required paths and only null-or-lowercase-SHA256 values are accepted, including tasks with zero required artifacts.",
+  "artifacts": [{"name": "engine", "path": "orchestrator/engine.py"}],
+  "notes": ["Regressions cover null zero-artifact baselines and malformed baseline keys/values.", "Core 23/23 and black-box CLI/primitives 11/11 pass."]
+}

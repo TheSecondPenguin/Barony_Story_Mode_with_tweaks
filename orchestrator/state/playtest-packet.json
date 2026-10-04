@@ -1,0 +1,62 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "json",
+        "name": "runtime",
+        "path": "orchestrator/artifacts/playtests/runtime/result.json"
+      }
+    ],
+    "notes": [],
+    "role": "playtester",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "vanilla.target-runtime",
+    "worker_id": "/root/playtest_agent"
+  },
+  "role_prompt": "# Playtester\n\nProvide independent, real-session observations. Verify the exact binary, data version, hardware, audio, input, save isolation, roster, and session scope. For motion comfort, begin with a short session, stop on discomfort, and lengthen only after comfort; report timing and actions without guessing the cause. Four-player evidence needs four identical peers and the documented join, transition, reconnect, and save/reload checks.\n\nDo not invent a play session or infer runtime success from source, compilation, screenshots, or another worker's claim. Keep discoveries and internal content out of player-facing evidence. Return the required handoff JSON.\n\n",
+  "task": {
+    "attempt_count": 1,
+    "category": "runtime",
+    "claimed_at": "2026-10-04T07:45:46+00:00",
+    "claimed_by": "/root/playtest_agent",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T07:42:48+00:00",
+    "depends_on": [],
+    "description": "Verify launch audio saves on owner-supplied matching retail data and compiled binary. No native desktop available in current host.",
+    "handoff_history": [],
+    "id": "vanilla.target-runtime",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "scripts/playtest",
+      "tests/playtest"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "json",
+        "name": "runtime",
+        "path": "orchestrator/artifacts/playtests/runtime/result.json"
+      }
+    ],
+    "required_gates": [],
+    "role": "playtester",
+    "status": "claimed",
+    "title": "Isolated native runtime baseline",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/artifacts/playtests/runtime"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "playtester",
+    "worker_id": "/root/playtest_agent"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "fix.wrapper.binding",
+  "title": "Bind approved wrapper source to build evidence",
+  "role": "engineer",
+  "description": "Include the canonical vanilla wrapper in the source fingerprint and prove wrapper mutation stales PASS.",
+  "depends_on": ["fix.gate.runner", "fix.vanilla.wrapper"],
+  "required_gates": [],
+  "read_paths": ["scripts/verify_vanilla.py", "orchestrator/config/gates.json"],
+  "write_paths": ["orchestrator/config/gates.json", "orchestrator/tests/test_orchestrator.py"],
+  "required_artifacts": [
+    {"name": "gates", "kind": "json", "path": "orchestrator/config/gates.json"}
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}

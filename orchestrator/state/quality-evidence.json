@@ -1,0 +1,17 @@
+{
+  "artifact": {
+    "path": "orchestrator/artifacts/qa/harness-result.json",
+    "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+  },
+  "evidence_type": "test",
+  "gate_id": "quality.tests",
+  "observations": "Canonical local verifier was controlled by native worker /root/qa_agent. Initial same-ID local attempt exited 2 because worker execution mode is immutable; the distinct local process identity then completed the approved runner contract.",
+  "outcome": "passed",
+  "role": "qa",
+  "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+  "subject_task_ids": [
+    "bootstrap.engine",
+    "fix.baseline.shape"
+  ],
+  "worker_id": "/root/qa_agent/local-verifier"
+}

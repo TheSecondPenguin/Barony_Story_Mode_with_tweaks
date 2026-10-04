@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barony-orchestrator-handoff-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "worker_id", "role", "status", "summary", "artifacts"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "worker_id": {"type": "string"},
+    "role": {"type": "string"},
+    "status": {"enum": ["completed", "failed", "blocked"]},
+    "summary": {"type": "string", "minLength": 1},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name", "path"],
+        "properties": {"name": {"type": "string"}, "path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}
+

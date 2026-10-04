@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "secret_prefixes": [
+    "internal_spoilers",
+    "docs/internal_spoilers",
+    "content/hidden",
+    "events",
+    "quests",
+    "world_secrets"
+  ],
+  "public_export_allowlist": [
+    "docs/player",
+    "content/public"
+  ],
+  "secret_generation_categories": [
+    "hidden_content",
+    "npc_secret",
+    "item_secret",
+    "quest_secret",
+    "world_secret"
+  ],
+  "secret_generation_gate": "adventure_core.ready"
+}

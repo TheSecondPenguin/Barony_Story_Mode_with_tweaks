@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barony-seed-ledger-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "entries"],
+  "properties": {
+    "schema_version": {"const": 1}, "kind": {"const": "seed"},
+    "entries": {"type": "array", "items": {"$ref": "#/$defs/entry"}}
+  },
+  "$defs": {"entry": {
+    "type": "object", "required": ["id", "seed", "content_manifest_hash", "status", "test_matrix"],
+    "properties": {
+      "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]{1,79}$"},
+      "seed": {"type": "integer"}, "content_manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "status": {"enum": ["gap", "queued", "failed", "passed"]}, "contains_secret": {"type": "boolean"},
+      "test_matrix": {"type": "object", "required": ["exit_reachability"], "properties": {"exit_reachability": {"type": "boolean"}, "party_compositions": {"type": "array"}}}
+    }
+  }}
+}
+

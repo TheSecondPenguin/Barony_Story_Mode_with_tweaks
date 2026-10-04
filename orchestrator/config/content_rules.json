@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generation_gate": "adventure_core.ready",
+  "ledgers": {
+    "npc": {
+      "filename": "npc.json",
+      "required_fields": ["id", "public_label", "status", "provenance"],
+      "statuses": ["gap", "draft", "reviewed", "tested"]
+    },
+    "item": {
+      "filename": "item.json",
+      "required_fields": ["id", "public_label", "status", "provenance"]
+    },
+    "quest": {
+      "filename": "quest.json",
+      "required_fields": ["id", "public_label", "status", "provenance", "accessibility_paths"]
+    },
+    "seed": {
+      "filename": "seed.json",
+      "required_fields": ["id", "seed", "content_manifest_hash", "status", "test_matrix"]
+    }
+  },
+  "rules": [
+    "IDs are opaque and unique within each ledger.",
+    "A gap record describes a capability or validation need, never a secret resolution.",
+    "Quest records need at least one accessibility path and may not require a fixed class composition.",
+    "Seed records must retain test results for exit reachability and supported party compositions.",
+    "No hidden NPC, item, quest, event, outcome, or world-secret prose may be generated before adventure_core.ready passes."
+  ]
+}

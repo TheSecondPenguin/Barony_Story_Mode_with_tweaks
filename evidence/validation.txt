@@ -1,0 +1,9 @@
+Pinned source clean: PASS
+Offline bundle restore: PASS (exact commit)
+Patch git apply --check: PASS
+Build helper Python syntax: PASS
+Vanilla preflight: BLOCKED (cmake missing; no compilation attempted)
+Comfort baseline guard: PASS (refused without launch evidence)
+SDL2/PhysFS/RapidJSON development headers: unavailable at checked system paths
+apt-get update: FAIL setgroups/seteuid permission, no workaround attempted
+Runtime/audio/network/motion-comfort: NOT TESTED

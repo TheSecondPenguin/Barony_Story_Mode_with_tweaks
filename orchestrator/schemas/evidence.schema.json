@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barony-orchestrator-evidence-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["gate_id", "evidence_type", "outcome", "worker_id", "role", "artifact"],
+  "properties": {
+    "gate_id": {"type": "string"},
+    "evidence_type": {"enum": ["build", "test", "playtest", "review"]},
+    "outcome": {"enum": ["passed", "failed", "blocked"]},
+    "worker_id": {"type": "string"},
+    "role": {"type": "string"},
+    "artifact": {
+      "type": "object", "additionalProperties": false, "required": ["path"],
+      "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "run_id": {"type": "string"},
+    "observations": {"type": "string"},
+    "runtime_attestation": {"type": "object"},
+    "subject_task_ids": {"type": "array", "items": {"type": "string"}}
+  }
+}

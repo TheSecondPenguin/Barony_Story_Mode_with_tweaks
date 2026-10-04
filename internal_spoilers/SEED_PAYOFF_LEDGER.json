@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "content_revision": 0,
+  "artifact_type": "seed_payoff_ledger",
+  "status": "empty_template",
+  "visibility": "hidden",
+  "runtime_implemented": false,
+  "authority": {
+    "campaign_owner": "host",
+    "mutation_source": "host_only",
+    "host_loss_policy": "pause"
+  },
+  "compatibility": {
+    "campaign_schema_version": 1,
+    "content_manifest_hash": null,
+    "unknown_version_policy": "reject"
+  },
+  "id_policy": {
+    "format": "opaque_type_prefix_plus_16_lowercase_hex",
+    "semantic_ids_forbidden": true,
+    "cross_references_use_ids_only": true,
+    "player_safe_debug_values": "opaque_ids_only"
+  },
+  "ledger_entry_template": {
+    "id": null,
+    "lifecycle": "draft",
+    "quest_ids": [],
+    "npc_reference_ids": [],
+    "system_reference_ids": [],
+    "minimum_distinct_expeditions": 2,
+    "plant": {
+      "seed_id": null,
+      "expedition_offset": 0,
+      "visible_evidence_ids": [],
+      "delivery_system_ids": []
+    },
+    "interpretations": [],
+    "callbacks": [],
+    "payoff": {
+      "payoff_id": null,
+      "earliest_expedition_offset": 1,
+      "internal_description": "",
+      "requires_callback_ids": [],
+      "world_consequence_ids": []
+    },
+    "resolution": {
+      "state": "pending",
+      "intentional_unresolved": false,
+      "unresolved_reason_code": null,
+      "unresolved_reason": ""
+    },
+    "validation": {
+      "evidence_is_player_visible": "pending",
+      "interpretation_is_evidence_supported": "pending",
+      "spans_distinct_expeditions": "pending",
+      "callback_is_perceivable": "pending",
+      "payoff_changes_world_state": "pending",
+      "references_resolve": "pending"
+    }
+  },
+  "interpretation_template": {
+    "id": null,
+    "internal_statement": "",
+    "supported_by_evidence_ids": [],
+    "known_context_fact_ids": [],
+    "npc_reference_ids": [],
+    "system_reference_ids": []
+  },
+  "callback_template": {
+    "id": null,
+    "earliest_expedition_offset": 1,
+    "internal_description": "",
+    "trigger_rule_ids": [],
+    "references_seed_id": null,
+    "visible_evidence_ids": [],
+    "npc_reference_ids": [],
+    "system_reference_ids": [],
+    "world_consequence_ids": []
+  },
+  "unresolved_reason_codes": [
+    "deliberate_ambiguity",
+    "ongoing_arc",
+    "deferred_callback",
+    "mutually_exclusive_resolution",
+    "future_content_boundary"
+  ],
+  "entries": [],
+  "validation_issues": []
+}

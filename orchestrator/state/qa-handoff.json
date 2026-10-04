@@ -1,0 +1,19 @@
+{
+  "artifacts": [
+    {
+      "name": "qa",
+      "path": "orchestrator/artifacts/qa/harness-result.json",
+      "sha256": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+    }
+  ],
+  "notes": [
+    "orchestrator/engine.py sha256 464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6",
+    "External Linux compile evidence: orchestrator/artifacts/qa/vanilla-external-ci.json",
+    "Interactive runtime, audio, save isolation, and four-player playtest remain unrun."
+  ],
+  "role": "qa",
+  "status": "completed",
+  "summary": "Independent frozen-source QA passed 61 Python tests, comfort patch integration, and Python compilation. External Linux CI compile evidence was incorporated separately; runtime remains NOT_RUN.",
+  "task_id": "bootstrap.qa",
+  "worker_id": "/root/qa_agent"
+}

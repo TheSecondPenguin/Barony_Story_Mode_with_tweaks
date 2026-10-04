@@ -1,0 +1,11 @@
+Collecting cmake==3.31.6
+  Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.3 kB)
+Collecting ninja==1.13.2
+  Using cached ninja-1.13.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.4 kB)
+Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.8/27.8 MB 40.5 MB/s  0:00:00
+Using cached ninja-1.13.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (183 kB)
+Installing collected packages: ninja, cmake
+
+Successfully installed cmake-3.31.6 ninja-1.13.2
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.

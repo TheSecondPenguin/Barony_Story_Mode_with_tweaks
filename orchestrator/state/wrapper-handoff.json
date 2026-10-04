@@ -1,0 +1,9 @@
+{
+  "task_id": "fix.vanilla.wrapper",
+  "worker_id": "/root/orchestration_engineer",
+  "role": "engineer",
+  "status": "completed",
+  "summary": "Added the fixed no-argument vanilla verification wrapper that invokes the existing build and captures combined real output with timestamp and exit code.",
+  "artifacts": [{"name": "runner", "path": "scripts/verify_vanilla.py"}],
+  "notes": ["The wrapper returns the underlying build exit status; failed builds cannot pass the orchestrator gate."]
+}

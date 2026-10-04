@@ -1,0 +1,88 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_build_gate.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "name": "build-gate-tests"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/qa",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "name": "qa-tests"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/playtest",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "name": "playtest-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "orchestrator/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "name": "orchestrator-tests"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/comfort_check.py"
+      ],
+      "exit_code": 0,
+      "name": "comfort-integration"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "compileall",
+        "-q",
+        "scripts",
+        "orchestrator",
+        "tests"
+      ],
+      "exit_code": 0,
+      "name": "python-compile"
+    }
+  ],
+  "recorded_at": "2026-10-04T08:07:55.660616+00:00",
+  "schema_version": 1,
+  "status": "PASS"
+}

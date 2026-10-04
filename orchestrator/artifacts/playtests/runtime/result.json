@@ -1,0 +1,53 @@
+{
+  "blockers": [
+    {
+      "id": "PT-ENV-001",
+      "reason": "No game executable is available in the current host."
+    },
+    {
+      "id": "PT-ENV-002",
+      "reason": "Owner-supplied runtime data is unavailable in the current host."
+    },
+    {
+      "id": "PT-ENV-003",
+      "reason": "No native display session is available in the current host."
+    },
+    {
+      "id": "PT-ENV-004",
+      "reason": "No local audio device is visible in the current host."
+    }
+  ],
+  "capabilities": {
+    "game_executable_available": false,
+    "local_audio_device_visible": false,
+    "native_display_session_available": false,
+    "owner_supplied_runtime_data_available": false
+  },
+  "checks": {
+    "audio": "NOT_RUN",
+    "camera_comfort": "NOT_RUN",
+    "class_comparison": "NOT_RUN",
+    "death_flow": "NOT_RUN",
+    "four_player_multiplayer": "NOT_RUN",
+    "inventory": "NOT_RUN",
+    "launch": "NOT_RUN",
+    "level_transition": "NOT_RUN",
+    "movement": "NOT_RUN",
+    "save_isolation": "NOT_RUN"
+  },
+  "evidence_sources": [
+    "orchestrator/artifacts/playtests/environment.json",
+    "orchestrator/state/playtest-packet.json"
+  ],
+  "observation_kind": "capability-only",
+  "observed_at_utc": "2026-10-04T07:48:11.547367+00:00",
+  "role": "playtester",
+  "runtime_attestation": false,
+  "runtime_executed": false,
+  "runtime_gate": "blocked",
+  "schema": 1,
+  "status": "blocked",
+  "summary": "Capability inspection only. No game process or play session ran; runtime behavior remains unassessed.",
+  "task_id": "vanilla.target-runtime",
+  "worker_id": "/root/playtest_agent"
+}

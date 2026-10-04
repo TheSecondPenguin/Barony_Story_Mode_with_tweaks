@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "artifact_type": "coordinator_final_disposition",
+  "worker_id": "/root",
+  "recorded_at": "2026-10-04T08:08:37.884831+00:00",
+  "tooling": "ACCEPTED",
+  "independent_review": "ACCEPTED_WITH_RUNTIME_GATES_BLOCKED",
+  "automated_tests": {
+    "python_tests_passed": 61,
+    "comfort_policy_and_integration": "PASS",
+    "python_compile": "PASS",
+    "canonical_quality_gate": "passed"
+  },
+  "vanilla_linux_external_ci": "PASS",
+  "target_runtime": "NOT_RUN",
+  "comfort_acceptance": "NOT_RUN",
+  "four_player": "NOT_RUN",
+  "adventure_core": "BLOCKED",
+  "public_posting": "User renewed authorization after earlier approval review hold; publish reviewed development only, preserve history and spoiler firewall.",
+  "evidence": [
+    {
+      "path": "orchestrator/artifacts/code_reviews/review-bootstrap.json",
+      "sha256": "7eaa0689c2da3eb4cf2157491b908568425f58466b50e1270dabfbff46f92269"
+    },
+    {
+      "path": "orchestrator/artifacts/qa/qa-summary.json",
+      "sha256": "3a4035cd1dcb1c0e07429fb57769c45fd7c2d9ec17ba5baa671854530aa62838"
+    },
+    {
+      "path": "orchestrator/artifacts/qa/harness-result.json",
+      "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+    },
+    {
+      "path": "orchestrator/artifacts/qa/vanilla-external-ci.json",
+      "sha256": "bb377f7f9164ffb686c36f35a111fdee2bd7ece4c96136d0408fd30a37ca9bf7"
+    }
+  ]
+}

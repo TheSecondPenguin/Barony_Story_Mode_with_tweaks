@@ -1,0 +1,1291 @@
+{
+  "created_at": "2026-10-04T07:42:48+00:00",
+  "dispatches": [
+    {
+      "dispatch_id": "0a1d66d0053649ab9a869ad3b0a575de",
+      "recorded_at": "2026-10-04T07:42:48+00:00",
+      "status": "handoff_recorded",
+      "task_id": "bootstrap.engine",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "dispatch_id": "744c213b26804718bd728452b3354f41",
+      "recorded_at": "2026-10-04T07:44:31+00:00",
+      "status": "handoff_recorded",
+      "task_id": "bootstrap.review",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "dispatch_id": "96ca3e5b5e724471a23b7d8ad5dc4d41",
+      "recorded_at": "2026-10-04T07:45:46+00:00",
+      "status": "handoff_recorded",
+      "task_id": "vanilla.target-runtime",
+      "worker_id": "/root/playtest_agent"
+    },
+    {
+      "dispatch_id": "5afabea856b94180b06a14130304464a",
+      "recorded_at": "2026-10-04T07:47:38+00:00",
+      "status": "handoff_recorded",
+      "task_id": "fix.gate.runner",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "dispatch_id": "851a6803e8af4eda9358a047458b39fc",
+      "recorded_at": "2026-10-04T07:50:10+00:00",
+      "status": "handoff_recorded",
+      "task_id": "fix.vanilla.wrapper",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "dispatch_id": "23fd69d7f0f14c47aa8855905df4e703",
+      "recorded_at": "2026-10-04T07:53:13+00:00",
+      "status": "handoff_recorded",
+      "task_id": "fix.wrapper.binding",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "dispatch_id": "d7eb071f3a0c4c68b76094fe1277ffa6",
+      "recorded_at": "2026-10-04T07:58:19+00:00",
+      "status": "handoff_recorded",
+      "task_id": "fix.legacy.baseline",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "dispatch_id": "e02d87cd3dc2486cabed792bfeeb0e19",
+      "recorded_at": "2026-10-04T07:59:57+00:00",
+      "status": "handoff_recorded",
+      "task_id": "bootstrap.review",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "dispatch_id": "ec4e7cccaf13494383f117f1035a5913",
+      "recorded_at": "2026-10-04T08:02:25+00:00",
+      "status": "handoff_recorded",
+      "task_id": "fix.baseline.shape",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "dispatch_id": "160e23249a8f465bb4c3b0c3603c2d71",
+      "recorded_at": "2026-10-04T08:06:14+00:00",
+      "status": "handoff_recorded",
+      "task_id": "bootstrap.qa",
+      "worker_id": "/root/qa_agent"
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-10-04T07:42:48+00:00",
+      "revision": 1,
+      "task_id": "bootstrap.engine",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:42:48+00:00",
+      "revision": 2,
+      "task_id": "bootstrap.review",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:42:48+00:00",
+      "revision": 3,
+      "task_id": "bootstrap.qa",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:42:48+00:00",
+      "revision": 4,
+      "task_id": "vanilla.target-runtime",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:42:48+00:00",
+      "revision": 5,
+      "task_id": "adventure.core",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:42:48+00:00",
+      "revision": 6,
+      "task_id": "bootstrap.engine",
+      "type": "task.claimed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:44:31+00:00",
+      "revision": 7,
+      "task_id": "bootstrap.engine",
+      "type": "task.completed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:44:31+00:00",
+      "revision": 8,
+      "task_id": "bootstrap.review",
+      "type": "task.claimed",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "at": "2026-10-04T07:45:46+00:00",
+      "revision": 9,
+      "task_id": "vanilla.target-runtime",
+      "type": "task.claimed",
+      "worker_id": "/root/playtest_agent"
+    },
+    {
+      "at": "2026-10-04T07:47:38+00:00",
+      "revision": 10,
+      "task_id": "fix.gate.runner",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:47:38+00:00",
+      "revision": 11,
+      "task_id": "fix.gate.runner",
+      "type": "task.claimed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:48:42+00:00",
+      "revision": 12,
+      "task_id": "vanilla.target-runtime",
+      "type": "task.blocked",
+      "worker_id": "/root/playtest_agent"
+    },
+    {
+      "at": "2026-10-04T07:50:10+00:00",
+      "revision": 13,
+      "task_id": "fix.vanilla.wrapper",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:50:10+00:00",
+      "revision": 14,
+      "task_id": "fix.vanilla.wrapper",
+      "type": "task.claimed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:52:14+00:00",
+      "revision": 15,
+      "task_id": "fix.gate.runner",
+      "type": "task.completed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:52:14+00:00",
+      "revision": 16,
+      "task_id": "fix.vanilla.wrapper",
+      "type": "task.completed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:53:13+00:00",
+      "revision": 17,
+      "task_id": "fix.wrapper.binding",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:53:13+00:00",
+      "revision": 18,
+      "task_id": "fix.wrapper.binding",
+      "type": "task.claimed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:53:44+00:00",
+      "revision": 19,
+      "task_id": "fix.wrapper.binding",
+      "type": "task.completed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:58:19+00:00",
+      "revision": 20,
+      "task_id": "fix.legacy.baseline",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T07:58:19+00:00",
+      "revision": 21,
+      "task_id": "fix.legacy.baseline",
+      "type": "task.claimed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:59:16+00:00",
+      "revision": 22,
+      "task_id": "fix.legacy.baseline",
+      "type": "task.completed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T07:59:56+00:00",
+      "reason": "Migrate legacy claim to required artifact freshness baseline",
+      "revision": 23,
+      "task_id": "bootstrap.review",
+      "type": "task.released",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "at": "2026-10-04T07:59:57+00:00",
+      "revision": 24,
+      "task_id": "bootstrap.review",
+      "type": "task.claimed",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "at": "2026-10-04T08:02:25+00:00",
+      "revision": 25,
+      "task_id": "fix.baseline.shape",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T08:02:25+00:00",
+      "revision": 26,
+      "task_id": "fix.baseline.shape",
+      "type": "task.claimed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T08:03:56+00:00",
+      "revision": 27,
+      "task_id": "fix.baseline.shape",
+      "type": "task.completed",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "at": "2026-10-04T08:06:13+00:00",
+      "revision": 28,
+      "task_id": "bootstrap.review",
+      "type": "task.completed",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "at": "2026-10-04T08:06:14+00:00",
+      "revision": 29,
+      "task_id": "bootstrap.qa",
+      "type": "task.claimed",
+      "worker_id": "/root/qa_agent"
+    },
+    {
+      "at": "2026-10-04T08:07:12+00:00",
+      "revision": 30,
+      "task_id": "bootstrap.qa",
+      "type": "task.completed",
+      "worker_id": "/root/qa_agent"
+    },
+    {
+      "at": "2026-10-04T08:07:20+00:00",
+      "revision": 31,
+      "task_id": "verify.quality.tests",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T08:07:52+00:00",
+      "revision": 32,
+      "task_id": "verify.quality.tests",
+      "type": "task.claimed",
+      "worker_id": "/root/qa_agent/local-verifier"
+    },
+    {
+      "at": "2026-10-04T08:07:53+00:00",
+      "revision": 33,
+      "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+      "task_id": "verify.quality.tests",
+      "type": "run.started",
+      "worker_id": "/root/qa_agent/local-verifier"
+    },
+    {
+      "at": "2026-10-04T08:07:56+00:00",
+      "revision": 34,
+      "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+      "task_id": "verify.quality.tests",
+      "type": "run.completed",
+      "worker_id": "/root/qa_agent/local-verifier"
+    },
+    {
+      "at": "2026-10-04T08:07:56+00:00",
+      "revision": 35,
+      "task_id": "verify.quality.tests",
+      "type": "task.completed",
+      "worker_id": "/root/qa_agent/local-verifier"
+    },
+    {
+      "at": "2026-10-04T08:08:15+00:00",
+      "gate_id": "quality.tests",
+      "revision": 36,
+      "type": "evidence.recorded",
+      "worker_id": "/root/qa_agent/local-verifier"
+    }
+  ],
+  "evidence": [
+    {
+      "artifact": {
+        "path": "orchestrator/artifacts/qa/harness-result.json",
+        "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+      },
+      "command": {
+        "argv": [
+          "python3",
+          "scripts/qa/run_qa.py"
+        ],
+        "cwd": ".",
+        "exit_code": 0
+      },
+      "evidence_id": "bd193154444b4581be0638a6b2a0735e",
+      "evidence_type": "test",
+      "gate_id": "quality.tests",
+      "observations": "Canonical local verifier was controlled by native worker /root/qa_agent. Initial same-ID local attempt exited 2 because worker execution mode is immutable; the distinct local process identity then completed the approved runner contract.",
+      "outcome": "passed",
+      "recorded_at": "2026-10-04T08:08:15+00:00",
+      "role": "qa",
+      "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+      "runtime_attestation": null,
+      "source_fingerprint": "a2dd6e4c0c2b6f2ade065def6c894f1f9ec6f6cc21f1038a76002bea1ce689c5",
+      "source_paths": [
+        "orchestrator",
+        "scripts",
+        "tests",
+        "patches"
+      ],
+      "subject_task_ids": [
+        "bootstrap.engine",
+        "fix.baseline.shape"
+      ],
+      "worker_id": "/root/qa_agent/local-verifier",
+      "worker_mode": "local-subprocess"
+    }
+  ],
+  "project": "barony-adventurer",
+  "revision": 36,
+  "runs": [
+    {
+      "argv": [
+        "python3",
+        "scripts/qa/run_qa.py"
+      ],
+      "artifact_before": {
+        "orchestrator/artifacts/qa/harness-result.json": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+      },
+      "artifacts": [
+        {
+          "name": "qa.report",
+          "path": "orchestrator/artifacts/qa/harness-result.json",
+          "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+        }
+      ],
+      "attempt": 1,
+      "changed_paths": [
+        "orchestrator/artifacts/qa/build-gate-tests.log",
+        "orchestrator/artifacts/qa/harness-result.json",
+        "orchestrator/artifacts/qa/orchestrator-tests.log",
+        "orchestrator/artifacts/qa/playtest-tool-tests.log",
+        "orchestrator/artifacts/qa/qa-tests.log"
+      ],
+      "cwd": ".",
+      "duration_seconds": 2.971,
+      "exit_code": 0,
+      "manifest_sha256": "9eb68eba5ba76c2040efcdb1ed2e08e09cfb0b7af17b6fbc1f2c2548e3f41ab5",
+      "outside_ownership": [],
+      "pid": 6,
+      "recorded_at": "2026-10-04T08:07:56+00:00",
+      "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+      "stale_artifacts": [],
+      "started_at": "2026-10-04T08:07:53+00:00",
+      "status": "completed",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64",
+      "task_id": "verify.quality.tests",
+      "timed_out": false,
+      "worker_id": "/root/qa_agent/local-verifier"
+    }
+  ],
+  "schema_version": 1,
+  "tasks": [
+    {
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T07:42:48+00:00",
+      "claimed_by": "/root/orchestration_engineer",
+      "completed_at": "2026-10-04T07:44:31+00:00",
+      "completed_by": "/root/orchestration_engineer",
+      "created_at": "2026-10-04T07:42:48+00:00",
+      "depends_on": [],
+      "description": "Finish reviewed artifact queue implementation. Work started under native root before queue became available; enrollment timestamp is not work-start timestamp.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "engine",
+            "path": "orchestrator/engine.py",
+            "sha256": "a8b7e1c3a03489c8229a07a1d857da58a0aea85239f22191908e4266245bcc2f"
+          }
+        ],
+        "notes": [
+          "Core engine tests pass 18/18.",
+          "Black-box CLI and primitive tests pass 11/11 after excluding orchestrator/state and orchestrator/artifacts from quality source fingerprints.",
+          "Runtime playtest PASS remains intentionally disabled until a real target execution environment is configured."
+        ],
+        "recorded_at": "2026-10-04T07:44:31+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Implemented the durable stdlib orchestration core with atomic locked state, dependency-aware task claims, native dispatch packets, verified handoffs, bounded recovery, manifest-backed build/test evidence, disabled-by-default runtime PASS, aggregate phase gates, spoiler/path firewalling, trusted local subprocess execution, role prompts, ledgers, schemas, and gap linting.",
+        "task_id": "bootstrap.engine",
+        "worker_id": "/root/orchestration_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "engine",
+              "path": "orchestrator/engine.py",
+              "sha256": "a8b7e1c3a03489c8229a07a1d857da58a0aea85239f22191908e4266245bcc2f"
+            }
+          ],
+          "notes": [
+            "Core engine tests pass 18/18.",
+            "Black-box CLI and primitive tests pass 11/11 after excluding orchestrator/state and orchestrator/artifacts from quality source fingerprints.",
+            "Runtime playtest PASS remains intentionally disabled until a real target execution environment is configured."
+          ],
+          "recorded_at": "2026-10-04T07:44:31+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Implemented the durable stdlib orchestration core with atomic locked state, dependency-aware task claims, native dispatch packets, verified handoffs, bounded recovery, manifest-backed build/test evidence, disabled-by-default runtime PASS, aggregate phase gates, spoiler/path firewalling, trusted local subprocess execution, role prompts, ledgers, schemas, and gap linting.",
+          "task_id": "bootstrap.engine",
+          "worker_id": "/root/orchestration_engineer"
+        }
+      ],
+      "id": "bootstrap.engine",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "AGENTS.md"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "file",
+          "name": "engine",
+          "path": "orchestrator/engine.py"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Implement durable orchestration core",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/engine.py",
+        "orchestrator/cli.py",
+        "orchestrator/config",
+        "orchestrator/prompts",
+        "orchestrator/tests",
+        "orchestrator/README.md"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/code_reviews/review-bootstrap.json": "9f8e22dc5cbbede690640acc1cd099f739ba13a07a589e778b63388f48ed4366"
+      },
+      "attempt_count": 2,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T07:59:57+00:00",
+      "claimed_by": "/root/code_reviewer",
+      "completed_at": "2026-10-04T08:06:13+00:00",
+      "completed_by": "/root/code_reviewer",
+      "created_at": "2026-10-04T07:42:48+00:00",
+      "depends_on": [
+        "bootstrap.engine"
+      ],
+      "description": "Inspect actual code changes and independently verify fixes; no engineer assertion establishes PASS.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "review",
+            "path": "orchestrator/artifacts/code_reviews/review-bootstrap.json",
+            "sha256": "7eaa0689c2da3eb4cf2157491b908568425f58466b50e1270dabfbff46f92269"
+          }
+        ],
+        "notes": [
+          "Final targeted orchestrator suite passed 23/23; the prior full harness passed all six check groups and independent QA will refresh it after this handoff.",
+          "No full local game build or runtime session was claimed by this review; launch, comfort, four-player, and Adventure gates remain blocked.",
+          "The one-time publication workflow was separately reviewed after credential isolation, exact bundle/topology checks, repeat-import refusal, read-only self-downgrade, and non-force push handling; no functional blocker remains once final placeholders are filled."
+        ],
+        "recorded_at": "2026-10-04T08:06:13+00:00",
+        "role": "reviewer",
+        "status": "completed",
+        "summary": "Independent review accepted the frozen bootstrap tooling and staged comfort patch with no remaining source-level blocker; automated and recovery bypasses are closed, while all target runtime gates remain explicitly blocked.",
+        "task_id": "bootstrap.review",
+        "worker_id": "/root/code_reviewer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "review",
+              "path": "orchestrator/artifacts/code_reviews/review-bootstrap.json",
+              "sha256": "7eaa0689c2da3eb4cf2157491b908568425f58466b50e1270dabfbff46f92269"
+            }
+          ],
+          "notes": [
+            "Final targeted orchestrator suite passed 23/23; the prior full harness passed all six check groups and independent QA will refresh it after this handoff.",
+            "No full local game build or runtime session was claimed by this review; launch, comfort, four-player, and Adventure gates remain blocked.",
+            "The one-time publication workflow was separately reviewed after credential isolation, exact bundle/topology checks, repeat-import refusal, read-only self-downgrade, and non-force push handling; no functional blocker remains once final placeholders are filled."
+          ],
+          "recorded_at": "2026-10-04T08:06:13+00:00",
+          "role": "reviewer",
+          "status": "completed",
+          "summary": "Independent review accepted the frozen bootstrap tooling and staged comfort patch with no remaining source-level blocker; automated and recovery bypasses are closed, while all target runtime gates remain explicitly blocked.",
+          "task_id": "bootstrap.review",
+          "worker_id": "/root/code_reviewer"
+        }
+      ],
+      "id": "bootstrap.review",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "orchestrator/engine.py",
+        "scripts",
+        "tests",
+        "patches"
+      ],
+      "release_history": [
+        {
+          "attempt": 1,
+          "reason": "Migrate legacy claim to required artifact freshness baseline",
+          "released_at": "2026-10-04T07:59:56+00:00",
+          "worker_id": "/root/code_reviewer"
+        }
+      ],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "review",
+          "path": "orchestrator/artifacts/code_reviews/review-bootstrap.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "reviewer",
+      "status": "completed",
+      "title": "Independent code review",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/code_reviews"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/qa/harness-result.json": "2232d6e09e3ed7506beded935207a4fa30e265f2dc5a71ad3c466b73fdeb8fd4"
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T08:06:14+00:00",
+      "claimed_by": "/root/qa_agent",
+      "completed_at": "2026-10-04T08:07:12+00:00",
+      "completed_by": "/root/qa_agent",
+      "created_at": "2026-10-04T07:42:48+00:00",
+      "depends_on": [
+        "bootstrap.review"
+      ],
+      "description": "Run explicit nonempty test suites and actual comfort policy compilation. Evidence must bind current source.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "qa",
+            "path": "orchestrator/artifacts/qa/harness-result.json",
+            "sha256": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+          }
+        ],
+        "notes": [
+          "orchestrator/engine.py sha256 464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6",
+          "External Linux compile evidence: orchestrator/artifacts/qa/vanilla-external-ci.json",
+          "Interactive runtime, audio, save isolation, and four-player playtest remain unrun."
+        ],
+        "recorded_at": "2026-10-04T08:07:12+00:00",
+        "role": "qa",
+        "status": "completed",
+        "summary": "Independent frozen-source QA passed 61 Python tests, comfort patch integration, and Python compilation. External Linux CI compile evidence was incorporated separately; runtime remains NOT_RUN.",
+        "task_id": "bootstrap.qa",
+        "worker_id": "/root/qa_agent"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "qa",
+              "path": "orchestrator/artifacts/qa/harness-result.json",
+              "sha256": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+            }
+          ],
+          "notes": [
+            "orchestrator/engine.py sha256 464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6",
+            "External Linux compile evidence: orchestrator/artifacts/qa/vanilla-external-ci.json",
+            "Interactive runtime, audio, save isolation, and four-player playtest remain unrun."
+          ],
+          "recorded_at": "2026-10-04T08:07:12+00:00",
+          "role": "qa",
+          "status": "completed",
+          "summary": "Independent frozen-source QA passed 61 Python tests, comfort patch integration, and Python compilation. External Linux CI compile evidence was incorporated separately; runtime remains NOT_RUN.",
+          "task_id": "bootstrap.qa",
+          "worker_id": "/root/qa_agent"
+        }
+      ],
+      "id": "bootstrap.qa",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "orchestrator",
+        "scripts",
+        "tests",
+        "patches"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "qa",
+          "path": "orchestrator/artifacts/qa/harness-result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "qa",
+      "status": "completed",
+      "title": "Independent regression verification",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/qa"
+      ]
+    },
+    {
+      "attempt_count": 1,
+      "category": "runtime",
+      "claimed_at": "2026-10-04T07:45:46+00:00",
+      "claimed_by": "/root/playtest_agent",
+      "completed_at": "2026-10-04T07:48:42+00:00",
+      "completed_by": "/root/playtest_agent",
+      "created_at": "2026-10-04T07:42:48+00:00",
+      "depends_on": [],
+      "description": "Verify launch audio saves on owner-supplied matching retail data and compiled binary. No native desktop available in current host.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "runtime",
+            "path": "orchestrator/artifacts/playtests/runtime/result.json",
+            "sha256": "23d7b3a45fa12a8c5a873794f9f43e954d6d58cd997fd0fe5ed42a4c235ad03d"
+          }
+        ],
+        "notes": [
+          "Capability evidence only; this is not a runtime attestation.",
+          "All launch, audio, save, comfort, gameplay, and multiplayer checks remain NOT_RUN."
+        ],
+        "recorded_at": "2026-10-04T07:48:42+00:00",
+        "role": "playtester",
+        "status": "blocked",
+        "summary": "Runtime baseline is blocked: this host has no game executable, owner-supplied data, native display session, or visible audio device, so no game process or play session ran.",
+        "task_id": "vanilla.target-runtime",
+        "worker_id": "/root/playtest_agent"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "runtime",
+              "path": "orchestrator/artifacts/playtests/runtime/result.json",
+              "sha256": "23d7b3a45fa12a8c5a873794f9f43e954d6d58cd997fd0fe5ed42a4c235ad03d"
+            }
+          ],
+          "notes": [
+            "Capability evidence only; this is not a runtime attestation.",
+            "All launch, audio, save, comfort, gameplay, and multiplayer checks remain NOT_RUN."
+          ],
+          "recorded_at": "2026-10-04T07:48:42+00:00",
+          "role": "playtester",
+          "status": "blocked",
+          "summary": "Runtime baseline is blocked: this host has no game executable, owner-supplied data, native display session, or visible audio device, so no game process or play session ran.",
+          "task_id": "vanilla.target-runtime",
+          "worker_id": "/root/playtest_agent"
+        }
+      ],
+      "id": "vanilla.target-runtime",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "scripts/playtest",
+        "tests/playtest"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "runtime",
+          "path": "orchestrator/artifacts/playtests/runtime/result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "playtester",
+      "status": "blocked",
+      "title": "Isolated native runtime baseline",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/playtests/runtime"
+      ]
+    },
+    {
+      "attempt_count": 0,
+      "category": "systems",
+      "claimed_at": null,
+      "claimed_by": null,
+      "completed_at": null,
+      "completed_by": null,
+      "created_at": "2026-10-04T07:42:48+00:00",
+      "depends_on": [],
+      "description": "Implement reviewed host-owned persistent state only after runtime comfort and four-player acceptance.",
+      "handoff": null,
+      "handoff_history": [],
+      "id": "adventure.core",
+      "metadata": {},
+      "priority": 20,
+      "read_paths": [
+        "docs/engineering/SYSTEMS_INTERFACES.md"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "design",
+          "path": "artifacts/adventure-core/design.json"
+        }
+      ],
+      "required_gates": [
+        "adventure_core.ready"
+      ],
+      "role": "systems_designer",
+      "status": "pending",
+      "title": "Begin gated Adventure Core",
+      "visibility": "internal",
+      "write_paths": [
+        "artifacts/adventure-core"
+      ]
+    },
+    {
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T07:47:38+00:00",
+      "claimed_by": "/root/orchestration_engineer",
+      "completed_at": "2026-10-04T07:52:14+00:00",
+      "completed_by": "/root/orchestration_engineer",
+      "created_at": "2026-10-04T07:47:38+00:00",
+      "depends_on": [],
+      "description": "Close ORCH-GATE-001 by validating exact gate-approved task and execution contracts.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "engine",
+            "path": "orchestrator/engine.py",
+            "sha256": "d2cef9bf628e7645817671bec36c435034ee40f5729ee8bfa88ad08bac9fb3e8"
+          }
+        ],
+        "notes": [
+          "Core orchestration tests pass 20/20, including arbitrary-run and native-noop rejection regressions."
+        ],
+        "recorded_at": "2026-10-04T07:52:14+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Bound automated PASS to exact approved task, role, argv, cwd, and artifact contracts; added claim-time artifact baselines for native freshness.",
+        "task_id": "fix.gate.runner",
+        "worker_id": "/root/orchestration_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "engine",
+              "path": "orchestrator/engine.py",
+              "sha256": "d2cef9bf628e7645817671bec36c435034ee40f5729ee8bfa88ad08bac9fb3e8"
+            }
+          ],
+          "notes": [
+            "Core orchestration tests pass 20/20, including arbitrary-run and native-noop rejection regressions."
+          ],
+          "recorded_at": "2026-10-04T07:52:14+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Bound automated PASS to exact approved task, role, argv, cwd, and artifact contracts; added claim-time artifact baselines for native freshness.",
+          "task_id": "fix.gate.runner",
+          "worker_id": "/root/orchestration_engineer"
+        }
+      ],
+      "id": "fix.gate.runner",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "orchestrator",
+        "scripts/build.py",
+        "scripts/qa/run_qa.py"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "file",
+          "name": "engine",
+          "path": "orchestrator/engine.py"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Bind automated gates to approved runners",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/engine.py",
+        "orchestrator/config/gates.json",
+        "orchestrator/tests/test_orchestrator.py",
+        "orchestrator/README.md"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "scripts/verify_vanilla.py": null
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T07:50:10+00:00",
+      "claimed_by": "/root/orchestration_engineer",
+      "completed_at": "2026-10-04T07:52:14+00:00",
+      "completed_by": "/root/orchestration_engineer",
+      "created_at": "2026-10-04T07:50:10+00:00",
+      "depends_on": [],
+      "description": "Run the existing vanilla build command without a shell while capturing its real output in the gate artifact.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "runner",
+            "path": "scripts/verify_vanilla.py",
+            "sha256": "93751a0169b66b0a035b5095baec13a9d7acd7e60061136353a296b64467ac2c"
+          }
+        ],
+        "notes": [
+          "The wrapper returns the underlying build exit status; failed builds cannot pass the orchestrator gate."
+        ],
+        "recorded_at": "2026-10-04T07:52:14+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Added the fixed no-argument vanilla verification wrapper that invokes the existing build and captures combined real output with timestamp and exit code.",
+        "task_id": "fix.vanilla.wrapper",
+        "worker_id": "/root/orchestration_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "runner",
+              "path": "scripts/verify_vanilla.py",
+              "sha256": "93751a0169b66b0a035b5095baec13a9d7acd7e60061136353a296b64467ac2c"
+            }
+          ],
+          "notes": [
+            "The wrapper returns the underlying build exit status; failed builds cannot pass the orchestrator gate."
+          ],
+          "recorded_at": "2026-10-04T07:52:14+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Added the fixed no-argument vanilla verification wrapper that invokes the existing build and captures combined real output with timestamp and exit code.",
+          "task_id": "fix.vanilla.wrapper",
+          "worker_id": "/root/orchestration_engineer"
+        }
+      ],
+      "id": "fix.vanilla.wrapper",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "scripts/build.py"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "file",
+          "name": "runner",
+          "path": "scripts/verify_vanilla.py"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Add canonical logged vanilla build runner",
+      "visibility": "internal",
+      "write_paths": [
+        "scripts/verify_vanilla.py"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/config/gates.json": "44ec5c64b8f508b4d663bacb8b90eabfc461683c5815f8f5492125b70bea28d5"
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T07:53:13+00:00",
+      "claimed_by": "/root/orchestration_engineer",
+      "completed_at": "2026-10-04T07:53:44+00:00",
+      "completed_by": "/root/orchestration_engineer",
+      "created_at": "2026-10-04T07:53:13+00:00",
+      "depends_on": [
+        "fix.gate.runner",
+        "fix.vanilla.wrapper"
+      ],
+      "description": "Include the canonical vanilla wrapper in the source fingerprint and prove wrapper mutation stales PASS.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "gates",
+            "path": "orchestrator/config/gates.json",
+            "sha256": "ed8d380d984725e0f42a6c1f7722f6b5ee22b7246b3854497da3a5295279fc5b"
+          }
+        ],
+        "notes": [
+          "Final core suite passes 20/20; Python compilation and diff checks pass."
+        ],
+        "recorded_at": "2026-10-04T07:53:44+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Added the approved vanilla wrapper to build and launch source fingerprints and changed the regression to prove wrapper mutation makes PASS stale.",
+        "task_id": "fix.wrapper.binding",
+        "worker_id": "/root/orchestration_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "gates",
+              "path": "orchestrator/config/gates.json",
+              "sha256": "ed8d380d984725e0f42a6c1f7722f6b5ee22b7246b3854497da3a5295279fc5b"
+            }
+          ],
+          "notes": [
+            "Final core suite passes 20/20; Python compilation and diff checks pass."
+          ],
+          "recorded_at": "2026-10-04T07:53:44+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Added the approved vanilla wrapper to build and launch source fingerprints and changed the regression to prove wrapper mutation makes PASS stale.",
+          "task_id": "fix.wrapper.binding",
+          "worker_id": "/root/orchestration_engineer"
+        }
+      ],
+      "id": "fix.wrapper.binding",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "scripts/verify_vanilla.py",
+        "orchestrator/config/gates.json"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "gates",
+          "path": "orchestrator/config/gates.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Bind approved wrapper source to build evidence",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/config/gates.json",
+        "orchestrator/tests/test_orchestrator.py"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/engine.py": "d2cef9bf628e7645817671bec36c435034ee40f5729ee8bfa88ad08bac9fb3e8"
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T07:58:19+00:00",
+      "claimed_by": "/root/orchestration_engineer",
+      "completed_at": "2026-10-04T07:59:16+00:00",
+      "completed_by": "/root/orchestration_engineer",
+      "created_at": "2026-10-04T07:58:19+00:00",
+      "depends_on": [
+        "fix.gate.runner"
+      ],
+      "description": "Replace the null-baseline completion crash with explicit release-and-reclaim recovery and test it.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "engine",
+            "path": "orchestrator/engine.py",
+            "sha256": "b007845dad7eaff358a82e7227f225707cc575c118c804250b7b631913f230de"
+          }
+        ],
+        "notes": [
+          "Regression proves initial completion is rejected, release/reclaim snapshots the existing artifact, and only a subsequent content change can complete.",
+          "Core 21/21 and black-box CLI/primitives 11/11 pass."
+        ],
+        "recorded_at": "2026-10-04T07:59:16+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Legacy claimed tasks with missing or malformed artifact baselines now fail closed with explicit release-and-reclaim recovery instead of crashing or accepting unknown freshness.",
+        "task_id": "fix.legacy.baseline",
+        "worker_id": "/root/orchestration_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "engine",
+              "path": "orchestrator/engine.py",
+              "sha256": "b007845dad7eaff358a82e7227f225707cc575c118c804250b7b631913f230de"
+            }
+          ],
+          "notes": [
+            "Regression proves initial completion is rejected, release/reclaim snapshots the existing artifact, and only a subsequent content change can complete.",
+            "Core 21/21 and black-box CLI/primitives 11/11 pass."
+          ],
+          "recorded_at": "2026-10-04T07:59:16+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Legacy claimed tasks with missing or malformed artifact baselines now fail closed with explicit release-and-reclaim recovery instead of crashing or accepting unknown freshness.",
+          "task_id": "fix.legacy.baseline",
+          "worker_id": "/root/orchestration_engineer"
+        }
+      ],
+      "id": "fix.legacy.baseline",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "orchestrator/engine.py"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "file",
+          "name": "engine",
+          "path": "orchestrator/engine.py"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Fail closed on legacy claims without artifact baselines",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/engine.py",
+        "orchestrator/tests/test_orchestrator.py"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/engine.py": "b007845dad7eaff358a82e7227f225707cc575c118c804250b7b631913f230de"
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T08:02:25+00:00",
+      "claimed_by": "/root/orchestration_engineer",
+      "completed_at": "2026-10-04T08:03:56+00:00",
+      "completed_by": "/root/orchestration_engineer",
+      "created_at": "2026-10-04T08:02:25+00:00",
+      "depends_on": [
+        "fix.legacy.baseline"
+      ],
+      "description": "Fail closed for null or malformed baselines even when a completed task requires no artifacts.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "engine",
+            "path": "orchestrator/engine.py",
+            "sha256": "464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6"
+          }
+        ],
+        "notes": [
+          "Regressions cover null zero-artifact baselines and malformed baseline keys/values.",
+          "Core 23/23 and black-box CLI/primitives 11/11 pass."
+        ],
+        "recorded_at": "2026-10-04T08:03:56+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Completion now validates artifact baselines unconditionally: exact required paths and only null-or-lowercase-SHA256 values are accepted, including tasks with zero required artifacts.",
+        "task_id": "fix.baseline.shape",
+        "worker_id": "/root/orchestration_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "engine",
+              "path": "orchestrator/engine.py",
+              "sha256": "464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6"
+            }
+          ],
+          "notes": [
+            "Regressions cover null zero-artifact baselines and malformed baseline keys/values.",
+            "Core 23/23 and black-box CLI/primitives 11/11 pass."
+          ],
+          "recorded_at": "2026-10-04T08:03:56+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Completion now validates artifact baselines unconditionally: exact required paths and only null-or-lowercase-SHA256 values are accepted, including tasks with zero required artifacts.",
+          "task_id": "fix.baseline.shape",
+          "worker_id": "/root/orchestration_engineer"
+        }
+      ],
+      "id": "fix.baseline.shape",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "orchestrator/engine.py"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "file",
+          "name": "engine",
+          "path": "orchestrator/engine.py"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Validate every persisted artifact baseline shape",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/engine.py",
+        "orchestrator/tests/test_orchestrator.py"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/qa/harness-result.json": "ae4ac6679863657ef425b6292fa791213996bd0cc5c0d05d9c11c2ee0e4e119e"
+      },
+      "attempt_count": 1,
+      "category": "verification",
+      "claimed_at": "2026-10-04T08:07:52+00:00",
+      "claimed_by": "/root/qa_agent/local-verifier",
+      "completed_at": "2026-10-04T08:07:56+00:00",
+      "completed_by": "/root/qa_agent/local-verifier",
+      "created_at": "2026-10-04T08:07:20+00:00",
+      "depends_on": [
+        "bootstrap.review"
+      ],
+      "description": "Execute the frozen explicit QA harness and preserve its canonical report.",
+      "execution": {
+        "argv": [
+          "python3",
+          "scripts/qa/run_qa.py"
+        ],
+        "cwd": ".",
+        "timeout_seconds": 900
+      },
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "qa.report",
+            "path": "orchestrator/artifacts/qa/harness-result.json",
+            "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+          }
+        ],
+        "notes": [
+          "run manifest: /workspace/scratch/9090f71aae17/barony/orchestrator/state/runs/8c8c7f5c95f346e09dc786f212416a6d/manifest.json"
+        ],
+        "recorded_at": "2026-10-04T08:07:56+00:00",
+        "role": "qa",
+        "status": "completed",
+        "summary": "local command exited 0; changed-path violations=0; missing/unchanged artifacts=0",
+        "task_id": "verify.quality.tests",
+        "worker_id": "/root/qa_agent/local-verifier"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "qa.report",
+              "path": "orchestrator/artifacts/qa/harness-result.json",
+              "sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64"
+            }
+          ],
+          "notes": [
+            "run manifest: /workspace/scratch/9090f71aae17/barony/orchestrator/state/runs/8c8c7f5c95f346e09dc786f212416a6d/manifest.json"
+          ],
+          "recorded_at": "2026-10-04T08:07:56+00:00",
+          "role": "qa",
+          "status": "completed",
+          "summary": "local command exited 0; changed-path violations=0; missing/unchanged artifacts=0",
+          "task_id": "verify.quality.tests",
+          "worker_id": "/root/qa_agent/local-verifier"
+        }
+      ],
+      "id": "verify.quality.tests",
+      "metadata": {
+        "verifies_tasks": [
+          "bootstrap.engine",
+          "fix.baseline.shape"
+        ]
+      },
+      "priority": 0,
+      "read_paths": [
+        "orchestrator",
+        "scripts",
+        "tests",
+        "patches"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "qa.report",
+          "path": "orchestrator/artifacts/qa/harness-result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "qa",
+      "status": "completed",
+      "title": "Run canonical quality verification",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/qa"
+      ]
+    }
+  ],
+  "workers": [
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T07:42:48+00:00",
+      "role": "engineer",
+      "worker_id": "/root/orchestration_engineer"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T07:44:31+00:00",
+      "role": "reviewer",
+      "worker_id": "/root/code_reviewer"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T07:45:46+00:00",
+      "role": "playtester",
+      "worker_id": "/root/playtest_agent"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T08:06:14+00:00",
+      "role": "qa",
+      "worker_id": "/root/qa_agent"
+    },
+    {
+      "mode": "local-subprocess",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T08:07:52+00:00",
+      "role": "qa",
+      "worker_id": "/root/qa_agent/local-verifier"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/TurningWheel/Barony.git",
+  "branch_observed": "master",
+  "commit": "962a5ce36d10207beef7d8673876e0cebf8e76e4",
+  "source_version": "v5.0.2",
+  "checked_on": "2026-10-04",
+  "retail_version_match": "unverified",
+  "baseline_commit": "9c70dafa2da8715e4d59d90fabf1135c48ba1c19",
+  "distribution": "Steam",
+  "target_os": "Windows",
+  "steam_installed_version": "unknown",
+  "import_exclusions": [
+    ".github/** (upstream automation)",
+    "**/*.sdf (IDE databases)",
+    "VS-includes/Config.hpp (generated config)",
+    "VS.2015/editor/editor.vcxproj (legacy IDE project)",
+    "VS.2015/editor/editor.vcxproj.filters (legacy IDE project)",
+    "src/wineditoricon.o (prebuilt Windows object)",
+    "src/wingameicon.o (prebuilt Windows object)"
+  ]
+}

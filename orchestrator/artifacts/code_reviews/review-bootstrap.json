@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "artifact_type": "independent_code_review",
+  "task_id": "bootstrap.review",
+  "reviewer": {
+    "role": "reviewer",
+    "worker_id": "/root/code_reviewer"
+  },
+  "recorded_at_utc": "2026-10-04T08:05:30+00:00",
+  "reviewed_revision": "750e25210876efdbc20f6262e5e71dcd74342d40",
+  "workspace_state": "uncommitted snapshot bound by the file hashes in this record",
+  "disposition": "ACCEPTED_WITH_RUNTIME_GATES_BLOCKED",
+  "summary": "Independent source review and negative-path testing found no remaining bootstrap code blocker. Automated gate evidence is bound to approved runner contracts and immutable run artifacts; native handoffs reject unchanged preexisting artifacts; spoiler-path and phase gates fail closed; the comfort patch preserves default behavior in its tested policy surface; build and playtest helpers keep runtime success unassessed without independent evidence.",
+  "reviewed_files_sha256": {
+    "orchestrator/engine.py": "464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6",
+    "orchestrator/config/gates.json": "ed8d380d984725e0f42a6c1f7722f6b5ee22b7246b3854497da3a5295279fc5b",
+    "orchestrator/config/firewall.json": "78fa81b8d47dfa8e94de13b5c577687d46f5e6bd98fac9607571fce54027aa5a",
+    "scripts/build.py": "9ed3f2c673174008d4145f069bf29b397acedf068a1278b7de2362a4737916d2",
+    "scripts/verify_vanilla.py": "93751a0169b66b0a035b5095baec13a9d7acd7e60061136353a296b64467ac2c",
+    "scripts/playtest/isolated_launch.py": "0212016282d3ec9d9838e94925cae2bbb86c509bb183838104286b00db306fe0",
+    "scripts/qa/run_qa.py": "2f14ae8cbc9b0d7963d8ccc111e48d39ed3ceba163bb80b2a85735bd760c0830",
+    "scripts/comfort_check.py": "91aa2564bb3fb46a7cc3ac81945ab7d490baf65dee052721741f73388aeb44c9",
+    "patches/0001-comfort-diagnostics.patch": "0c0f9164ba9bfa99e7fb877b010b2376fab47fa68351c103a1371f374e1cf9aa",
+    "orchestrator/tests/test_orchestrator.py": "d1e697b85d6b64e7a2f6e44635d4ecf5c8822ec06fe4235640984118f85ce05d",
+    "tests/qa/test_orchestrator_cli.py": "a0c921cae141cd564d6e3a455c0c31f0fd56facf38eb453524903ababae21ef2",
+    "tests/qa/test_orchestrator_primitives.py": "692f036e2fb9df3fb34dd5539268a8e293d64f17946585167243744309e0fdea",
+    "tests/playtest/test_playtest_tools.py": "f3ad697fcea1660777d766d24bd4bbb5cb471d3efdd117ea38135f659444eab1",
+    "tests/test_build_gate.py": "dece980ad930209e1eacebf8a91db4a30e91c6cc1384a85f4e96dee6da32b389"
+  },
+  "resolved_findings": [
+    {
+      "id": "ORCH-EVIDENCE-001",
+      "severity": "blocker",
+      "resolution": "Build and test PASS now require a successful recorded run whose exact task ID, role, argv, cwd, and required artifacts match the trusted gate configuration. Gate status revalidates manifest and log hashes, and runner source changes make evidence stale. Arbitrary successful commands are rejected."
+    },
+    {
+      "id": "ORCH-FRESHNESS-002",
+      "severity": "high",
+      "resolution": "Claims snapshot required artifacts. Completed native handoffs and local runs reject missing or unchanged preexisting outputs; repository snapshots detect content, type, mode, directory, and symlink changes outside declared ownership. Legacy null or malformed baselines fail closed and require an explicit release and reclaim before another artifact change."
+    },
+    {
+      "id": "ORCH-INDEPENDENCE-003",
+      "severity": "high",
+      "resolution": "Independent evidence requires nonempty completed subjects, exact dependency subjects, and a worker distinct from subject workers. Empty-subject and invented-run paths fail closed."
+    },
+    {
+      "id": "ORCH-FIREWALL-004",
+      "severity": "high",
+      "resolution": "Public ancestor reads are rejected, secret paths and secret-generation categories require the aggregate Adventure gate, and local execution refuses secret-adjacent tasks."
+    },
+    {
+      "id": "BUILD-ATTESTATION-005",
+      "severity": "high",
+      "resolution": "Baseline staging requires structured independent human or QA attestation bound to the baseline revision, executable hash, isolated profile marker, data manifest, observer, and hashed per-check observations. Marker-only, stale, future, self-observed, and tampered evidence is rejected."
+    },
+    {
+      "id": "PLAYTEST-IDENTITY-006",
+      "severity": "high",
+      "resolution": "The isolated launcher binds source, binary, data, patch/content, profile, command, and timing identities; refuses symlinks in identity trees; emits blocked evidence on process-start errors; and always leaves the runtime gate unassessed."
+    },
+    {
+      "id": "COMFORT-INPUT-007",
+      "severity": "high",
+      "resolution": "The patch uses a separate camera-input marker, preserves the upstream cursor and glyph marker, distinguishes tagged controller motion from physical mouse motion, updates only the keyboard-owned local viewport, and retains smoothing for active controller input while allowing requested raw mouse input."
+    }
+  ],
+  "open_findings": [],
+  "critic_closure_mapping": [
+    {
+      "concern": "An arbitrary declared command or fabricated successful status could open an automated gate.",
+      "closure": "PASS requires a successful engine-recorded run matching the exact gate-approved task, role, argv, cwd, and artifact contract. Run manifests and logs are rehashed on every gate-status query, and approved runner source is included in the source fingerprint."
+    },
+    {
+      "concern": "Independent evidence could omit subjects or self-attest.",
+      "closure": "Independent PASS requires nonempty completed subjects, exact dependency-derived subject IDs, and a worker different from every subject worker."
+    },
+    {
+      "concern": "A hidden-generation category or direct secret path could bypass the required phase sequence.",
+      "closure": "Both category and path checks require the aggregate Adventure gate, which depends on the comfort and four-player chains. Public reads of a secret ancestor are rejected."
+    },
+    {
+      "concern": "A preexisting artifact, interrupted run, or stale result could be reused as fresh work.",
+      "closure": "Claim-time artifact baselines reject unchanged completion; source, evidence, manifest, and log changes stale recorded evidence; interrupted runs remain nonterminal until explicit same-worker recovery, and attempts are bounded and preserved."
+    },
+    {
+      "concern": "Free-form runtime observations could claim a launch or comfort PASS without execution.",
+      "closure": "All runtime PASS acceptance is disabled in the current configuration. The isolated launcher always emits runtime_gate=unassessed, and the durable gate state remains blocked without reviewed target-runtime evidence."
+    }
+  ],
+  "verification": [
+    {
+      "command": "python3 scripts/qa/run_qa.py",
+      "result": "PASS",
+      "counts": {
+        "build_gate_tests": 14,
+        "qa_cli_and_primitives_tests": 11,
+        "playtest_tool_tests": 13,
+        "orchestrator_tests": 21
+      },
+      "additional_checks": [
+        "comfort patch apply and C++11 policy regression test",
+        "Python compileall",
+        "git diff --check"
+      ],
+      "harness_result_sha256": "2232d6e09e3ed7506beded935207a4fa30e265f2dc5a71ad3c466b73fdeb8fd4"
+    },
+    {
+      "command": "independent arbitrary-run reproduction against vanilla.build",
+      "result": "REJECTED_AS_REQUIRED",
+      "evidence": "run task does not match approved runner contract for gate: verify.vanilla.build"
+    },
+    {
+      "command": "python3 -m unittest discover -s orchestrator/tests -p test_*.py -v",
+      "result": "PASS",
+      "count": 23,
+      "evidence": "Final targeted run includes null-baseline zero-artifact and malformed-baseline recovery regressions."
+    },
+    {
+      "command": "python3 -m orchestrator --repo . --state-dir orchestrator/state gate",
+      "result": "FAIL_CLOSED_AS_REQUIRED",
+      "evidence": "vanilla.build and quality.tests have no evidence; runtime and aggregate gates remain blocked"
+    }
+  ],
+  "gate_state_at_review": {
+    "vanilla.build": "unknown_no_evidence",
+    "vanilla.launch": "blocked",
+    "comfort.accepted": "blocked",
+    "multiplayer.four_player": "blocked",
+    "quality.tests": "unknown_no_recorded_gate_evidence",
+    "adventure_core.ready": "blocked"
+  },
+  "limitations": [
+    "The full game translation units and final executable were not compiled in this workspace; the comfort check compiles only the isolated policy helper after applying the patch.",
+    "No game runtime, audio, save and reload, subjective comfort, or four-player session was observed. Runtime PASS is intentionally disabled in the orchestrator configuration.",
+    "The local subprocess runner is a trusted executor and not an operating-system sandbox. Declared path checks detect repository changes but cannot constrain a malicious executable or writes outside the repository.",
+    "Native worker IDs and human runtime attestations provide coordinator-level provenance, not cryptographic authentication or proof that an observer was truthful.",
+    "The launch helper's binary-string preflight establishes argument compatibility only; it does not authenticate the executable."
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "vanilla.build": {
+      "description": "Pinned vanilla source compiled successfully.",
+      "evidence_type": "build",
+      "allowed_roles": ["engineer", "qa"],
+      "require_independent_worker": false,
+      "accept_passed_evidence": true,
+      "approved_runner": {
+        "task_id": "verify.vanilla.build",
+        "role": "engineer",
+        "argv": ["python3", "scripts/verify_vanilla.py"],
+        "cwd": ".",
+        "required_artifacts": [
+          {"name": "build.log", "kind": "log", "path": "artifacts/build/vanilla.log"}
+        ]
+      },
+      "depends_on": [],
+      "source_paths": ["CMakeLists.txt", "src", "scripts/build.py", "scripts/verify_vanilla.py"]
+    },
+    "vanilla.launch": {
+      "description": "Vanilla binary launched with isolated data and saves, with required audio.",
+      "evidence_type": "playtest",
+      "allowed_roles": ["qa", "playtester"],
+      "require_independent_worker": true,
+      "require_subject_tasks": true,
+      "accept_passed_evidence": false,
+      "required_checks": ["launch", "audio", "isolated_save", "reload"],
+      "depends_on": ["vanilla.build"],
+      "source_paths": ["CMakeLists.txt", "src", "scripts/build.py", "scripts/verify_vanilla.py"]
+    },
+    "comfort.accepted": {
+      "description": "Short-first motion-comfort comparison passed on target hardware.",
+      "evidence_type": "playtest",
+      "allowed_roles": ["playtester"],
+      "require_independent_worker": true,
+      "require_subject_tasks": true,
+      "accept_passed_evidence": false,
+      "required_checks": ["short_session", "motion_comparison", "stop_rule"],
+      "depends_on": ["vanilla.launch"],
+      "source_paths": ["src", "patches"]
+    },
+    "multiplayer.four_player": {
+      "description": "Four identical peers passed join, transition, reconnect, and save/reload checks.",
+      "evidence_type": "playtest",
+      "allowed_roles": ["qa", "playtester"],
+      "require_independent_worker": true,
+      "require_subject_tasks": true,
+      "accept_passed_evidence": false,
+      "required_checks": ["four_peers", "transition", "reconnect", "save_reload"],
+      "depends_on": ["vanilla.launch"],
+      "source_paths": ["src"]
+    },
+    "quality.tests": {
+      "description": "Relevant automated test command passed.",
+      "evidence_type": "test",
+      "allowed_roles": ["qa"],
+      "require_independent_worker": true,
+      "require_subject_tasks": true,
+      "accept_passed_evidence": true,
+      "approved_runner": {
+        "task_id": "verify.quality.tests",
+        "role": "qa",
+        "argv": ["python3", "scripts/qa/run_qa.py"],
+        "cwd": ".",
+        "required_artifacts": [
+          {"name": "qa.report", "kind": "json", "path": "orchestrator/artifacts/qa/harness-result.json"}
+        ]
+      },
+      "depends_on": [],
+      "source_paths": ["orchestrator", "scripts", "tests", "patches"]
+    },
+    "adventure_core.ready": {
+      "description": "Aggregate release gate for Adventure Core implementation.",
+      "aggregate": true,
+      "depends_on": ["comfort.accepted", "multiplayer.four_player"],
+      "allowed_roles": [],
+      "source_paths": []
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "attempts": [
+    {
+      "exit_code": 1,
+      "log": "orchestrator/artifacts/qa/vanilla-build-preflight.log",
+      "name": "vanilla-preflight",
+      "result": "Missing build tools: cmake"
+    },
+    {
+      "exit_code": 1,
+      "log": "orchestrator/artifacts/qa/vanilla-build-with-local-tools.log",
+      "name": "vanilla-cmake-4.4.3",
+      "result": "CMake removed compatibility with project minimum below 3.5"
+    },
+    {
+      "exit_code": 1,
+      "log": "orchestrator/artifacts/qa/vanilla-build-cmake331.log",
+      "name": "vanilla-cmake-3.31.6",
+      "result": "OpenGL development library and include directory not found"
+    },
+    {
+      "exit_code": 100,
+      "log": "orchestrator/artifacts/qa/apt-update.log",
+      "name": "apt-update",
+      "result": "managed environment denied APT UID/GID transitions"
+    },
+    {
+      "exit_code": 1,
+      "log": "orchestrator/artifacts/qa/stage-comfort-gate.log",
+      "name": "stage-comfort-gate",
+      "result": "baseline evidence absent; comfort worktree not created"
+    }
+  ],
+  "automated_qa": {
+    "comfort_patch_integration": "PASS",
+    "comfort_patch_sha256": "0c0f9164ba9bfa99e7fb877b010b2376fab47fa68351c103a1371f374e1cf9aa",
+    "orchestrator_engine_sha256": "464254a491d66fea0adb95d5ddf95dc3e7899982f0d9c8104b175aaa1b493eb6",
+    "python_compile": "PASS",
+    "python_test_count": 61,
+    "scope": "automation and staged patch integration; no interactive runtime playtest",
+    "status": "PASS",
+    "suites": {
+      "build_gate": 14,
+      "independent_qa_and_cli": 11,
+      "orchestrator_engine": 23,
+      "playtest_tools": 13
+    }
+  },
+  "canonical_execution": {
+    "harness_sha256": "23b5693e0df1d8ce68850b985d6590cd3a1daaa949e9ef19036af5baa6827e64",
+    "manifest_sha256": "9eb68eba5ba76c2040efcdb1ed2e08e09cfb0b7af17b6fbc1f2c2548e3f41ab5",
+    "native_parent_worker_id": "/root/qa_agent",
+    "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+    "same_identity_attempt": {
+      "exit_code": 2,
+      "log": "orchestrator/artifacts/qa/canonical-run-local.log",
+      "result": "rejected because durable native and local-subprocess modes use distinct immutable worker identities",
+      "worker_id": "/root/qa_agent"
+    },
+    "status": "PASS",
+    "task_id": "verify.quality.tests",
+    "worker_id": "/root/qa_agent/local-verifier"
+  },
+  "compile_completed": true,
+  "conclusion": "External Linux CI compiled the pinned vanilla editor and game targets. No binary artifact, audio validation, interactive runtime, save isolation, or four-player playtest is recorded.",
+  "environment": {
+    "architecture": "x86_64",
+    "compiler": "g++ 13.3.0",
+    "local_cmake_attempts": [
+      "4.4.3",
+      "3.31.6"
+    ],
+    "local_ninja": "1.13.2",
+    "make": "GNU Make 4.3",
+    "os": "Ubuntu 24.04.3 LTS"
+  },
+  "external_linux_compile": {
+    "binary_artifact_available": false,
+    "environment": "GitHub ubuntu-24.04",
+    "evidence_path": "orchestrator/artifacts/qa/vanilla-external-ci.json",
+    "evidence_sha256": "bb377f7f9164ffb686c36f35a111fdee2bd7ece4c96136d0408fd30a37ca9bf7",
+    "run_id": 37186649995,
+    "runtime_status": "NOT_RUN",
+    "status": "PASS",
+    "targets": [
+      "editor",
+      "barony"
+    ],
+    "workflow_commit": "290df027638f8663392a340daad88a6c360213d0"
+  },
+  "local_compile_completed": false,
+  "missing_development_packages": [
+    "libgl1-mesa-dev",
+    "libglu1-mesa-dev",
+    "libsdl2-dev",
+    "libsdl2-image-dev",
+    "libsdl2-net-dev",
+    "libsdl2-ttf-dev",
+    "libpng-dev",
+    "libphysfs-dev",
+    "rapidjson-dev"
+  ],
+  "qa_harness": {
+    "checks": [
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_build_gate.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "name": "build-gate-tests"
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests/qa",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "name": "qa-tests"
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests/playtest",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "name": "playtest-tool-tests"
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "orchestrator/tests",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "name": "orchestrator-tests"
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "scripts/comfort_check.py"
+        ],
+        "exit_code": 0,
+        "name": "comfort-integration"
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "-m",
+          "compileall",
+          "-q",
+          "scripts",
+          "orchestrator",
+          "tests"
+        ],
+        "exit_code": 0,
+        "name": "python-compile"
+      }
+    ],
+    "recorded_at": "2026-10-04T08:07:55.660616+00:00",
+    "schema_version": 1,
+    "status": "PASS"
+  },
+  "quality_gate": {
+    "evidence_id": "bd193154444b4581be0638a6b2a0735e",
+    "run_id": "8c8c7f5c95f346e09dc786f212416a6d",
+    "source_fingerprint": "a2dd6e4c0c2b6f2ade065def6c894f1f9ec6f6cc21f1038a76002bea1ce689c5",
+    "status": "PASS",
+    "subject_task_ids": [
+      "bootstrap.engine",
+      "fix.baseline.shape"
+    ]
+  },
+  "recorded_at": "2026-10-04T08:08:22.934871+00:00",
+  "runtime_attempted": false,
+  "runtime_status": "NOT_RUN",
+  "schema_version": 1,
+  "source": {
+    "baseline_clean": true,
+    "baseline_import_commit": "9c70dafa2da8715e4d59d90fabf1135c48ba1c19",
+    "upstream_commit": "962a5ce36d10207beef7d8673876e0cebf8e76e4",
+    "working_head": "750e25210876efdbc20f6262e5e71dcd74342d40"
+  },
+  "status": "BLOCKED_RUNTIME"
+}
