@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "task": "QA-HARNESS-002",
+  "observed_at": "2026-10-04T09:16:52.396377+00:00",
+  "source_commit": "36e3e17834a383e744c585529f2c7397a5889af3",
+  "reproduction": "Standard unittest discovery on an empty temporary directory",
+  "exit_code": 5,
+  "stdout": "",
+  "stderr": "\n----------------------------------------------------------------------\nRan 0 tests in 0.000s\n\nNO TESTS RAN\n",
+  "baseline_harness_behavior": "All exit codes equal zero was sufficient for PASS; there was no minimum discovered-test count.",
+  "python_version": "3.12.14",
+  "interpretation": "Current Python already rejects an empty discovery with exit5; no false PASS was reproduced on this interpreter. Count checks will be defense in depth. The existing harness has no output-dir option and writes fixed paths, so repeated runs overwrite archived logs/report."
+}
