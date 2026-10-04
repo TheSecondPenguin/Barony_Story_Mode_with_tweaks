@@ -1,0 +1,19 @@
+test_absolute_log_rejected (test_build_gate.BaselineGateTests.test_absolute_log_rejected) ... ok
+test_arbitrary_text_cannot_be_runtime_observation (test_build_gate.BaselineGateTests.test_arbitrary_text_cannot_be_runtime_observation) ... ok
+test_binary_changed (test_build_gate.BaselineGateTests.test_binary_changed) ... ok
+test_builder_cannot_attest_independently (test_build_gate.BaselineGateTests.test_builder_cannot_attest_independently) ... ok
+test_changed_data_manifest (test_build_gate.BaselineGateTests.test_changed_data_manifest) ... ok
+test_changed_log_is_blocked (test_build_gate.BaselineGateTests.test_changed_log_is_blocked) ... ok
+test_future_timestamp (test_build_gate.BaselineGateTests.test_future_timestamp) ... ok
+test_marker_does_not_unlock (test_build_gate.BaselineGateTests.test_marker_does_not_unlock) ... ok
+test_mismatched_profile_subject (test_build_gate.BaselineGateTests.test_mismatched_profile_subject) ... ok
+test_missing_data_manifest (test_build_gate.BaselineGateTests.test_missing_data_manifest) ... ok
+test_stale_revision (test_build_gate.BaselineGateTests.test_stale_revision) ... ok
+test_symlink_escape_rejected (test_build_gate.BaselineGateTests.test_symlink_escape_rejected) ... ok
+test_unrun_audio_is_blocked (test_build_gate.BaselineGateTests.test_unrun_audio_is_blocked) ... ok
+test_valid_attestation (test_build_gate.BaselineGateTests.test_valid_attestation) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.011s
+
+OK

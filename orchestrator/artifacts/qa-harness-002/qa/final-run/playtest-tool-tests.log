@@ -1,0 +1,18 @@
+test_required_data_entries_must_be_files (test_playtest_tools.EnvironmentCollectorTests.test_required_data_entries_must_be_files) ... ok
+test_build_command_has_only_observed_arguments (test_playtest_tools.IsolatedLaunchTests.test_build_command_has_only_observed_arguments) ... ok
+test_fake_signatures_and_exit_zero_remain_unassessed (test_playtest_tools.IsolatedLaunchTests.test_fake_signatures_and_exit_zero_remain_unassessed) ... ok
+test_identity_manifests_reject_symlinks (test_playtest_tools.IsolatedLaunchTests.test_identity_manifests_reject_symlinks) ... ok
+test_linux_output_is_under_isolated_home (test_playtest_tools.IsolatedLaunchTests.test_linux_output_is_under_isolated_home) ... ok
+test_process_start_oserror_writes_blocked_record (test_playtest_tools.IsolatedLaunchTests.test_process_start_oserror_writes_blocked_record) ... ok
+test_rejects_marker_for_different_install (test_playtest_tools.IsolatedLaunchTests.test_rejects_marker_for_different_install) ... ok
+test_rejects_marker_for_different_target_os (test_playtest_tools.IsolatedLaunchTests.test_rejects_marker_for_different_target_os) ... ok
+test_rejects_non_object_marker (test_playtest_tools.IsolatedLaunchTests.test_rejects_non_object_marker) ... ok
+test_rejects_profile_inside_data (test_playtest_tools.IsolatedLaunchTests.test_rejects_profile_inside_data) ... ok
+test_rejects_unmarked_nonempty_profile (test_playtest_tools.IsolatedLaunchTests.test_rejects_unmarked_nonempty_profile) ... ok
+test_safe_log_confirms_windows_working_directory (test_playtest_tools.IsolatedLaunchTests.test_safe_log_confirms_windows_working_directory) ... ok
+test_required_capabilities_and_ui_seed_are_present (test_playtest_tools.ScenarioManifestTests.test_required_capabilities_and_ui_seed_are_present) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.017s
+
+OK
