@@ -1,0 +1,19 @@
+name: Vanilla compiler baseline
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux-compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install public build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake ninja-build libsdl2-dev libsdl2-image-dev libsdl2-net-dev libsdl2-ttf-dev libpng-dev zlib1g-dev libphysfs-dev rapidjson-dev libgl1-mesa-dev libglu1-mesa-dev
+      - name: Compile unchanged baseline
+        run: python3 scripts/build.py vanilla
