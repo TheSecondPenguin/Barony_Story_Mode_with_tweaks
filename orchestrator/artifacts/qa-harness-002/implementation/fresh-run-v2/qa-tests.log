@@ -1,0 +1,20 @@
+test_actual_discovery_error_fails_closed (test_harness_runner.HarnessRunnerTests.test_actual_discovery_error_fails_closed) ... ok
+test_actual_empty_discovery_fails_closed (test_harness_runner.HarnessRunnerTests.test_actual_empty_discovery_fails_closed) ... ok
+test_existing_and_symlink_output_paths_are_refused_without_changes (test_harness_runner.HarnessRunnerTests.test_existing_and_symlink_output_paths_are_refused_without_changes) ... ok
+test_real_discovery_records_positive_counts_and_unique_reports (test_harness_runner.HarnessRunnerTests.test_real_discovery_records_positive_counts_and_unique_reports) ... ok
+test_cli_errors_and_unpassed_gate_fail_closed (test_orchestrator_cli.OrchestratorCliTests.test_cli_errors_and_unpassed_gate_fail_closed) ... ok
+test_local_task_lifecycle_persists_artifact_and_handoff (test_orchestrator_cli.OrchestratorCliTests.test_local_task_lifecycle_persists_artifact_and_handoff) ... ok
+test_native_dispatch_release_and_completion_are_durable (test_orchestrator_cli.OrchestratorCliTests.test_native_dispatch_release_and_completion_are_durable) ... ok
+test_test_evidence_binds_successful_run_subject_and_source_fingerprint (test_orchestrator_cli.OrchestratorCliTests.test_test_evidence_binds_successful_run_subject_and_source_fingerprint) ... ok
+test_claimed_parent_path_blocks_child_claim (test_orchestrator_primitives.CoordinationSafetyTests.test_claimed_parent_path_blocks_child_claim) ... ok
+test_public_task_cannot_cross_spoiler_boundary (test_orchestrator_primitives.CoordinationSafetyTests.test_public_task_cannot_cross_spoiler_boundary) ... ok
+test_absolute_parent_and_symlink_paths_are_rejected (test_orchestrator_primitives.PathSafetyTests.test_absolute_parent_and_symlink_paths_are_rejected) ... ok
+test_fingerprint_is_stable_and_content_sensitive (test_orchestrator_primitives.PathSafetyTests.test_fingerprint_is_stable_and_content_sensitive) ... ok
+test_repository_relative_path_is_accepted (test_orchestrator_primitives.PathSafetyTests.test_repository_relative_path_is_accepted) ... ok
+test_initialize_is_create_only (test_orchestrator_primitives.StateStoreTests.test_initialize_is_create_only) ... ok
+test_locked_updates_do_not_lose_writes (test_orchestrator_primitives.StateStoreTests.test_locked_updates_do_not_lose_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 2.124s
+
+OK

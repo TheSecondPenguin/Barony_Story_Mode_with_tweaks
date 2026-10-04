@@ -1,0 +1,4 @@
+Preparing worktree (detached HEAD 9c70daf)
+HEAD is now at 9c70daf Import Barony source snapshot 962a5ce (omit IDE databases and upstream CI)
+comfort patch applies cleanly; policy regression test passed
+full game compile and runtime comfort validation remain required

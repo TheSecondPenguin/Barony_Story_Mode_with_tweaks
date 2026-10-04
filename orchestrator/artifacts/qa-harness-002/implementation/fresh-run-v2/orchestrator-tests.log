@@ -1,0 +1,28 @@
+test_arbitrary_successful_run_cannot_pass_build_gate (test_orchestrator.EngineTest.test_arbitrary_successful_run_cannot_pass_build_gate) ... ok
+test_caller_declared_command_cannot_pass_gate (test_orchestrator.EngineTest.test_caller_declared_command_cannot_pass_gate) ... ok
+test_claimed_write_paths_cannot_overlap (test_orchestrator.EngineTest.test_claimed_write_paths_cannot_overlap) ... ok
+test_dependency_selection_waits_for_completed_dependency (test_orchestrator.EngineTest.test_dependency_selection_waits_for_completed_dependency) ... ok
+test_duplicate_artifact_specs_are_rejected (test_orchestrator.EngineTest.test_duplicate_artifact_specs_are_rejected) ... ok
+test_failed_transaction_does_not_replace_atomic_state (test_orchestrator.EngineTest.test_failed_transaction_does_not_replace_atomic_state) ... ok
+test_general_category_secret_path_still_requires_aggregate_gate (test_orchestrator.EngineTest.test_general_category_secret_path_still_requires_aggregate_gate) ... ok
+test_hidden_generation_requires_comfort_gate (test_orchestrator.EngineTest.test_hidden_generation_requires_comfort_gate) ... ok
+test_independent_gate_rejects_empty_subjects (test_orchestrator.EngineTest.test_independent_gate_rejects_empty_subjects) ... ok
+test_independent_task_rejects_dependency_worker (test_orchestrator.EngineTest.test_independent_task_rejects_dependency_worker) ... ok
+test_interrupted_run_requires_explicit_recovery_and_preserves_attempt (test_orchestrator.EngineTest.test_interrupted_run_requires_explicit_recovery_and_preserves_attempt) ... ok
+test_legacy_null_baseline_requires_release_reclaim_and_new_change (test_orchestrator.EngineTest.test_legacy_null_baseline_requires_release_reclaim_and_new_change) ... ok
+test_legacy_null_baseline_with_no_artifacts_fails_cleanly (test_orchestrator.EngineTest.test_legacy_null_baseline_with_no_artifacts_fails_cleanly) ... ok
+test_local_runner_executes_and_validates_artifact (test_orchestrator.EngineTest.test_local_runner_executes_and_validates_artifact) ... ok
+test_local_runner_rejects_out_of_scope_empty_directory (test_orchestrator.EngineTest.test_local_runner_rejects_out_of_scope_empty_directory) ... ok
+test_malformed_baseline_keys_fail_closed (test_orchestrator.EngineTest.test_malformed_baseline_keys_fail_closed) ... ok
+test_native_handoff_rejects_preexisting_unchanged_artifact (test_orchestrator.EngineTest.test_native_handoff_rejects_preexisting_unchanged_artifact) ... ok
+test_noop_cannot_reuse_preexisting_artifact (test_orchestrator.EngineTest.test_noop_cannot_reuse_preexisting_artifact) ... ok
+test_public_ancestor_reads_are_rejected (test_orchestrator.EngineTest.test_public_ancestor_reads_are_rejected) ... ok
+test_public_local_execution_is_rejected (test_orchestrator.EngineTest.test_public_local_execution_is_rejected) ... ok
+test_source_change_invalidates_passed_evidence (test_orchestrator.EngineTest.test_source_change_invalidates_passed_evidence) ... ok
+test_symlink_and_parent_escape_are_rejected (test_orchestrator.EngineTest.test_symlink_and_parent_escape_are_rejected) ... ok
+test_unknown_and_dependency_blocked_gates_fail_closed (test_orchestrator.EngineTest.test_unknown_and_dependency_blocked_gates_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.202s
+
+OK
