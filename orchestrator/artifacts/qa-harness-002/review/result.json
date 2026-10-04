@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "artifact_type": "independent_code_review",
+  "task_id": "qa-harness.002.review",
+  "reviewer": {
+    "role": "reviewer",
+    "worker_id": "/root/qa_harness_reviewer"
+  },
+  "recorded_at_utc": "2026-10-04T09:25:00+00:00",
+  "workspace_state": "frozen uncommitted snapshot bound by reviewed file hashes",
+  "disposition": "ACCEPTED",
+  "summary": "The frozen harness change meets the bounded task contract. All four required unittest suites use the same fail-closed discovery preflight, explicit fresh output directories preserve prior artifacts and reject existing or symlinked paths before execution, and the canonical no-argument gate command remains unchanged. The discovery count is pre-execution metadata, not a claim that tests ran; subprocess exit codes still determine execution success. No game runtime, launch, comfort, audio, save, or multiplayer result was assessed.",
+  "reviewed_files_sha256": {
+    "scripts/qa/run_qa.py": "55ac45eb50eed87742c49da57f3df5f2acb2ec8e414e223fcae2b36796c489dc",
+    "tests/qa/test_harness_runner.py": "806a44d0504d55bd4326bd80b3c29bb0d1b95f826071bdf7095f257472f52927"
+  },
+  "open_findings": [],
+  "contract_checks": [
+    {
+      "requirement": "A required suite with zero discovered tests cannot yield PASS",
+      "result": "PASS",
+      "evidence": "Independent temporary-project CLI probes removed each of build-gate-tests, qa-tests, playtest-tool-tests, and orchestrator-tests in turn. Every run returned 1, recorded overall FAIL, discovery_status EMPTY, and discovered_test_count 0. A separate injected zero-count probe paired with a hypothetical return-code-0 subprocess result failed before subprocess invocation for all four shared suite definitions."
+    },
+    {
+      "requirement": "Fresh repeat verification does not overwrite old artifact directories",
+      "result": "PASS",
+      "evidence": "The explicit path is created with exist_ok=False before checks execute. Targeted integration tests verified two distinct fresh reports and stable first-report content, then verified an existing output directory is rejected with return code 2 before modification."
+    },
+    {
+      "requirement": "Unsafe symlink and overwrite paths are refused",
+      "result": "PASS",
+      "evidence": "Targeted integration tests verified rejection of an existing output directory, a symlink output path, and a path beneath a symlink ancestor, with symlink targets left empty. Source inspection confirms validation occurs before test discovery or command execution."
+    },
+    {
+      "requirement": "The no-argument canonical gate command and gate set remain unchanged",
+      "result": "PASS",
+      "evidence": "orchestrator/config/gates.json has no diff from origin/main. The no-argument path still selects orchestrator/artifacts/qa and writes harness-result.json; no engine or gate configuration was changed. The reviewer did not execute the default command."
+    },
+    {
+      "requirement": "Existing canonical QA evidence remains untouched during review",
+      "result": "PASS",
+      "evidence": "All executable probes used copied runners and temporary explicit output directories. Git worktree status reported no modifications under orchestrator/artifacts/qa after review."
+    }
+  ],
+  "verification": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.qa.test_harness_runner -v",
+      "result": "PASS",
+      "count": 4,
+      "coverage": [
+        "positive discovery counts and unique output directories",
+        "actual empty-suite failure",
+        "discovery-error failure",
+        "existing path, symlink destination, and symlink ancestor refusal"
+      ]
+    },
+    {
+      "command": "independent temporary-project CLI matrix for each required empty suite",
+      "result": "PASS",
+      "counts": {
+        "required_suites_checked": 4,
+        "fail_closed_results": 4
+      }
+    },
+    {
+      "command": "injected zero discovery count with hypothetical subprocess return code 0",
+      "result": "PASS",
+      "evidence": "All four suite definitions returned EMPTY with exit_code 1 and did not invoke subprocess."
+    },
+    {
+      "command": "python3 -m unittest discover against an actual empty temporary directory",
+      "result": "RETURNED_5",
+      "evidence": "Python 3.12.14 reported NO TESTS RAN and returned 5. This environment therefore did not reproduce a return-code-0 false PASS; the added count guard is defensive and does not rely only on interpreter exit behavior."
+    },
+    {
+      "command": "git diff --check -- scripts/qa/run_qa.py tests/qa/test_harness_runner.py",
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --quiet origin/main -- orchestrator/config/gates.json",
+      "result": "PASS"
+    }
+  ],
+  "limitations": [
+    "The recorded discovered_test_count is produced by a pre-execution unittest discovery pass. It is not an executed-test count or runtime claim.",
+    "The canonical full QA harness was intentionally not run during review, so archived canonical evidence was not refreshed or treated as evidence for this change.",
+    "No game binary was compiled or launched, and no target runtime, audio, save and reload, subjective comfort, or four-player behavior was verified."
+  ]
+}
