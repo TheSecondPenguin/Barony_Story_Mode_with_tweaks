@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "task_id": "runtime-bridge.001.resolver",
+  "worker_id": "/root/blocker_resolver",
+  "role": "engineer",
+  "status": "completed",
+  "runtime_gate": "blocked",
+  "target_host_connected": false,
+  "runtime_executed": false,
+  "updated_at_utc": "2026-10-04T09:59:24.828180+00:00",
+  "summary": "Found a supported existing-Jump browser route and official Linux CLI/MCP alternative; actual dashboard and CLI installer probes hit unavailable pages. Prepared bounded fallback design without misrepresenting it as a working connection.",
+  "ranked_options": [
+    {
+      "rank": 1,
+      "option": "Existing Jump approved screen-sharing link",
+      "readiness": "supported_by_official_docs; owner_link_missing; dashboard_transport_failure_observed",
+      "reason": "Uses owner existing remote access and per-session approval; no new account, service, inbound port or proprietary asset transfer.",
+      "next_action": "One assisted connection activation: owner uses phone Jump session to open Windows Jump Desktop Connect, Share your screen, Copy Link; provide private link and remain available to approve Allow Control within 30 seconds.",
+      "limit": "Link endpoint may still be unreachable here; Connect 7+ required for browser. Browser input/audio must be tested. Sharing scope is desktop display, not technically confined to game window; operator must obey task scope."
+    },
+    {
+      "rank": 2,
+      "option": "Authenticated game-only bridge with reversible foreground Windows helper",
+      "readiness": "design_only; implementation_and_endpoint_validation_required",
+      "reason": "Can fit browser-only operator tools and strict command scope if existing Jump transport remains inaccessible.",
+      "next_action": "Defer implementation until actual owner-provided Jump sharing link has been evaluated and shown insufficient. If then necessary, coordinator prepares concrete reviewed helper and authenticated endpoint before asking activation."
+    },
+    {
+      "rank": 3,
+      "option": "Official Jump CLI Beta / MCP viewer",
+      "readiness": "documented; download_unavailable; not_installed; auth_not_attempted",
+      "reason": "Official remote screenshot/input/audio support, but client retrieval failed and current Work Mode MCP hookup not established.",
+      "exact_documented_commands": [
+        "jump-cli version",
+        "jump-cli auth viewer login",
+        "jump-cli viewer status --json",
+        "jump-cli mcp"
+      ],
+      "auth_boundary": "Viewer login prints a browser sign-in URL and stores token in system keyring. No token in chat. No API token, connect bootstrap, account enrollment, access-group change or team administration.",
+      "limit": "Viewer token controls all hosts already accessible to account; not view-only permission. MCP control tools require installation/registration, not imaginary direct CLI verbs."
+    },
+    {
+      "rank": 4,
+      "option": "Local one-shot evidence helper only",
+      "readiness": "existing_isolated_launcher_available; Windows_execution_unverified",
+      "reason": "Useful for preflight/launch identity after activation, but cannot supply agent-driven interactive gameplay without observation/control transport."
+    },
+    {
+      "rank": 5,
+      "option": "Interactive Windows self-hosted runner",
+      "readiness": "not_registered; not_recommended",
+      "reason": "Requires setup and a logged-in user-session process, has broad workflow execution authority, and is not game-only. Do not register on public project or change security settings as a shortcut."
+    },
+    {
+      "rank": 6,
+      "option": "Direct native APIs / repeated Linux readiness",
+      "readiness": "unavailable_or_wrong_host",
+      "reason": "No native computer tool. Repeating cloud-host checks cannot establish owner runtime."
+    }
+  ],
+  "bridge_fallback_contract": {
+    "local_process": "Non-elevated foreground Windows helper started explicitly by owner; no service/startup task or background persistence.",
+    "game_identity": "User selects Barony installation; exact executable SHA256, version, PID and window handle bound to session. No auto-discovery outside Steam/game paths.",
+    "actions": [
+      "status",
+      "capture_bound_game_window",
+      "bounded_game_key_pulse",
+      "bounded_game_mouse_delta",
+      "release_all_inputs",
+      "stop_session"
+    ],
+    "forbidden": [
+      "arbitrary shell or PowerShell commands",
+      "generic process launch",
+      "clipboard access",
+      "general file read/write/list endpoints",
+      "registry/security/account/network configuration",
+      "retail asset upload",
+      "public unsecured desktop",
+      "save mutation before isolation verification"
+    ],
+    "input_guards": "Finite key allowlist, <=250ms key pulses, rate and mouse-delta bounds, key-up in finally/watchdog, foreground/PID/identity check immediately before every action; stop on focus loss or bound-process exit. Windows SendInput is subject to UIPI; no privilege escalation.",
+    "capture": "Windows.Graphics.Capture selected application window; explicit owner selection and visible capture indicator; never whole desktop fallback silently.",
+    "network": "Outbound HTTPS only from helper to an authenticated short-lived relay session; distinct host/operator credentials, expiration, nonce/sequence replay checks, command TTL, server validates finite schema; no inbound ports or firewall rules. Relay transport must be concretely deployed and verified before claiming activation kit ready.",
+    "user_control": "Visible local stop button and emergency hotkey; disconnect releases inputs; absolute session expiry; removable ordinary files only.",
+    "privacy": "Frame retention minimal; session secrets and full paths excluded from public logs; no retail data uploads; user-facing report remains spoiler-free.",
+    "activation": "After reviewed artifacts and endpoint are ready, user opens the one helper package on Windows through existing phone remote session, selects Barony window, and starts the single paired session. This is a future activation design, not a supplied executable."
+  },
+  "runtime_acceptance_after_connection": [
+    "Identify actual Windows host, installed retail build, data compatibility, audio device and input mode.",
+    "Prove isolated writable output path and Steam Cloud behavior before save/reload; do not assume pinned-source arguments validate arbitrary retail binary.",
+    "Observe unchanged game menu, short agent-controlled movement, inventory open/close, actual audio evidence, clean exit and isolated save/reload.",
+    "Independent runtime operator records evidence; no gate passes from docs, launcher exit code, source inspection, synthetic bridge tests or CI.",
+    "Subjective comfort and four-player gates remain separate."
+  ],
+  "retail_isolation_reference": "docs/engineering/PLAYTEST.md",
+  "sources": {
+    "jump_browser": "https://docs.jumpdesktop.com/viewer/browser/",
+    "jump_share": "https://docs.jumpdesktop.com/viewer/session/ask-to-share-screen/",
+    "jump_audio": "https://docs.jumpdesktop.com/viewer/session/audio/",
+    "jump_gaming": "https://docs.jumpdesktop.com/viewer/workflows/gaming/",
+    "jump_cli": "https://docs.jumpdesktop.com/cli/",
+    "jump_cli_reference": "https://docs.jumpdesktop.com/cli/reference/",
+    "jump_mcp": "https://docs.jumpdesktop.com/cli/mcp/",
+    "github_runner": "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/add-runners",
+    "github_security": "https://docs.github.com/en/actions/reference/security/secure-use",
+    "windows_services": "https://learn.microsoft.com/en-us/windows/win32/services/interactive-services",
+    "windows_capture": "https://learn.microsoft.com/en-us/windows/apps/develop/media-authoring-processing/screen-capture",
+    "windows_input": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput"
+  },
+  "recommended_next_route": "Owner-approved existing Jump Desktop screen-sharing link; do not implement custom bridge until this distinct existing route is actually evaluated.",
+  "minimal_owner_activation": "From your phone Jump connection, open Jump Desktop Connect on the Windows PC, choose Share your screen > Copy Link, and send that private link here. Keep the phone connection open so you can select Allow Control when the request appears. Do not send passwords or tokens.",
+  "activation_reason": "Only the owner currently has access to that Windows session. Its sharing endpoint cannot be tested until the owner supplies it; browser dashboard and installer unavailability have unknown cause."
+}

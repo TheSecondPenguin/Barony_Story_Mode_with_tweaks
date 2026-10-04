@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-04T09:59:11.574316+00:00",
+  "observer": "/root",
+  "native_game_launch_attempted": false,
+  "browser": [
+    {
+      "url": "https://app.jumpdesktop.com/",
+      "action": "navigate then one reload",
+      "result": "Site Unavailable / Unable to access this site.",
+      "classification": "generic unavailable page; cause unknown; no bot challenge or sign-in screen observed"
+    }
+  ],
+  "cli_bootstrap": {
+    "url": "https://jumpdesktop.com/downloads/install.sh",
+    "status": 200,
+    "bytes": 195,
+    "sha256": "5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7",
+    "result": "HTML unavailable page, not executable installer",
+    "executed": false
+  },
+  "next": "Try an actual host-created Jump sharing link after user supplies it and approves the request; endpoint and game-control behavior unverified.",
+  "safety": "No account settings, host access grants, retail files or saves changed."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "artifact_type": "independent_runtime_route_review",
+  "task_id": "runtime-bridge.001.review",
+  "reviewer": {
+    "role": "reviewer",
+    "worker_id": "/root/runtime_route_reviewer"
+  },
+  "recorded_at_utc": "2026-10-04T10:04:02.496524+00:00",
+  "workspace_state": "uncommitted snapshot bound by reviewed file hashes",
+  "disposition": "ACCEPTED",
+  "summary": "The host-created Jump screen-sharing link is the smallest materially different connection attempt and is supported by official documentation. The final goal now uses two explicit stages: browser connection, installation/isolation preflight and possible startup/menu observation first; then a separately verified native relative-input and auditable-audio route before independent gameplay. No Windows host connection, installer execution, game launch, save operation, or runtime acceptance occurred, and all runtime-dependent gates remain blocked.",
+  "reviewed_files_sha256": {
+    "AGENTS.md": "5369983a26bb67ce5c0f52eaad3ce1fd112bb19b7a09689967704f80b93418e1",
+    "docs/player/STATUS.md": "92e332ff7dd48e20772e440db5f65b0430565cbe1e021146525ab57e3eb935db",
+    "orchestrator/state/CURRENT_GOAL.md": "e1c0f9cb438c3afd365160973ef24fa7e15183a088c4e94df14c442115417e75",
+    "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json": "c28bc13a3232120fceeace7f66d44d3b686693911d07e8a296a4baf08061d7be",
+    "orchestrator/artifacts/runtime-bridge-001/resolver-result.json": "d956a515d3d83a335db38b6cb88d680670a6e611cd7223f1508320778d68a901",
+    "orchestrator/artifacts/runtime-bridge-001/runtime-options.json": "f63c863805192bedefda85e2e1813aba24de6b0fd9eceeefbcd38949ceb1f171",
+    "orchestrator/artifacts/runtime-bridge-001/transport-observations.json": "f56dc970ce9f924673db137d46272c840f34ff894a4a0a2a07cd4d9f0d7b8558",
+    "orchestrator/artifacts/runtime-bridge-001/installer-response.html": "5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7"
+  },
+  "open_findings": [],
+  "accepted_elements": [
+    {
+      "claim": "A host-created Jump sharing link is the next smallest materially different connection attempt.",
+      "basis": "Official Jump documentation says a host user can use Connect's Share your screen > Copy Link flow, the browser can open the link, and the host must approve the request. This does not establish that the endpoint is reachable from the current cloud browser."
+    },
+    {
+      "claim": "The host retains per-session control.",
+      "basis": "Official Jump documentation describes Allow Control, View Only, Ignore, a 30-second approval timeout, a visible sharing toolbar, input disablement, and disconnect/stop controls."
+    },
+    {
+      "claim": "Browser viewing can carry Windows display, ordinary keyboard/pointer input, and Fluid host audio in supported configurations.",
+      "basis": "Official Jump browser and remote-audio documentation supports these product capabilities, subject to the documented browser limitations and actual endpoint verification."
+    },
+    {
+      "claim": "No runtime gate advanced.",
+      "basis": "All reviewed artifacts consistently record target_host_connected=false or an unconnected route, runtime_executed=false, and runtime_gate=blocked."
+    },
+    {
+      "claim": "Retail and save isolation remains mandatory before launch or saving.",
+      "basis": "AGENTS.md, PLAYTEST.md, CURRENT_GOAL.md, resolver-result.json, and runtime-options.json retain the isolated-profile and Steam Cloud boundaries and do not authorize overwriting retail files or saves."
+    }
+  ],
+  "independently_verified": [
+    "The reviewed JSON files parse successfully and the narrative files consistently state that no Windows game launch occurred.",
+    "Official Jump documentation supports browser connections to Windows hosts running Connect 7 or later, opening screen-sharing links, host approval with Allow Control, and host-side stop controls.",
+    "Official Jump documentation states that browser sessions lack cursor lock and game-controller support; it also documents browser receipt of Fluid host audio.",
+    "Repository source contains relative SDL mouse-motion consumption and SDL relative-mouse-mode toggles used during play.",
+    "The isolated launcher writes a marked profile, data-manifest.json, and launch-evidence.json only after its fail-closed preflight and keeps runtime_gate unassessed.",
+    "The preserved installer-response.html is exactly 195 bytes, has SHA-256 5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7, and is an unavailable-page HTML response rather than an installer script.",
+    "git diff --check passed for the reviewed changes."
+  ],
+  "reported_observations_not_independently_reproduced": [
+    "The coordinator's cloud-browser navigation and one reload of https://app.jumpdesktop.com/ produced Site Unavailable / Unable to access this site; no browser screenshot is included in the reviewed artifact set, so this remains an attributed observation.",
+    "The HTTP status 200 and retrieval action for https://jumpdesktop.com/downloads/install.sh remain attributed to the coordinator/resolver. This review independently verified the saved response bytes, type, size, and digest and confirmed that no script execution is claimed.",
+    "The direct host-created sharing-link endpoint remains untested because no private link was available to this reviewer."
+  ],
+  "minimal_next_action": {
+    "user_activation": "On the already accessible Windows host, open Jump Desktop Connect, choose Share your screen, copy the link, provide it through the private session, remain signed in, and approve the actual request with Allow Control within the documented timeout.",
+    "operator_scope": "Open the actual link in the cloud browser and verify only connection identity, Connect/browser behavior, installed Steam/Barony path and version, isolated-profile preflight, and—if safely controllable—startup/menu behavior. Do not claim gameplay, audio, comfort, save/reload, or multiplayer from this route.",
+    "failure_route": "If the link is unreachable or confirms inadequate relative-mouse/audio behavior, record the concrete failure and move directly to a native Jump client/CLI path or a reviewed, narrowly scoped reversible helper. Do not repeat the dashboard or installer probes and do not build a generic automation platform."
+  },
+  "gate_state_at_review": {
+    "windows_host_connection": "blocked",
+    "vanilla_launch": "blocked",
+    "gameplay_input": "blocked",
+    "audio": "blocked",
+    "isolated_save_reload": "blocked",
+    "comfort": "blocked",
+    "multiplayer_four_player": "blocked",
+    "adventure_core": "blocked"
+  },
+  "sources": [
+    "https://docs.jumpdesktop.com/viewer/browser/",
+    "https://docs.jumpdesktop.com/viewer/session/ask-to-share-screen/",
+    "https://docs.jumpdesktop.com/viewer/session/audio/",
+    "https://docs.jumpdesktop.com/viewer/workflows/gaming/",
+    "docs/engineering/PLAYTEST.md",
+    "scripts/playtest/isolated_launch.py",
+    "src/game.cpp",
+    "src/player.cpp"
+  ],
+  "resolved_during_review": [
+    {
+      "id": "RUNTIME-ROUTE-001",
+      "severity": "high",
+      "status": "superseded_by_final_two_stage_goal",
+      "resolution": "The final orchestrator/state/CURRENT_GOAL.md now separates browser connection/preflight/startup-menu work from full gameplay. It requires a verified native relative-input and auditable-audio route before dispatching the independent Playtester, and docs/player/STATUS.md retains the same browser limitation. The earlier route-scope finding is therefore closed."
+    }
+  ]
+}

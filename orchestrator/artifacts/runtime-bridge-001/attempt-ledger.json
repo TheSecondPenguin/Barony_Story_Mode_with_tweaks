@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "task_id": "runtime-bridge.001.resolver",
+  "worker_id": "/root/blocker_resolver",
+  "role": "engineer",
+  "updated_at_utc": "2026-10-04T09:59:24.828180+00:00",
+  "runtime_executed": false,
+  "target_host_connected": false,
+  "scope": "Connection-path investigation for actual owner Windows/Steam machine; no repeat of wrong-host runtime preflight.",
+  "attempts": [
+    {
+      "id": "RB-A01",
+      "path": "Prior Linux execution host",
+      "status": "prior_observed_wrong_host",
+      "attempted_this_iteration": false,
+      "evidence": [
+        "orchestrator/artifacts/playtests/runtime-first-20261004/runtime-readiness.json",
+        "orchestrator/artifacts/playtests/runtime/result.json"
+      ],
+      "observation": "Prior host has no game binary/data/desktop/audio. Prior checks did not launch game. Retained as history; not rerun."
+    },
+    {
+      "id": "RB-A02",
+      "path": "Direct native computer API",
+      "status": "capability_unavailable",
+      "attempted_this_iteration": false,
+      "evidence": [
+        "Active mcp__cua_repl documentation: Native computer APIs are disabled."
+      ],
+      "observation": "No authorized callable native Windows desktop surface exists in this session. This does not prove the owner PC is unavailable."
+    },
+    {
+      "id": "RB-A03",
+      "path": "Existing Jump Desktop browser dashboard",
+      "status": "observed_transport_failure",
+      "observer": "/root",
+      "attempted_this_iteration": true,
+      "endpoint": "https://app.jumpdesktop.com/",
+      "observation": "Root reported actual browser initial navigation plus one reload, both showing 195-byte Site Unavailable / Unable to access this site. No authentication or bot challenge observed. No further repeated requests.",
+      "cause": "unknown",
+      "host_connect_attempted": false,
+      "source_keys": [
+        "jump_browser"
+      ],
+      "attempt_count": 2
+    },
+    {
+      "id": "RB-A04",
+      "path": "Jump Desktop CLI official Linux installer retrieval",
+      "status": "observed_transport_failure",
+      "observer": "/root/blocker_resolver",
+      "attempted_this_iteration": true,
+      "endpoint": "https://jumpdesktop.com/downloads/install.sh",
+      "method": "Python urllib HTTPS GET, 20-second request timeout, bounded read; no execution",
+      "http_status": 200,
+      "response_bytes": 195,
+      "response_type": "HTML unavailable page, not installer",
+      "observation": "Response title Site Unavailable and body Unable to access this site. command -v jump-cli returned no path. No installer or CLI executed.",
+      "cause": "unknown",
+      "host_connect_attempted": false,
+      "source_keys": [
+        "jump_cli",
+        "jump_cli_reference",
+        "jump_mcp"
+      ],
+      "independent_confirmation": {
+        "observer": "/root",
+        "result": "Same unavailable installer response",
+        "response_sha256": "5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7"
+      }
+    },
+    {
+      "id": "RB-A05",
+      "path": "User-approved Jump screen-sharing link in cloud browser",
+      "status": "unattempted_missing_owner_link",
+      "attempted_this_iteration": false,
+      "observation": "Official docs support browser link and per-session Allow Control approval. Owner link and Connect version unavailable. Dashboard failure does not prove every share endpoint fails; do not claim this works.",
+      "source_keys": [
+        "jump_browser",
+        "jump_share"
+      ]
+    },
+    {
+      "id": "RB-A06",
+      "path": "Reversible local Windows helper",
+      "status": "unattempted_design_option",
+      "attempted_this_iteration": false,
+      "observation": "No helper has been built or run by resolver. Can launch/capture locally after owner activation but does not itself create a remote connection. Requires reviewed bounded command vocabulary and actual compatible runtime."
+    },
+    {
+      "id": "RB-A07",
+      "path": "Interactive Windows self-hosted GitHub runner",
+      "status": "unattempted_not_recommended",
+      "attempted_this_iteration": false,
+      "observation": "No runner registered. Registration requires local configuration; service execution is not an interactive desktop. Runner accepts workflow code and is broader than a game bridge. Public repository use carries documented risk.",
+      "source_keys": [
+        "github_runner",
+        "github_security",
+        "windows_services"
+      ]
+    },
+    {
+      "id": "RB-A08",
+      "path": "Authenticated browser-accessible game-only bridge",
+      "status": "unattempted_implementable_fallback",
+      "attempted_this_iteration": false,
+      "observation": "No server, deployment, helper binary or target connection implemented by resolver. A specific bounded design is recorded in resolver-result.json. Requires actual owner activation, deployment and end-to-end verification.",
+      "source_keys": [
+        "windows_capture",
+        "windows_input"
+      ]
+    }
+  ],
+  "sources": {
+    "jump_browser": "https://docs.jumpdesktop.com/viewer/browser/",
+    "jump_share": "https://docs.jumpdesktop.com/viewer/session/ask-to-share-screen/",
+    "jump_audio": "https://docs.jumpdesktop.com/viewer/session/audio/",
+    "jump_gaming": "https://docs.jumpdesktop.com/viewer/workflows/gaming/",
+    "jump_cli": "https://docs.jumpdesktop.com/cli/",
+    "jump_cli_reference": "https://docs.jumpdesktop.com/cli/reference/",
+    "jump_mcp": "https://docs.jumpdesktop.com/cli/mcp/",
+    "github_runner": "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/add-runners",
+    "github_security": "https://docs.github.com/en/actions/reference/security/secure-use",
+    "windows_services": "https://learn.microsoft.com/en-us/windows/win32/services/interactive-services",
+    "windows_capture": "https://learn.microsoft.com/en-us/windows/apps/develop/media-authoring-processing/screen-capture",
+    "windows_input": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput"
+  },
+  "evidence_limits": [
+    "Documentation establishes supported possibilities, not this host capability.",
+    "Linux compiler CI success is not Windows runtime evidence.",
+    "No credentials, share links or proprietary assets collected.",
+    "No account/security settings, repository configuration, system installation or retail files changed.",
+    "Unavailable pages have unknown cause; do not label them permissions failures, owner-PC failures or Barony failures."
+  ]
+}

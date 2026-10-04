@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "task_id": "runtime-bridge.001.runtime",
+  "worker_id": "/root/runtime_operator",
+  "role": "researcher",
+  "observed_at_utc": "2026-10-04T10:00:49Z",
+  "scope": "Feasibility of controlling the user's existing Windows Steam installation from the available cloud browser, without copying retail assets, overwriting retail files or saves, or creating an arbitrary remote-command service.",
+  "result": {
+    "status": "conditionally_viable_for_preflight_and_startup_only",
+    "recommended_path": "jump_connect_screen_share_to_browser",
+    "runtime_gate": "blocked",
+    "reason": "Jump's browser viewer is an official, reversible route to a Windows host and supports screen, keyboard, pointer, and host audio streaming. The current cloud browser has not established a Jump session, and the generic app.jumpdesktop.com page was unavailable in the coordinator's live check. More importantly, Jump documents that cursor lock and game controllers are unavailable in its browser client. Barony uses SDL relative mouse motion for camera control, so a browser session cannot presently support a defensible full movement/camera/comfort playtest."
+  },
+  "paths": {
+    "repository_on_windows": "User-selected checkout at origin/main 969318bd2347480ba645f09f1f2efd8ce6544c7e; exact host path must be observed, not guessed.",
+    "steam_app_id": 371970,
+    "steam_install_root": "Discover in the signed-in Steam client with Manage > Browse local files; do not assume the default Steam library.",
+    "executable": "<observed Steam install root>\\barony.exe",
+    "data_dir": "<observed Steam install root>",
+    "profile_dir": "C:\\barony-playtests\\vanilla-01 (new directory only; verify it is outside every Steam library and retail save/config directory)",
+    "launcher": "scripts/playtest/isolated_launch.py",
+    "launch_evidence": "<profile_dir>\\launch-evidence.json",
+    "profile_marker": "<profile_dir>\\.barony-playtest-profile.json",
+    "data_manifest": "<profile_dir>\\data-manifest.json"
+  },
+  "options": [
+    {
+      "id": "jump_connect_screen_share_to_browser",
+      "rank": 1,
+      "status": "recommended_but_unverified_from_current_cloud_browser",
+      "host_component": "Jump Desktop Connect 7 or later on Windows 10 or later, 64-bit",
+      "client_component": "Jump Desktop browser viewer opened in the available cloud browser",
+      "smallest_user_only_activation": [
+        "If Jump Desktop Connect is already installed, open it from the Windows system tray, choose Share your screen, and create a sharing link. If absent, install the official Windows Connect package first; installation requires an administrator approval.",
+        "Transfer the one-time sharing link through an approved private handoff, not as an account or Windows credential in chat.",
+        "Remain signed in at the Windows desktop, approve the actual Screen Sharing Request with Allow Control, and stop sharing at any time from the visible host toolbar."
+      ],
+      "why_preferred": [
+        "The host user approves the live request and can pause input or disconnect the operator.",
+        "No Windows password, Steam password, or Jump account password needs to be disclosed in chat.",
+        "The browser viewer does not support file transfer, so the route does not provide a mechanism to upload retail assets.",
+        "Connect can be removed through Windows Apps after the session."
+      ],
+      "capabilities": {
+        "screen": "Yes: remote Windows display is rendered in a browser session; cloud-browser screenshots can document only the rendered session, not raw host framebuffer identity.",
+        "keyboard": "Yes: keystrokes are sent to the host, subject to browser/system shortcut interception.",
+        "pointer": "Partial: ordinary pointer movement and clicks are available, but cursor lock is explicitly unavailable in a web browser.",
+        "game_controller": "No: Jump explicitly excludes browser clients.",
+        "audio": "Transport supported: the browser viewer can receive Fluid-session host audio. The available cloud computer-control interface exposes no audio capture/inspection result, so the Runtime Operator cannot attest audible output.",
+        "window_and_session": "A user-signed-in host can approve a screen-share request; the host sees a toolbar, can disable control, and can stop sharing. Browser full-screen and display controls exist, but screen-sharing links lack virtual display and resolution matching.",
+        "files": "No browser-client file transfer. The public repository and Python must already exist on the host or be obtained on the host through a visible, user-authorized action. Retail data remains in place."
+      },
+      "reversibility": [
+        "Host user stops screen sharing or disconnects the viewer.",
+        "Remove any remote-access user or host association created for the session.",
+        "Uninstall Jump Desktop Connect from Windows Apps if it was installed only for this test.",
+        "After preserving sanitized evidence, delete only the dedicated marked profile if desired; do not delete or alter the Steam installation or retail save directories."
+      ]
+    },
+    {
+      "id": "jump_personal_account_unattended",
+      "rank": 2,
+      "status": "not_recommended_for_one_time_test",
+      "reason": "It adds persistent host/account access and normally prompts for the Windows host credentials. Passwordless Windows access is an Enterprise feature with materially broader access. A user-approved screen-sharing session is narrower and easier to revoke."
+    },
+    {
+      "id": "custom_local_bridge_or_remote_shell",
+      "rank": 3,
+      "status": "rejected",
+      "reason": "A new screenshot/input/command service would expand trusted code and expose arbitrary host control. No custom bridge or standalone helper is needed before the narrower official screen-share route is tested."
+    }
+  ],
+  "prerequisites": [
+    "Windows 10 or later, 64-bit, with an interactive signed-in desktop.",
+    "A Steam account already signed in locally with Barony shown as installed; this is user-owned access evidence, not cryptographic license proof.",
+    "Jump Desktop Connect 7 or later and outbound access required by Jump. For host audio without a physical sound device, Jump documents Connect 10.15.23 or later on Windows 10 22H2 or Windows 11.",
+    "The user-selected repository checkout at origin/main 969318bd2347480ba645f09f1f2efd8ce6544c7e and a working Python 3 launcher on the Windows host.",
+    "A new profile directory outside Steam libraries, the game install, AppData, Documents/My Games, and any existing save/config directory.",
+    "Steam remains running for the retail executable; no Steam, Windows, or Jump credential is supplied in chat."
+  ],
+  "planned_runtime_sequence": [
+    {
+      "step": 1,
+      "action": "In the visible Steam client, observe the signed-in Library entry for Barony and use Manage > Browse local files to obtain the actual installation directory. Record the Steam manifest build ID if visible, but do not treat it as a source revision."
+    },
+    {
+      "step": 2,
+      "action": "Verify the Windows checkout is exactly origin/main 969318bd2347480ba645f09f1f2efd8ce6544c7e and that upstream.lock.json pins public source 962a5ce36d10207beef7d8673876e0cebf8e76e4, declared v5.0.2, imported as baseline 9c70dafa2da8715e4d59d90fabf1135c48ba1c19."
+    },
+    {
+      "step": 3,
+      "action": "Run the documented dry preflight only, substituting the observed executable/data path and the new profile path: py -3 scripts/playtest/isolated_launch.py --target-os windows --executable \"<Steam root>\\barony.exe\" --data-dir \"<Steam root>\" --profile-dir \"C:\\barony-playtests\\vanilla-01\". Do not add guessed launch flags."
+    },
+    {
+      "step": 4,
+      "action": "Proceed only if the helper reports dry-run-preflight-passed. This validates required source-supported strings, the v5.0.2 label, required data entries, non-overlap, and hashes. It does not authenticate the executable or prove exact source equivalence."
+    },
+    {
+      "step": 5,
+      "action": "Repeat the same command with --launch. The helper directly starts the observed executable with -datadir=<observed Steam root> and -windowed, working from the isolated profile with shell disabled. It must never point the profile to the install or retail save location."
+    },
+    {
+      "step": 6,
+      "action": "Observe startup/menu frames and basic menu input only if the browser connection works. Exit normally, then inspect the sanitized launch-evidence.json for an updated log reporting v5.0.2, the data path, isolated output path, and graphics initialization. Runtime success remains unassessed until an independent Playtester attests behavior."
+    }
+  ],
+  "source_and_retail_match_policy": {
+    "required_observations": [
+      "Steam client visibly shows Barony installed for the signed-in user and reveals the installation directory.",
+      "The exact executable SHA256 and complete data-manifest SHA256 are recorded by the helper.",
+      "The executable contains the expected v5.0.2 label and the source-supported -datadir=, -windowed, and output-path strings.",
+      "A fresh startup log from the isolated attempt reports Barony version v5.0.2 and the expected isolated output directory."
+    ],
+    "proof_limit": "These observations establish a user-owned Steam context, a version-label match, byte identities, and isolated startup facts. They do not prove that the retail executable was built from public commit 962a5ce36d10207beef7d8673876e0cebf8e76e4 or imported baseline 9c70dafa2da8715e4d59d90fabf1135c48ba1c19. If the helper does not find v5.0.2, stop; do not weaken its check or use the retail data with the pinned source.",
+    "steam_legitimacy_limit": "A Steam Library/install observation supports that the user is operating their own installed copy. Neither the appmanifest nor a file hash is cryptographic proof of purchase. No ownership token, credential, or retail file should be exported."
+  },
+  "risks_and_limits": [
+    {
+      "id": "RB-001",
+      "severity": "blocking_full_playtest",
+      "risk": "The browser viewer cannot lock the cursor. Jump states games require cursor lock for looking around, while Barony consumes SDL relative mouse motion and enables SDL relative mouse mode during play. Menu clicks may work, but camera control cannot be relied on."
+    },
+    {
+      "id": "RB-002",
+      "severity": "blocking_full_playtest",
+      "risk": "Game controllers are unavailable in Jump's browser client, so they cannot replace missing relative mouse input."
+    },
+    {
+      "id": "RB-003",
+      "severity": "blocking_audio_attestation",
+      "risk": "Jump can stream Windows host audio to a browser, but the current cloud computer-control interface supplies screenshots/input and no auditable audio channel to this worker. Audio requires a separate human observation."
+    },
+    {
+      "id": "RB-004",
+      "severity": "blocking_comfort_attestation",
+      "risk": "Remote encoding, frame pacing, latency, and the missing locked-pointer path confound motion-comfort results. Do not use this route to pass the comfort gate."
+    },
+    {
+      "id": "RB-005",
+      "severity": "current_connectivity_blocker",
+      "risk": "The coordinator's live cloud-browser visit to app.jumpdesktop.com returned a generic Site Unavailable page, and the public CLI installer URL returned HTML instead of an installer script. A user-created direct screen-sharing link is therefore the next materially different test, not a known-working endpoint."
+    },
+    {
+      "id": "RB-006",
+      "severity": "security",
+      "risk": "A sharing link is a temporary access capability. Use a private handoff, require host approval of the actual request, keep the user present, and stop sharing immediately after evidence collection."
+    },
+    {
+      "id": "RB-007",
+      "severity": "evidence",
+      "risk": "A zero exit code, screenshots, or a matching version string cannot self-certify gameplay, audio, save/restore, comfort, or multiplayer. The Runtime Operator cannot act as the independent Playtester."
+    }
+  ],
+  "evidence_refs": [
+    {
+      "id": "jump-browser",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/viewer/browser/",
+      "supports": "Browser connects to Windows hosts running Connect 7+, free with any account; session settings include audio; browser lacks file transfer, USB redirection, microphone input, observe mode, and privacy mode."
+    },
+    {
+      "id": "jump-screen-share",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/viewer/session/ask-to-share-screen/",
+      "supports": "Host user must be signed in, approves Allow Control or View Only, sees the sharing toolbar, can disable control or disconnect, and can generate a sharing link."
+    },
+    {
+      "id": "jump-connect-install",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/connect/install/",
+      "supports": "Windows host requires 64-bit Windows 10+, installation requires administrator approval, and Connect is removable through Windows Apps."
+    },
+    {
+      "id": "jump-audio",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/viewer/session/audio/",
+      "supports": "Fluid sessions stream Windows host output to a browser; Windows default output remains active; Connect 10.15.23+ adds a virtual speaker when the host has no sound device."
+    },
+    {
+      "id": "jump-cursor-lock",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/viewer/session/lock-cursor/",
+      "supports": "Games require cursor lock for looking around; cursor lock is unavailable in a web browser."
+    },
+    {
+      "id": "jump-game-controller",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/viewer/session/game-controllers/",
+      "supports": "Physical and on-screen controllers are unavailable in a web browser."
+    },
+    {
+      "id": "jump-performance",
+      "type": "official_documentation",
+      "url": "https://docs.jumpdesktop.com/viewer/performance/high-performance/",
+      "supports": "The browser exposes only frame-rate and bandwidth tuning; demanding gaming benefits from wired/direct connections and native-client settings unavailable in the browser."
+    },
+    {
+      "id": "local-playtest-contract",
+      "type": "repository",
+      "path": "docs/engineering/PLAYTEST.md:11-45",
+      "supports": "Source-supported isolation, Windows command, evidence limits, audio requirement, and independent observation boundary."
+    },
+    {
+      "id": "local-launch-helper",
+      "type": "repository",
+      "path": "scripts/playtest/isolated_launch.py:24-36,140-176,285-386,389-455",
+      "supports": "Expected v5.0.2, required data, path separation, safe log facts, identity evidence, and shell-free command construction."
+    },
+    {
+      "id": "local-game-input",
+      "type": "repository",
+      "path": "src/game.cpp:4653-4686; src/game.cpp:5410-5464; src/player.cpp:6218-6241",
+      "supports": "Barony consumes relative SDL mouse motion and toggles SDL relative mouse mode during gameplay."
+    },
+    {
+      "id": "local-version-and-app-id",
+      "type": "repository",
+      "path": "src/game.hpp:26-31; src/main.hpp:73-75; src/game.cpp:7354-7358; upstream.lock.json",
+      "supports": "Declared source version v5.0.2, Steam app ID 371970, startup log version line, public source pin, and imported baseline identity."
+    },
+    {
+      "id": "prior-runtime-observation",
+      "type": "repository",
+      "path": "orchestrator/artifacts/playtests/runtime-first-20261004/runtime-readiness.json",
+      "supports": "The Linux workspace lacks the Windows runtime and native desktop; the cloud browser is not itself the game desktop."
+    }
+  ],
+  "handoff": {
+    "status": "completed",
+    "summary": "The official Jump browser path is the narrowest reversible route to inspect the user's Windows Steam installation and run the existing isolated preflight, but it is currently unconnected and cannot support full Barony gameplay because browser cursor lock and controllers are unavailable. Next test is a user-approved direct screen-sharing link; even if it works, use it only for install/version/isolation and startup/menu evidence, leaving audio, camera, comfort, saves, and multiplayer to an independent native playtest."
+  }
+}
