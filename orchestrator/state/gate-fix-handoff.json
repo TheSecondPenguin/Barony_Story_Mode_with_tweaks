@@ -1,0 +1,9 @@
+{
+  "task_id": "fix.gate.runner",
+  "worker_id": "/root/orchestration_engineer",
+  "role": "engineer",
+  "status": "completed",
+  "summary": "Bound automated PASS to exact approved task, role, argv, cwd, and artifact contracts; added claim-time artifact baselines for native freshness.",
+  "artifacts": [{"name": "engine", "path": "orchestrator/engine.py"}],
+  "notes": ["Core orchestration tests pass 20/20, including arbitrary-run and native-noop rejection regressions."]
+}

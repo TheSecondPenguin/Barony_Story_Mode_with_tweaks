@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "content_revision": 0,
+  "artifact_type": "npc_graph",
+  "status": "empty_template",
+  "visibility": "hidden",
+  "authority": {
+    "campaign_owner": "host",
+    "mutation_source": "host_only",
+    "guest_progress_scope": "host_campaign",
+    "host_loss_policy": "pause",
+    "implemented": false
+  },
+  "compatibility": {
+    "campaign_schema_version": 1,
+    "engine_protocol_version": null,
+    "content_manifest_hash": null,
+    "unknown_version_policy": "reject"
+  },
+  "id_policy": {
+    "format": "opaque_type_prefix_plus_16_lowercase_hex",
+    "semantic_ids_forbidden": true,
+    "cross_references_use_ids_only": true,
+    "player_safe_debug_values": "opaque_ids_only"
+  },
+  "npc_record_template": {
+    "id": null,
+    "lifecycle": "draft",
+    "background": "",
+    "audit": {
+      "desire": "",
+      "problem": "",
+      "personality": [],
+      "reason": "",
+      "world_connection_id": null,
+      "other_connection_ids": [],
+      "reaction_rule_ids": [],
+      "memorable_detail": ""
+    },
+    "fact_ids": [],
+    "memory_fact_ids": [],
+    "relationship_edge_ids": []
+  },
+  "relationship_edge_template": {
+    "id": null,
+    "from_npc_id": null,
+    "to_id": null,
+    "relationship_kind": "",
+    "fact_ids": [],
+    "reaction_rule_ids": [],
+    "lifecycle": "draft"
+  },
+  "npcs": [],
+  "relationship_edges": [],
+  "reaction_rules": [],
+  "validation_issues": []
+}

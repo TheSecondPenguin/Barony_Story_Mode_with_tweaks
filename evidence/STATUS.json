@@ -1,0 +1,23 @@
+{
+  "upstream_commit": "962a5ce36d10207beef7d8673876e0cebf8e76e4",
+  "upstream_unmodified": true,
+  "source_restore": "verified",
+  "patch_apply_check": "passed_git_apply_check",
+  "vanilla_compile": "blocked_missing_cmake_and_development_libraries",
+  "system_package_install": "blocked_permission_setgroups_seteuid",
+  "vanilla_launch": "not_run_no_retail_assets_or_verified_graphics_session",
+  "comfort_compile": "not_run",
+  "comfort_playtest": "not_run",
+  "four_player": "not_run",
+  "adventure_core": "design_only",
+  "offline_restore": "passed_repository_baseline_worktree",
+  "python_syntax": "passed",
+  "phase_gate": "passed_refuses_comfort_staging_without_baseline_evidence",
+  "repository": "https://github.com/TheSecondPenguin/Barony_Story_Mode_with_tweaks",
+  "distribution": "Steam",
+  "baseline_commit": "9c70dafa2da8715e4d59d90fabf1135c48ba1c19",
+  "remote_push": "authorized_github_connected_but_contents_write_403_resource_not_accessible_by_integration",
+  "ci_compile": "not_run",
+  "source_comparison": "passed_384_unchanged_files_plus_preserved_upstream_README",
+  "github_installations_observed": []
+}

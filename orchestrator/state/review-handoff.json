@@ -1,0 +1,19 @@
+{
+  "artifacts": [
+    {
+      "name": "review",
+      "path": "orchestrator/artifacts/code_reviews/review-bootstrap.json",
+      "sha256": "7eaa0689c2da3eb4cf2157491b908568425f58466b50e1270dabfbff46f92269"
+    }
+  ],
+  "notes": [
+    "Final targeted orchestrator suite passed 23/23; the prior full harness passed all six check groups and independent QA will refresh it after this handoff.",
+    "No full local game build or runtime session was claimed by this review; launch, comfort, four-player, and Adventure gates remain blocked.",
+    "The one-time publication workflow was separately reviewed after credential isolation, exact bundle/topology checks, repeat-import refusal, read-only self-downgrade, and non-force push handling; no functional blocker remains once final placeholders are filled."
+  ],
+  "role": "reviewer",
+  "status": "completed",
+  "summary": "Independent review accepted the frozen bootstrap tooling and staged comfort patch with no remaining source-level blocker; automated and recovery bypasses are closed, while all target runtime gates remain explicitly blocked.",
+  "task_id": "bootstrap.review",
+  "worker_id": "/root/code_reviewer"
+}

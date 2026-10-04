@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:barony-adventurer:world-schema:1",
+  "title": "World consistency and important NPC graph schema",
+  "description": "Versioned internal design schema. It defines structure only and contains no authored world or story content.",
+  "schema_version": 1,
+  "artifact_type": "world_consistency_schema",
+  "status": "design_only",
+  "runtime_implemented": false,
+  "persistence_assessment": {
+    "observed_orchestrator_store": "locked atomic JSON for orchestration state only",
+    "observed_game_boundary": "map entities are temporary and retail saves are not a campaign schema",
+    "required_owner": "host",
+    "required_storage": "separate versioned campaign snapshot plus idempotent journal",
+    "required_compatibility_checks": [
+      "campaign_schema_version",
+      "engine_protocol_version",
+      "content_manifest_hash"
+    ],
+    "required_network_flow": "clients submit opaque request IDs; host validates, commits, and emits ordered revisions",
+    "required_reconnect_flow": "allowed full snapshot followed by ordered revisions",
+    "host_loss_policy": "pause",
+    "unknown_version_policy": "reject"
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "content_revision",
+    "artifact_type",
+    "status",
+    "visibility",
+    "authority",
+    "compatibility",
+    "id_policy",
+    "npc_record_template",
+    "relationship_edge_template",
+    "npcs",
+    "relationship_edges",
+    "reaction_rules",
+    "validation_issues"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "content_revision": { "type": "integer", "minimum": 0 },
+    "artifact_type": { "const": "npc_graph" },
+    "status": { "enum": ["empty_template", "draft", "reviewed", "validated"] },
+    "visibility": { "const": "hidden" },
+    "authority": { "$ref": "#/$defs/authority" },
+    "compatibility": { "$ref": "#/$defs/compatibility" },
+    "id_policy": { "$ref": "#/$defs/idPolicy" },
+    "npc_record_template": { "$ref": "#/$defs/npcTemplate" },
+    "relationship_edge_template": { "$ref": "#/$defs/edgeTemplate" },
+    "npcs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/npc" }
+    },
+    "relationship_edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "reaction_rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reactionRule" }
+    },
+    "validation_issues": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/validationIssue" }
+    }
+  },
+  "$defs": {
+    "opaqueId": {
+      "type": "string",
+      "pattern": "^(npc|edge|rule|fact|loc|grp)_[0-9a-f]{16}$"
+    },
+    "npcId": {
+      "type": "string",
+      "pattern": "^npc_[0-9a-f]{16}$"
+    },
+    "edgeId": {
+      "type": "string",
+      "pattern": "^edge_[0-9a-f]{16}$"
+    },
+    "ruleId": {
+      "type": "string",
+      "pattern": "^rule_[0-9a-f]{16}$"
+    },
+    "lifecycle": {
+      "enum": ["draft", "reviewed", "validated", "retired"]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaign_owner", "mutation_source", "guest_progress_scope", "host_loss_policy", "implemented"],
+      "properties": {
+        "campaign_owner": { "const": "host" },
+        "mutation_source": { "const": "host_only" },
+        "guest_progress_scope": { "const": "host_campaign" },
+        "host_loss_policy": { "const": "pause" },
+        "implemented": { "type": "boolean" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaign_schema_version", "engine_protocol_version", "content_manifest_hash", "unknown_version_policy"],
+      "properties": {
+        "campaign_schema_version": { "type": "integer", "minimum": 1 },
+        "engine_protocol_version": { "type": ["integer", "null"], "minimum": 1 },
+        "content_manifest_hash": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "unknown_version_policy": { "const": "reject" }
+      }
+    },
+    "idPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "semantic_ids_forbidden", "cross_references_use_ids_only", "player_safe_debug_values"],
+      "properties": {
+        "format": { "const": "opaque_type_prefix_plus_16_lowercase_hex" },
+        "semantic_ids_forbidden": { "const": true },
+        "cross_references_use_ids_only": { "const": true },
+        "player_safe_debug_values": { "const": "opaque_ids_only" }
+      }
+    },
+    "npcTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lifecycle", "background", "audit", "fact_ids", "memory_fact_ids", "relationship_edge_ids"],
+      "properties": {
+        "id": { "type": "null" },
+        "lifecycle": { "const": "draft" },
+        "background": { "const": "" },
+        "audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["desire", "problem", "personality", "reason", "world_connection_id", "other_connection_ids", "reaction_rule_ids", "memorable_detail"],
+          "properties": {
+            "desire": { "const": "" },
+            "problem": { "const": "" },
+            "personality": { "const": [] },
+            "reason": { "const": "" },
+            "world_connection_id": { "type": "null" },
+            "other_connection_ids": { "const": [] },
+            "reaction_rule_ids": { "const": [] },
+            "memorable_detail": { "const": "" }
+          }
+        },
+        "fact_ids": { "const": [] },
+        "memory_fact_ids": { "const": [] },
+        "relationship_edge_ids": { "const": [] }
+      }
+    },
+    "edgeTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "from_npc_id", "to_id", "relationship_kind", "fact_ids", "reaction_rule_ids", "lifecycle"],
+      "properties": {
+        "id": { "type": "null" },
+        "from_npc_id": { "type": "null" },
+        "to_id": { "type": "null" },
+        "relationship_kind": { "const": "" },
+        "fact_ids": { "const": [] },
+        "reaction_rule_ids": { "const": [] },
+        "lifecycle": { "const": "draft" }
+      }
+    },
+    "npc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lifecycle", "background", "audit", "fact_ids", "memory_fact_ids", "relationship_edge_ids"],
+      "properties": {
+        "id": { "$ref": "#/$defs/npcId" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "background": { "type": "string", "minLength": 1, "maxLength": 280 },
+        "audit": { "$ref": "#/$defs/npcAudit" },
+        "fact_ids": { "$ref": "#/$defs/uniqueOpaqueIds" },
+        "memory_fact_ids": { "$ref": "#/$defs/uniqueOpaqueIds" },
+        "relationship_edge_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/edgeId" }
+        }
+      }
+    },
+    "npcAudit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["desire", "problem", "personality", "reason", "world_connection_id", "other_connection_ids", "reaction_rule_ids", "memorable_detail"],
+      "properties": {
+        "desire": { "type": "string", "minLength": 1, "maxLength": 280 },
+        "problem": { "type": "string", "minLength": 1, "maxLength": 280 },
+        "personality": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 48 }
+        },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 280 },
+        "world_connection_id": { "$ref": "#/$defs/opaqueId" },
+        "other_connection_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/opaqueId" }
+        },
+        "reaction_rule_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ruleId" }
+        },
+        "memorable_detail": { "type": "string", "minLength": 1, "maxLength": 160 }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "from_npc_id", "to_id", "relationship_kind", "fact_ids", "reaction_rule_ids", "lifecycle"],
+      "properties": {
+        "id": { "$ref": "#/$defs/edgeId" },
+        "from_npc_id": { "$ref": "#/$defs/npcId" },
+        "to_id": { "$ref": "#/$defs/opaqueId" },
+        "relationship_kind": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "fact_ids": { "$ref": "#/$defs/uniqueOpaqueIds" },
+        "reaction_rule_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ruleId" }
+        },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" }
+      }
+    },
+    "reactionRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "subject_npc_id", "condition_fact_ids", "reaction", "lifecycle"],
+      "properties": {
+        "id": { "$ref": "#/$defs/ruleId" },
+        "subject_npc_id": { "$ref": "#/$defs/npcId" },
+        "condition_fact_ids": { "$ref": "#/$defs/uniqueOpaqueIds" },
+        "reaction": { "type": "string", "minLength": 1, "maxLength": 280 },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" }
+      }
+    },
+    "uniqueOpaqueIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/opaqueId" }
+    },
+    "validationIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue_id", "subject_ids", "code", "status"],
+      "properties": {
+        "issue_id": {
+          "type": "string",
+          "pattern": "^issue_[0-9a-f]{16}$"
+        },
+        "subject_ids": { "$ref": "#/$defs/uniqueOpaqueIds" },
+        "code": {
+          "enum": [
+            "missing_audit_field",
+            "broken_reference",
+            "duplicate_reference",
+            "contradiction",
+            "background_too_heavy",
+            "unbounded_reaction",
+            "version_incompatible"
+          ]
+        },
+        "status": { "enum": ["open", "resolved", "accepted"] }
+      }
+    }
+  }
+}

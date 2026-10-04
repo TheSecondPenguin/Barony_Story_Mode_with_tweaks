@@ -1,0 +1,16 @@
+{
+  "id": "fix.gate.runner",
+  "title": "Bind automated gates to approved runners",
+  "role": "engineer",
+  "description": "Close ORCH-GATE-001 by validating exact gate-approved task and execution contracts.",
+  "depends_on": [],
+  "required_gates": [],
+  "read_paths": ["orchestrator", "scripts/build.py", "scripts/qa/run_qa.py"],
+  "write_paths": ["orchestrator/engine.py", "orchestrator/config/gates.json", "orchestrator/tests/test_orchestrator.py", "orchestrator/README.md"],
+  "required_artifacts": [
+    {"name": "engine", "kind": "file", "path": "orchestrator/engine.py"}
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}

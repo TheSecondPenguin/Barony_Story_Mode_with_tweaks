@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "milestone": "motion-comfort-p0",
+  "recordedOn": "2026-10-04",
+  "baselineCommit": "9c70dafa2da8715e4d59d90fabf1135c48ba1c19",
+  "upstreamSourceCommit": "962a5ce36d10207beef7d8673876e0cebf8e76e4",
+  "status": "staged-not-integrated",
+  "claims": {
+    "patchApplies": true,
+    "purePolicyCompilesAndPasses": true,
+    "gameCompiles": false,
+    "gameLaunched": false,
+    "comfortValidated": false,
+    "fourPlayerValidated": false
+  },
+  "deliverables": {
+    "patch": "patches/0001-comfort-diagnostics.patch",
+    "policyTest": "tests/comfort_logic_test.cpp",
+    "isolatedCheck": "scripts/comfort_check.py",
+    "engineeringRecord": "docs/engineering/COMFORT.md"
+  },
+  "controls": [
+    {
+      "command": "/ap_no_bob",
+      "default": false,
+      "scope": "living-and-ghost-vertical-bob-plus-coupled-side-sway"
+    },
+    {
+      "command": "/ap_no_side_sway",
+      "default": false,
+      "scope": "first-person-creature-arm-side-sway"
+    },
+    {
+      "command": "/ap_raw_mouse",
+      "default": false,
+      "scope": "barony-mouse-smoothing-bypass-while-mouse-is-active-input"
+    }
+  ],
+  "invariants": [
+    "all-new-controls-default-off",
+    "active-controller-smoothing-policy-unchanged",
+    "no-movement-or-aim-protocol-change",
+    "no-network-message-change",
+    "no-save-format-change",
+    "no-fov-shake-or-frame-timing-change"
+  ],
+  "audit": {
+    "cameraInput": "four-distinct-camera-input-paths-use-controller-presence-and-camera-only-active-input-state",
+    "mixedInputRouting": "synthetic-controller-mouse-events-are-tagged-and-physical-motion-updates-only-the-keyboard-owned-camera-state",
+    "headBob": "living-and-ghost-bob-are-separate-paths",
+    "sideSway": "coupled-state-observed-on-first-person-creature-arms",
+    "cameraHeight": "separate-setpoint-acceleration-and-render-interpolation",
+    "shake": "per-player-accumulation-damping-world-and-weapon-render-coupling",
+    "fov": "vertical-world-fov-with-separate-fixed-hud-projection",
+    "weaponMotion": "independent-action-vibration-and-shake-coupled-motion-remain",
+    "frameTiming": "fixed-or-draw-update-plus-60hz-interpolation-vsync-and-frame-limit"
+  },
+  "automatedVerification": {
+    "command": "python3 scripts/comfort_check.py",
+    "isolatedPinnedWorktree": true,
+    "patchCheck": true,
+    "changedPathAllowlist": [
+      "src/actplayer.cpp",
+      "src/game.cpp",
+      "src/player.cpp",
+      "src/player.hpp",
+      "src/adventurer_comfort.hpp"
+    ],
+    "compilerMode": "c++11-wall-wextra-werror-pedantic",
+    "observedCompiler": "Ubuntu g++ 13.3.0",
+    "observedPython": "3.12.14",
+    "result": "passed"
+  },
+  "requiredRuntimeGates": [
+    "successful-vanilla-build-launch-and-save-isolation",
+    "successful-full-comfort-build",
+    "short-living-ghost-death-camera-ab-comparison",
+    "mouse-controller-and-local-viewport-matrix",
+    "mixed-input-local-viewport-isolation",
+    "frame-time-percentiles-and-input-to-display-latency",
+    "host-plus-three-client-regression-check",
+    "save-reload-regression-check"
+  ]
+}

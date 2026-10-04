@@ -1,0 +1,176 @@
+diff --git a/src/actplayer.cpp b/src/actplayer.cpp
+index 0872ea6..614f3df 100644
+--- a/src/actplayer.cpp
++++ b/src/actplayer.cpp
+@@ -32,2 +32,3 @@
+ #include "interface/consolecommand.hpp"
++#include "adventurer_comfort.hpp"
+ #ifdef USE_PLAYFAB
+@@ -36,2 +37,8 @@
+ 
++// Adventurer diagnostic controls: defaults preserve vanilla behavior.
++// Session-only; not a complete comfort solution. Keep camera timing unchanged.
++static ConsoleVariable<bool> apNoBob("/ap_no_bob", false);
++static ConsoleVariable<bool> apNoSideSway("/ap_no_side_sway", false);
++static ConsoleVariable<bool> apRawMouse("/ap_raw_mouse", false);
++
+ bool settings_smoothmouse = false;
+@@ -114,3 +121,3 @@ void Player::Ghost_t::handleGhostCameraBobbing(bool useRefreshRateDelta)
+ 	// camera bobbing
+-	if ( bobbing )
++	if ( AdventurerComfort::useCameraBobbing(bobbing, *apNoBob) )
+ 	{
+@@ -1919,3 +1926,6 @@ void Player::Ghost_t::handleGhostCameraUpdate(const bool useRefreshRateDelta)
+ 
+-	const bool smoothmouse = playerSettings[multiplayer ? 0 : player.playernum].smoothmouse;
++	const bool smoothmouse = AdventurerComfort::useMouseSmoothing(
++		playerSettings[multiplayer ? 0 : player.playernum].smoothmouse,
++		*apRawMouse, inputs.hasController(player.playernum),
++		inputs.getVirtualMouse(player.playernum)->lastCameraInputFromController);
+ 	const bool reversemouse = playerSettings[multiplayer ? 0 : player.playernum].reversemouse;
+@@ -3025,3 +3035,6 @@ void actProjectSpiritCam(Entity* my)
+ 
+-	const bool smoothmouse = playerSettings[multiplayer ? 0 : DEATHCAM_PLAYERNUM].smoothmouse;
++	const bool smoothmouse = AdventurerComfort::useMouseSmoothing(
++		playerSettings[multiplayer ? 0 : DEATHCAM_PLAYERNUM].smoothmouse,
++		*apRawMouse, inputs.hasController(DEATHCAM_PLAYERNUM),
++		inputs.getVirtualMouse(DEATHCAM_PLAYERNUM)->lastCameraInputFromController);
+ 	const bool reversemouse = playerSettings[multiplayer ? 0 : DEATHCAM_PLAYERNUM].reversemouse;
+@@ -3289,3 +3302,6 @@ void actDeathCam(Entity* my)
+ 
+-    const bool smoothmouse = playerSettings[multiplayer ? 0 : DEATHCAM_PLAYERNUM].smoothmouse;
++    const bool smoothmouse = AdventurerComfort::useMouseSmoothing(
++        playerSettings[multiplayer ? 0 : DEATHCAM_PLAYERNUM].smoothmouse,
++        *apRawMouse, inputs.hasController(DEATHCAM_PLAYERNUM),
++        inputs.getVirtualMouse(DEATHCAM_PLAYERNUM)->lastCameraInputFromController);
+     const bool reversemouse = playerSettings[multiplayer ? 0 : DEATHCAM_PLAYERNUM].reversemouse;
+@@ -3782,3 +3798,6 @@ void Player::PlayerMovement_t::handlePlayerCameraUpdate(bool useRefreshRateDelta
+ 
+-    const bool smoothmouse = playerSettings[multiplayer ? 0 : PLAYER_NUM].smoothmouse;
++    const bool smoothmouse = AdventurerComfort::useMouseSmoothing(
++        playerSettings[multiplayer ? 0 : PLAYER_NUM].smoothmouse,
++        *apRawMouse, inputs.hasController(PLAYER_NUM),
++        inputs.getVirtualMouse(PLAYER_NUM)->lastCameraInputFromController);
+     const bool reversemouse = playerSettings[multiplayer ? 0 : PLAYER_NUM].reversemouse;
+@@ -4068,3 +4087,3 @@ void Player::PlayerMovement_t::handlePlayerCameraBobbing(bool useRefreshRateDelt
+ 	// camera bobbing
+-	if ( bobbing )
++	if ( AdventurerComfort::useCameraBobbing(bobbing, *apNoBob) )
+ 	{
+@@ -4269,2 +4288,8 @@ void Player::PlayerMovement_t::handlePlayerCameraBobbing(bool useRefreshRateDelt
+ 	}
++	// Clear residual HUD-arm sway when bob is disabled or independently suppressed.
++	if ( !AdventurerComfort::useSideSway(*apNoBob, *apNoSideSway) )
++	{
++		PLAYER_SIDEBOB = 0;
++	}
++
+ }
+diff --git a/src/adventurer_comfort.hpp b/src/adventurer_comfort.hpp
+new file mode 100644
+index 0000000..d0c5b70
+--- /dev/null
++++ b/src/adventurer_comfort.hpp
+@@ -0,0 +1,50 @@
++#pragma once
++
++#include <cstdint>
++
++// Pure policy helpers for the Adventurer comfort controls. Keeping these
++// decisions independent from engine state makes their default-preservation
++// and controller-isolation rules inexpensive to test.
++namespace AdventurerComfort
++{
++// SDL window IDs are nonzero. Controller-generated mouse motion uses the
++// invalid ID so physical window events remain distinguishable.
++constexpr std::uint32_t controllerMouseEventWindowId = 0;
++
++constexpr bool isControllerMouseEvent(const std::uint32_t windowId) noexcept
++{
++	return windowId == controllerMouseEventWindowId;
++}
++
++constexpr bool shouldMarkMouseCameraInput(
++	const int player,
++	const int keyboardPlayer,
++	const std::uint32_t windowId) noexcept
++{
++	return player == keyboardPlayer && !isControllerMouseEvent(windowId);
++}
++
++constexpr bool useMouseSmoothing(
++	const bool configuredSmoothing,
++	const bool rawMouseRequested,
++	const bool controllerConnected,
++	const bool lastCameraInputFromController) noexcept
++{
++	return configuredSmoothing
++		&& !(rawMouseRequested && !(controllerConnected && lastCameraInputFromController));
++}
++
++constexpr bool useCameraBobbing(
++	const bool configuredBobbing,
++	const bool noBobRequested) noexcept
++{
++	return configuredBobbing && !noBobRequested;
++}
++
++constexpr bool useSideSway(
++	const bool noBobRequested,
++	const bool noSideSwayRequested) noexcept
++{
++	return !noBobRequested && !noSideSwayRequested;
++}
++}
+diff --git a/src/game.cpp b/src/game.cpp
+index 7837966..dab7684 100644
+--- a/src/game.cpp
++++ b/src/game.cpp
+@@ -42,2 +42,3 @@
+ #include "player.hpp"
++#include "adventurer_comfort.hpp"
+ #include "mod_tools.hpp"
+@@ -4754,2 +4755,7 @@ bool handleEvents(void)
+ 						}
++						if ( AdventurerComfort::shouldMarkMouseCameraInput(
++							i, inputs.getPlayerIDAllowedKeyboard(), event.motion.windowID) )
++						{
++							inputs.getVirtualMouse(i)->lastCameraInputFromController = false;
++						}
+ 						if ( inputs.bPlayerUsingKeyboardControl(i) && (!inputs.hasController(i) || gamePaused) )
+diff --git a/src/player.cpp b/src/player.cpp
+index 0d03164..82e180f 100644
+--- a/src/player.cpp
++++ b/src/player.cpp
+@@ -12,2 +12,3 @@
+ #include "player.hpp"
++#include "adventurer_comfort.hpp"
+ #include "game.hpp"
+@@ -426,2 +427,3 @@ void GameController::handleAnalog(int player)
+ 			mouse->lastMovementFromController = true;
++			mouse->lastCameraInputFromController = true;
+ 			return;
+@@ -514,2 +516,3 @@ void GameController::handleAnalog(int player)
+ 			mouse->lastMovementFromController = true;
++			mouse->lastCameraInputFromController = true;
+ 
+@@ -517,4 +520,5 @@ void GameController::handleAnalog(int player)
+ 			{
+-				SDL_Event e;
++				SDL_Event e{};
+ 				e.type = SDL_MOUSEMOTION;
++				e.motion.windowID = AdventurerComfort::controllerMouseEventWindowId;
+ 				e.motion.x = mousex + rightx;
+@@ -544,2 +548,3 @@ void GameController::handleAnalog(int player)
+ 			mouse->lastMovementFromController = true;
++			mouse->lastCameraInputFromController = true;
+ 
+diff --git a/src/player.hpp b/src/player.hpp
+index 85e24bf..1f08b32 100644
+--- a/src/player.hpp
++++ b/src/player.hpp
+@@ -364,2 +364,4 @@ class Inputs
+ 		bool lastMovementFromController = true;
++		// Comfort input routing only; does not alter cursor or glyph selection.
++		bool lastCameraInputFromController = true;
+ 		real_t mouseAnimationPercent = 0.0;

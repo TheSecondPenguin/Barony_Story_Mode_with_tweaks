@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "artifact_type": "systems_interface_audit",
+  "status": "design_complete_implementation_gated",
+  "created_utc": "2026-10-04",
+  "inspected_revision": "750e25210876efdbc20f6262e5e71dcd74342d40",
+  "scope": "host-owned campaign state, class-specific experience, deterministic authored-event selection, unique-item quality, legacy saves, and custom-only multiplayer",
+  "target_party": {
+    "host_count": 1,
+    "guest_count_max": 3,
+    "party_capacity": 4,
+    "host_authoritative": true,
+    "host_migration_initial_scope": false
+  },
+  "source_evidence": [
+    {
+      "path": "src/main.hpp",
+      "lines": "673-676",
+      "observation": "The normal build defines four player slots; a conditional build can define eight.",
+      "constraint": "Campaign V1 fixes capacity at four until the four-player runtime gate passes."
+    },
+    {
+      "path": "src/net.cpp",
+      "lines": "1525-1581",
+      "observation": "Join validates executable VERSION and, for legacy multiplayer saves, client save key, map seed, and lobby key.",
+      "constraint": "Campaign mode needs an explicit custom handshake and cannot require a matching guest legacy save."
+    },
+    {
+      "path": "src/scores.hpp",
+      "lines": "459-484,775-803",
+      "observation": "SaveGameInfo uses executable game_version, a per-file player_num, players, map messages, and generic additional_data.",
+      "constraint": "Use a separate campaign envelope with an independent schema and owner."
+    },
+    {
+      "path": "src/scores.cpp",
+      "lines": "5556-5624,6051-6071",
+      "observation": "Session state is populated into SaveGameInfo and written directly as one JSON or binary file.",
+      "constraint": "Leave legacy saves intact and add a campaign snapshot plus journal beside them."
+    },
+    {
+      "path": "src/game.cpp",
+      "lines": "2145-2179",
+      "observation": "The server distributes its selected map seed and level transition to clients.",
+      "constraint": "Authored-event choice and campaign commits remain host-owned."
+    },
+    {
+      "path": "src/net.cpp",
+      "lines": "2392-2438",
+      "observation": "Clients consume the server-provided seed and load the level.",
+      "constraint": "Clients consume committed selections and do not select independently."
+    },
+    {
+      "path": "src/prng.hpp",
+      "lines": "86-90",
+      "observation": "The engine declares distinct local, synchronized network, map, server-map, and map-sequence RNG streams.",
+      "constraint": "Event selection gets a fresh domain-separated, selector-versioned RNG instance."
+    },
+    {
+      "path": "src/charclass.cpp",
+      "lines": "32-95,635-683",
+      "observation": "Class setup changes attributes and proficiencies, while session rules can replace or add to those values.",
+      "constraint": "Class selects a lens; authoritative current capabilities determine action offers."
+    },
+    {
+      "path": "src/items.hpp",
+      "lines": "645-658",
+      "observation": "Runtime Item has established fields plus a runtime UID but no extensible campaign-quality record.",
+      "constraint": "Unique identity and qualities require an explicit sidecar binding."
+    },
+    {
+      "path": "src/items.cpp",
+      "lines": "181-224",
+      "observation": "newItem allocates a runtime UID and assigns appearance directly.",
+      "constraint": "Runtime UID is not durable and appearance cannot be repurposed as a campaign key."
+    },
+    {
+      "path": "src/net.cpp",
+      "lines": "1340-1363",
+      "observation": "The observed item packet carries established item fields and owner UID, not campaign instance data.",
+      "constraint": "Custom item creation and mutation messages must carry the opaque campaign item ID."
+    },
+    {
+      "path": "src/scores.hpp",
+      "lines": "626-648",
+      "observation": "Saved inventory item records contain type, status, appearance, beatitude, count, identification, and grid position.",
+      "constraint": "Durable qualities live in the host registry and are projected into engine items."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "SYS-STATE-001",
+      "decision": "Add a separate CampaignStateAdapter with a versioned full snapshot, checksum, idempotency receipts, journal, backup, and host-only commit path.",
+      "implemented": false
+    },
+    {
+      "id": "SYS-NET-001",
+      "decision": "Require matching custom build, campaign protocol, selector version, readable schema, and content manifest before campaign state is sent.",
+      "implemented": false
+    },
+    {
+      "id": "SYS-SAVE-001",
+      "decision": "Keep legacy save files and readers unchanged; do not use additional_data or item appearance as the campaign store.",
+      "implemented": false
+    },
+    {
+      "id": "SYS-CLASS-001",
+      "decision": "Use class identity for perception and interpretation lenses and current host-derived capabilities for actions.",
+      "implemented": false
+    },
+    {
+      "id": "SYS-SELECT-001",
+      "decision": "Select only validated authored definitions using sorted candidates, integer weights, canonical inputs, an isolated versioned RNG seed, and a committed selection ledger.",
+      "implemented": false
+    },
+    {
+      "id": "SYS-ITEM-001",
+      "decision": "Store unique item instances in the campaign registry and bind them explicitly to ordinary runtime item projections.",
+      "implemented": false
+    }
+  ],
+  "required_invariants": [
+    "Only the host mutates campaign state.",
+    "Every mutation has an opaque operation ID, expected revision, deterministic result, and durable receipt.",
+    "Persisted per-actor command sequences and compacted-through high-water marks reject duplicates exactly after full receipt bodies are compacted.",
+    "Reconnect receives a visibility-filtered snapshot followed by contiguous ordered deltas.",
+    "Host loss pauses the campaign in the initial scope.",
+    "No mandatory progression predicate checks for one class.",
+    "Every mandatory affordance has a universal in-footprint route and an independent alternate route.",
+    "All-same-class four-player parties can reach every essential exit.",
+    "Required discoveries are learnable through at least two accessible in-world clue or feedback channels without a wiki, source reading, debug identifiers, or forced lethal trial and error.",
+    "Required qualitative progress never depends on repeating an event, farming a resource, kill counts, or a low-probability drop.",
+    "Every connected participant receives meaningful contribution opportunities beyond observing synchronized state.",
+    "Already committed event choices are replayed and never recalculated.",
+    "Event RNG is isolated from layout, combat, loot, presentation, timing, connection order, and unordered iteration.",
+    "Every unique item has at least two meaningful qualities in two decision dimensions, including at least one non-scalar verb or system relationship.",
+    "Unique item acquisition and lifecycle mutations are idempotent.",
+    "Legacy saves are never overwritten or silently converted.",
+    "Campaign state and retail assets are never packaged as one distributable payload."
+  ],
+  "class_interaction_alternatives": {
+    "perception": [
+      "class-lens cue",
+      "weaker universal cue",
+      "world-supplied tool or consumable",
+      "host-approved assistance sharing"
+    ],
+    "interpretation": [
+      "class-specific authored framing",
+      "retained discovery knowledge",
+      "group synthesis",
+      "reversible telegraphed field test"
+    ],
+    "interaction": [
+      "specialist qualitative method",
+      "slower or costlier universal method",
+      "tool method",
+      "two-player assistance method"
+    ]
+  },
+  "unique_item_quality_rule": {
+    "minimum_meaningful_qualities": 2,
+    "minimum_distinct_decision_dimensions": 2,
+    "allowed_dimensions": [
+      "new_verb",
+      "information",
+      "resource_conversion",
+      "positioning",
+      "timing",
+      "teamwork",
+      "risk",
+      "tradeoff"
+    ],
+    "requires_non_scalar_quality": true,
+    "flat_stat_pair_passes": false,
+    "host_evaluated": true,
+    "player_telegraph_required": true,
+    "lifecycle_retry_test_required": true
+  },
+  "legacy_compatibility": {
+    "legacy_reader_preserved": true,
+    "legacy_slots_overwritten": false,
+    "silent_campaign_conversion": false,
+    "campaign_sidecar_has_distinct_magic": true,
+    "known_schema_migration_writes_new_file": true,
+    "unknown_newer_schema_policy": "reject",
+    "legacy_json_regression_required": true,
+    "legacy_binary_regression_required": true
+  },
+  "experience_acceptance": {
+    "external_wiki_required": false,
+    "required_in_world_channels_minimum": 2,
+    "spoiler_blind_target_playtest_required": true,
+    "accessibility_alternatives_required": true,
+    "disability_assumptions_allowed": false,
+    "hidden_answers_exposed_by_feedback": false,
+    "required_progress_farming_allowed": false,
+    "duplicate_completion_durable_value": "capped_or_diminishing_optional_value_only",
+    "all_four_participants_need_contribution_opportunities": true,
+    "all_same_class_parties_supported": true,
+    "automation_can_score_fun_or_discovery_quality": false,
+    "human_feedback_required": [
+      "spoiler-blind target player learnability",
+      "each participant's perceived contribution and agency",
+      "class identity and alternative-method clarity",
+      "discovery quality and pacing",
+      "accessibility against stated needs and observed testing"
+    ],
+    "feedback_prompt_scope": "what each player noticed, inferred, chose, contributed, and wished they could try without requesting hidden answers"
+  },
+  "retail_mix_policy": {
+    "retail_client_in_campaign_lobby": "reject_incompatible_build",
+    "custom_campaign_client_in_retail_session": "campaign_mode_forbidden",
+    "mixed_session_promised": false,
+    "required_peer_equality": [
+      "engineBuildId",
+      "campaignProtocol",
+      "selectorVersion",
+      "contentManifestHash"
+    ]
+  },
+  "implementation_gate": {
+    "adventure_implementation_authorized_now": false,
+    "current_p0_focus": [
+      "orchestration correctness",
+      "unchanged baseline and comfort sequence"
+    ],
+    "independent_qa_role_reserved_for_first_slice": true,
+    "prerequisites": [
+      "unchanged baseline compile and runtime",
+      "working audio",
+      "isolated configuration and saves",
+      "target-player comfort comparison",
+      "four-player join, transition, disconnect, reconnect, host quit, save, and reload evidence"
+    ],
+    "first_slice": [
+      "Campaign V1 store and recovery harness",
+      "custom-only four-peer handshake and reconnect",
+      "public fixture prepare, select, return, quit, and reload loop",
+      "class-affordance fixture with all-same-class rosters",
+      "synthetic two-quality unique-item fixture"
+    ]
+  },
+  "verification_required": [
+    "selector golden vectors",
+    "seed sweeps for connector, reachability, cooldown, and distribution bounds",
+    "truncated and corrupt snapshot recovery",
+    "fault injection before and after prepare, temporary snapshot flush, authoritative snapshot replacement, journal commit marker, and acknowledgement",
+    "receipt compaction with exact rejection of every consumed sequence at or below each actor's persisted high-water mark",
+    "duplicate, stale, reordered, and conflicting operation IDs",
+    "manifest and protocol mismatch rejection",
+    "visibility-filtered snapshots and private-observation tests",
+    "four peers observing identical committed revisions",
+    "unique item acquire, use, transfer or drop, return, reload, reconnect, and duplicate intent",
+    "independent review and QA"
+  ],
+  "open_risks": [
+    {
+      "id": "RISK-SYS-001",
+      "summary": "Stable direct-connect guest identity and reconnect credential storage are not designed or runtime-tested.",
+      "severity": "high"
+    },
+    {
+      "id": "RISK-SYS-002",
+      "summary": "Target filesystems' flush and atomic replacement guarantees are unverified.",
+      "severity": "high"
+    },
+    {
+      "id": "RISK-SYS-003",
+      "summary": "Item sidecar integration crosses stacking, shops, followers, containers, death drops, and multiple item packets.",
+      "severity": "high"
+    },
+    {
+      "id": "RISK-SYS-004",
+      "summary": "Packet sizing, fragmentation, retries, and transport-specific behavior are unmeasured.",
+      "severity": "high"
+    },
+    {
+      "id": "RISK-SYS-005",
+      "summary": "Accessible presentation and privacy of member-specific observations need four-peer runtime tests.",
+      "severity": "medium"
+    }
+  ],
+  "deferred": [
+    "mid-expedition save and resume",
+    "host migration",
+    "cross-campaign transfer",
+    "legacy-save import",
+    "final expedition loss balance",
+    "authored story content"
+  ],
+  "hidden_content_created": false,
+  "story_names_created": false,
+  "source_modified": false,
+  "runtime_claimed": false,
+  "final_approval": false
+}

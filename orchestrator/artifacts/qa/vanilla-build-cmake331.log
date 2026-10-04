@@ -1,0 +1,59 @@
+timestamp_utc=2026-10-04T07:19:59Z
+cwd=/workspace/scratch/9090f71aae17/barony
+head=750e25210876efdbc20f6262e5e71dcd74342d40
+baseline_head=9c70dafa2da8715e4d59d90fabf1135c48ba1c19
+baseline_status=cmake=cmake version 3.31.6
+ninja=1.13.2.git.kitware.jobserver-pipe-1
+compiler=g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+command=env PYTHONPATH=<repo>/.work/qa-tools-cmake331 PATH=<repo>/.work/qa-tools-cmake331/bin:$PATH python3 scripts/build.py vanilla
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+Building without steamworks
+Building without EOS
+Building without PlayFab
+Building without TheoraPlayer
+Building without CURL
+Building without OPUS
+CMake Warning (dev) at /workspace/scratch/9090f71aae17/barony/.work/qa-tools-cmake331/cmake/data/share/cmake-3.31/Modules/FindOpenGL.cmake:273 (elseif):
+  Policy CMP0054 is not set: Only interpret if() arguments as variables or
+  keywords when unquoted.  Run "cmake --help-policy CMP0054" for policy
+  details.  Use the cmake_policy command to set the policy and suppress this
+  warning.
+
+  Quoted variables like "Linux" will no longer be dereferenced when the
+  policy is set to NEW.  Since the policy is not set the OLD behavior will be
+  used.
+Call Stack (most recent call first):
+  CMakeLists.txt:347 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Error at /workspace/scratch/9090f71aae17/barony/.work/qa-tools-cmake331/cmake/data/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake:233 (message):
+  Could NOT find OpenGL (missing: OPENGL_opengl_LIBRARY OPENGL_glx_LIBRARY
+  OPENGL_INCLUDE_DIR)
+Call Stack (most recent call first):
+  /workspace/scratch/9090f71aae17/barony/.work/qa-tools-cmake331/cmake/data/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake:603 (_FPHSA_FAILURE_MESSAGE)
+  /workspace/scratch/9090f71aae17/barony/.work/qa-tools-cmake331/cmake/data/share/cmake-3.31/Modules/FindOpenGL.cmake:579 (FIND_PACKAGE_HANDLE_STANDARD_ARGS)
+  CMakeLists.txt:347 (find_package)
+
+
+-- Configuring incomplete, errors occurred!
+Command '('cmake', '-S', '/workspace/scratch/9090f71aae17/barony/.work/vanilla', '-B', '/workspace/scratch/9090f71aae17/barony/.work/build-vanilla', '-DCMAKE_BUILD_TYPE=Release', '-DFMOD_ENABLED=OFF', '-DOPENAL_ENABLED=OFF', '-DSTEAMWORKS_ENABLED=0', '-DEOS_ENABLED=0', '-DPLAYFAB_ENABLED=0')' returned non-zero exit status 1.

@@ -1,0 +1,10 @@
+timestamp_utc=2026-10-04T07:17:14Z
+cwd=/workspace/scratch/9090f71aae17/barony
+head=750e25210876efdbc20f6262e5e71dcd74342d40
+branch=automation/bootstrap-20261004
+python=Python 3.12.14
+compiler=g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+make=GNU Make 4.3
+cmake_path=command=python3 scripts/build.py vanilla
+Missing build tools: cmake
+exit_code=1

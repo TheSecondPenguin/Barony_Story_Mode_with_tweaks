@@ -40,6 +40,11 @@ steam_appid.txt
 *.obj
 *.log
 *.user
+
+# Project orchestration configuration is source, not retail game settings.
+!orchestrator/config/
+!orchestrator/config/*.json
+.orchestrator-state/
 *log.txt
 *.cache
 *.zip
@@ -83,3 +88,9 @@ xcode/Barony/Barony.xcodeproj/xcuserdata/*
 *.ilk
 /VS.2015/x64
 *.sqlite-journal
+
+# Adventurer local build outputs and user data
+.work/
+__pycache__/
+evidence/baseline-passed.json
+*.user

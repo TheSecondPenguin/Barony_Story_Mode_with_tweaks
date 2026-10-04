@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "suite": "vanilla-runtime-gate",
+  "content_policy": "Record capabilities, timing, comfort, and opaque issue IDs only. Do not record discoveries or story details.",
+  "preconditions": {
+    "binary": "One identical version-matched executable for every participant.",
+    "data": "Each participant uses data from their own legitimate installation.",
+    "profile": "A launcher-created isolated profile; never a retail save directory.",
+    "audio": "Enabled and audible for gameplay scenarios.",
+    "observer": "A human or QA/playtest observer records each runtime check with a nonempty observer_id different from the build producer.",
+    "seed": {
+      "value": "AP-BASELINE-01",
+      "entry": "Enter the value in the normal player-creation seed field.",
+      "source_basis": "src/ui/MainMenu.cpp creates the editable seed field; src/mod_tools.cpp maps nonnumeric text to a stable seed.",
+      "command_line_flag": null
+    },
+    "session_limit": "Begin with a short exposure and stop immediately on discomfort. Extend only when comfortable."
+  },
+  "environment_status": "blocked",
+  "blockers": ["PT-ENV-001", "PT-ENV-002", "PT-ENV-003", "PT-ENV-004"],
+  "scenarios": [
+    {
+      "id": "PT-START-01",
+      "capability": "start",
+      "steps": ["Launch through the isolated helper.", "Reach the main menu.", "Confirm expected version, isolated output path, graphics initialization, and audible menu sound."],
+      "evidence": ["sanitized launch-evidence.json", "audio yes/no", "opaque issue ID if blocked"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-MOVE-01",
+      "capability": "movement",
+      "depends_on": ["PT-START-01"],
+      "steps": ["Start a normal seeded session.", "Walk, strafe, turn, stop, and traverse a height change for a short interval.", "Record input device, display mode, frame-rate cap, duration, and comfort response."],
+      "evidence": ["motion completed yes/no", "timing", "comfort response", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-CAMERA-01",
+      "capability": "camera",
+      "depends_on": ["PT-MOVE-01"],
+      "steps": ["Repeat a fixed short movement pattern at the same seed and sensitivity.", "Observe turning, vertical look, stops, near-wall strafing, and damage cues.", "Stop immediately on discomfort."],
+      "evidence": ["settings", "duration until stop", "comfort response", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-INVENTORY-01",
+      "capability": "inventory",
+      "depends_on": ["PT-START-01"],
+      "steps": ["Open and close inventory.", "Move one ordinary carried item between valid inventory positions.", "Use and cancel an item interaction without describing content."],
+      "evidence": ["actions completed yes/no", "input method", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-CLASS-01",
+      "capability": "class",
+      "depends_on": ["PT-START-01"],
+      "steps": ["Start two separate isolated sessions with the same seed and two ordinary selectable classes.", "Compare the first short movement and inventory interaction.", "Record usability differences without naming discoveries."],
+      "evidence": ["two classes started yes/no", "qualitative usability difference", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-TRANSITION-01",
+      "capability": "level transition",
+      "depends_on": ["PT-MOVE-01"],
+      "steps": ["Reach one normal level transition through ordinary play.", "Complete the transition.", "Confirm control, inventory access, audio, and camera resume."],
+      "evidence": ["transition completed yes/no", "resume checks", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-SAVE-01",
+      "capability": "save and restore",
+      "depends_on": ["PT-TRANSITION-01"],
+      "steps": ["Exit through the normal game flow after progress is saveable.", "Record files changed only inside the isolated output directory.", "Relaunch with the same isolated profile and restore.", "Confirm position context, class, and inventory continuity without listing content."],
+      "evidence": ["isolated files changed", "restore completed yes/no", "continuity checks", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-DEATH-01",
+      "capability": "death flow",
+      "depends_on": ["PT-MOVE-01"],
+      "steps": ["Use a disposable isolated session.", "Reach a normal player death through ordinary play.", "Observe camera comfort and available continuation flow for only a short interval."],
+      "evidence": ["flow reached yes/no", "camera comfort response", "save files remain isolated", "opaque issue ID"],
+      "status": "blocked"
+    },
+    {
+      "id": "PT-MP-01",
+      "capability": "four-player multiplayer",
+      "depends_on": ["PT-START-01", "PT-MOVE-01", "PT-INVENTORY-01", "PT-SAVE-01"],
+      "steps": ["Before connecting, collect each participant's binary_sha256, patch_content_manifest_sha256, data_manifest_sha256, source_revision, and profile_marker_sha256.", "Require all four binary, patch/content, data, and source identities to match; keep the distinct profile marker identity for each participant.", "Use the same entered seed, with one isolated profile and owner-supplied data per participant.", "Host and join with four participants.", "Check movement, inventory interaction, one transition, one client disconnect/reconnect, host quit, and host save/restore.", "Treat direct-connect, platform invites, and internet routing as separate results."],
+      "evidence": ["SHA256 binary identity per participant", "SHA256 patch/content identity per participant", "SHA256 data manifest identity per participant", "source revision per participant", "SHA256 profile marker identity per participant", "join count", "reconnect result", "host save/restore result", "audio result per participant", "opaque issue IDs"],
+      "status": "blocked"
+    }
+  ]
+}

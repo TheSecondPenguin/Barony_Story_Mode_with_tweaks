@@ -1,0 +1,9 @@
+{
+  "task_id": "fix.wrapper.binding",
+  "worker_id": "/root/orchestration_engineer",
+  "role": "engineer",
+  "status": "completed",
+  "summary": "Added the approved vanilla wrapper to build and launch source fingerprints and changed the regression to prove wrapper mutation makes PASS stale.",
+  "artifacts": [{"name": "gates", "path": "orchestrator/config/gates.json"}],
+  "notes": ["Final core suite passes 20/20; Python compilation and diff checks pass."]
+}

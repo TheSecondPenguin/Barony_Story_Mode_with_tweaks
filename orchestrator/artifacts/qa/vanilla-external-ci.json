@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "external_ci_observation",
+  "observer": "/root",
+  "source": "GitHub Actions connector job and decoded log",
+  "repository": "TheSecondPenguin/Barony_Story_Mode_with_tweaks",
+  "workflow_commit": "290df027638f8663392a340daad88a6c360213d0",
+  "run_id": 37186649995,
+  "job_id": 111389874687,
+  "conclusion": "success",
+  "baseline_commit": "9c70dafa2da8715e4d59d90fabf1135c48ba1c19",
+  "upstream_commit": "962a5ce36d10207beef7d8673876e0cebf8e76e4",
+  "build_environment": "GitHub ubuntu-24.04",
+  "build_targets": ["editor", "barony"],
+  "compiler_log_evidence": [
+    "2026-10-04T07:45:16.5031835Z [ 28%] Built target editor",
+    "2026-10-04T07:48:46.6848816Z [100%] Built target barony"
+  ],
+  "runtime_executed": false,
+  "target_windows_verified": false,
+  "coordinator_gate_imported": false,
+  "limits": ["No retail assets packaged", "No audio or interactive runtime test", "External evidence is not a canonical local-run gate manifest"]
+}

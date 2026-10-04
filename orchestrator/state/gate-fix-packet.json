@@ -1,0 +1,66 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "file",
+        "name": "engine",
+        "path": "orchestrator/engine.py"
+      }
+    ],
+    "notes": [],
+    "role": "engineer",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "fix.gate.runner",
+    "worker_id": "/root/orchestration_engineer"
+  },
+  "role_prompt": "# Engineer\n\nImplement only the packet's owned paths. Preserve upstream notices and keep custom code and authored content separate from retail assets. Use the documented build and save-isolation boundaries. Run meaningful checks and preserve full command results as artifacts; a successful edit or patch application is not build or runtime evidence.\n\nDo not bypass gates or weaken fail-closed checks. Do not read secret paths for a public task, follow symlinks outside the repository, or write outside owned paths. Do not generate hidden content before `adventure_core.ready`. Return the required handoff JSON with exact artifact paths.\n",
+  "task": {
+    "attempt_count": 1,
+    "category": "tooling",
+    "claimed_at": "2026-10-04T07:47:38+00:00",
+    "claimed_by": "/root/orchestration_engineer",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T07:47:38+00:00",
+    "depends_on": [],
+    "description": "Close ORCH-GATE-001 by validating exact gate-approved task and execution contracts.",
+    "handoff_history": [],
+    "id": "fix.gate.runner",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "orchestrator",
+      "scripts/build.py",
+      "scripts/qa/run_qa.py"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "file",
+        "name": "engine",
+        "path": "orchestrator/engine.py"
+      }
+    ],
+    "required_gates": [],
+    "role": "engineer",
+    "status": "claimed",
+    "title": "Bind automated gates to approved runners",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/engine.py",
+      "orchestrator/config/gates.json",
+      "orchestrator/tests/test_orchestrator.py",
+      "orchestrator/README.md"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "engineer",
+    "worker_id": "/root/orchestration_engineer"
+  }
+}

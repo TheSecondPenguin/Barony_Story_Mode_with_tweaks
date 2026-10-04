@@ -1,0 +1,18 @@
+{
+  "task_id": "vanilla.target-runtime",
+  "worker_id": "/root/playtest_agent",
+  "role": "playtester",
+  "status": "blocked",
+  "summary": "Runtime baseline is blocked: this host has no game executable, owner-supplied data, native display session, or visible audio device, so no game process or play session ran.",
+  "artifacts": [
+    {
+      "name": "runtime",
+      "path": "orchestrator/artifacts/playtests/runtime/result.json",
+      "sha256": "23d7b3a45fa12a8c5a873794f9f43e954d6d58cd997fd0fe5ed42a4c235ad03d"
+    }
+  ],
+  "notes": [
+    "Capability evidence only; this is not a runtime attestation.",
+    "All launch, audio, save, comfort, gameplay, and multiplayer checks remain NOT_RUN."
+  ]
+}

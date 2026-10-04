@@ -1,0 +1,9 @@
+{
+  "task_id": "fix.legacy.baseline",
+  "worker_id": "/root/orchestration_engineer",
+  "role": "engineer",
+  "status": "completed",
+  "summary": "Legacy claimed tasks with missing or malformed artifact baselines now fail closed with explicit release-and-reclaim recovery instead of crashing or accepting unknown freshness.",
+  "artifacts": [{"name": "engine", "path": "orchestrator/engine.py"}],
+  "notes": ["Regression proves initial completion is rejected, release/reclaim snapshots the existing artifact, and only a subsequent content change can complete.", "Core 21/21 and black-box CLI/primitives 11/11 pass."]
+}

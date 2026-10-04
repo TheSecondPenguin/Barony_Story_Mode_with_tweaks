@@ -1,0 +1,2 @@
+# Unified diff context prefixes are syntax, not source indentation.
+*.patch whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab

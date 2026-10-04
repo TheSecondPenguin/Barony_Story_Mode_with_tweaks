@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "roles": {
+    "director": {
+      "model": "gpt-6-astra",
+      "reasoning_effort": "ultra",
+      "prompt": "prompts/director.md",
+      "must_differ_from_dependency_workers": false
+    },
+    "researcher": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/researcher.md",
+      "must_differ_from_dependency_workers": false
+    },
+    "world_designer": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/world_designer.md",
+      "must_differ_from_dependency_workers": false
+    },
+    "narrative_designer": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/narrative_designer.md",
+      "must_differ_from_dependency_workers": false
+    },
+    "systems_designer": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/systems_designer.md",
+      "must_differ_from_dependency_workers": false
+    },
+    "engineer": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/engineer.md",
+      "must_differ_from_dependency_workers": false
+    },
+    "reviewer": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/reviewer.md",
+      "must_differ_from_dependency_workers": true
+    },
+    "qa": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/qa.md",
+      "must_differ_from_dependency_workers": true
+    },
+    "playtester": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/playtester.md",
+      "must_differ_from_dependency_workers": true
+    },
+    "critic": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "prompt": "prompts/critic.md",
+      "must_differ_from_dependency_workers": true
+    }
+  }
+}
+

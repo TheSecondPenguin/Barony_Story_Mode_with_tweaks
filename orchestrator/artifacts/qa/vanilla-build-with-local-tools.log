@@ -1,0 +1,20 @@
+timestamp_utc=2026-10-04T07:18:55Z
+cwd=/workspace/scratch/9090f71aae17/barony
+head=750e25210876efdbc20f6262e5e71dcd74342d40
+baseline_head=9c70dafa2da8715e4d59d90fabf1135c48ba1c19
+baseline_status=cmake=cmake version 4.4.3
+ninja=1.13.2.git.kitware.jobserver-pipe-1
+compiler=g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+command=env PYTHONPATH=<repo>/.work/qa-tools PATH=<repo>/.work/qa-tools/bin:$PATH python3 scripts/build.py vanilla
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 has been removed from CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+  Or, add -DCMAKE_POLICY_VERSION_MINIMUM=3.5 to try configuring anyway.
+
+
+-- Configuring incomplete, errors occurred!
+Command '('cmake', '-S', '/workspace/scratch/9090f71aae17/barony/.work/vanilla', '-B', '/workspace/scratch/9090f71aae17/barony/.work/build-vanilla', '-DCMAKE_BUILD_TYPE=Release', '-DFMOD_ENABLED=OFF', '-DOPENAL_ENABLED=OFF', '-DSTEAMWORKS_ENABLED=0', '-DEOS_ENABLED=0', '-DPLAYFAB_ENABLED=0')' returned non-zero exit status 1.

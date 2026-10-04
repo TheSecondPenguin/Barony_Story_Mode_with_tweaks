@@ -1,0 +1,705 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:barony-adventurer:narrative-schema:1",
+  "title": "Quest graph and multi-expedition seed/payoff ledger schema",
+  "description": "Versioned internal design schema. It defines empty narrative interfaces and quality checks without authored story content.",
+  "schema_version": 1,
+  "artifact_type": "narrative_schema",
+  "status": "design_only",
+  "runtime_implemented": false,
+  "oneOf": [
+    { "$ref": "#/$defs/questGraph" },
+    { "$ref": "#/$defs/seedPayoffLedger" }
+  ],
+  "$defs": {
+    "opaqueId": {
+      "type": "string",
+      "pattern": "^(quest|node|edge|seed|evd|interp|cb|payoff|arc|npc|sys|fact|rule|cons|decision|path|cap)_[0-9a-f]{16}$"
+    },
+    "questId": { "type": "string", "pattern": "^quest_[0-9a-f]{16}$" },
+    "nodeId": { "type": "string", "pattern": "^node_[0-9a-f]{16}$" },
+    "edgeId": { "type": "string", "pattern": "^edge_[0-9a-f]{16}$" },
+    "seedId": { "type": "string", "pattern": "^seed_[0-9a-f]{16}$" },
+    "evidenceId": { "type": "string", "pattern": "^evd_[0-9a-f]{16}$" },
+    "interpretationId": { "type": "string", "pattern": "^interp_[0-9a-f]{16}$" },
+    "callbackId": { "type": "string", "pattern": "^cb_[0-9a-f]{16}$" },
+    "payoffId": { "type": "string", "pattern": "^payoff_[0-9a-f]{16}$" },
+    "arcId": { "type": "string", "pattern": "^arc_[0-9a-f]{16}$" },
+    "npcId": { "type": "string", "pattern": "^npc_[0-9a-f]{16}$" },
+    "systemId": { "type": "string", "pattern": "^sys_[0-9a-f]{16}$" },
+    "factId": { "type": "string", "pattern": "^fact_[0-9a-f]{16}$" },
+    "ruleId": { "type": "string", "pattern": "^rule_[0-9a-f]{16}$" },
+    "consequenceId": { "type": "string", "pattern": "^cons_[0-9a-f]{16}$" },
+    "pathId": { "type": "string", "pattern": "^path_[0-9a-f]{16}$" },
+    "capabilityId": { "type": "string", "pattern": "^cap_[0-9a-f]{16}$" },
+    "issueId": { "type": "string", "pattern": "^issue_[0-9a-f]{16}$" },
+    "lifecycle": { "enum": ["draft", "reviewed", "validated", "retired"] },
+    "reviewStatus": { "enum": ["pending", "pass", "fail"] },
+    "uniqueOpaqueIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/opaqueId" }
+    },
+    "uniqueQuestIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/questId" }
+    },
+    "uniqueNodeIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nodeId" }
+    },
+    "uniqueEdgeIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/edgeId" }
+    },
+    "uniqueSeedIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/seedId" }
+    },
+    "uniqueEvidenceIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/evidenceId" }
+    },
+    "uniqueInterpretationIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/interpretationId" }
+    },
+    "uniqueCallbackIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/callbackId" }
+    },
+    "uniquePayoffIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/payoffId" }
+    },
+    "uniqueArcIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/arcId" }
+    },
+    "uniqueNpcIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/npcId" }
+    },
+    "uniqueSystemIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/systemId" }
+    },
+    "uniqueFactIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/factId" }
+    },
+    "uniqueRuleIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/ruleId" }
+    },
+    "uniqueConsequenceIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/consequenceId" }
+    },
+    "uniquePathIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/pathId" }
+    },
+    "uniqueCapabilityIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/capabilityId" }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaign_owner", "mutation_source", "host_loss_policy"],
+      "properties": {
+        "campaign_owner": { "const": "host" },
+        "mutation_source": { "const": "host_only" },
+        "host_loss_policy": { "const": "pause" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaign_schema_version", "engine_protocol_version", "content_manifest_hash", "unknown_version_policy"],
+      "properties": {
+        "campaign_schema_version": { "type": "integer", "minimum": 1 },
+        "engine_protocol_version": { "type": ["integer", "null"], "minimum": 1 },
+        "content_manifest_hash": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "unknown_version_policy": { "const": "reject" }
+      }
+    },
+    "ledgerCompatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaign_schema_version", "content_manifest_hash", "unknown_version_policy"],
+      "properties": {
+        "campaign_schema_version": { "type": "integer", "minimum": 1 },
+        "content_manifest_hash": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "unknown_version_policy": { "const": "reject" }
+      }
+    },
+    "idPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "semantic_ids_forbidden", "cross_references_use_ids_only", "player_safe_debug_values"],
+      "properties": {
+        "format": { "const": "opaque_type_prefix_plus_16_lowercase_hex" },
+        "semantic_ids_forbidden": { "const": true },
+        "cross_references_use_ids_only": { "const": true },
+        "player_safe_debug_values": { "const": "opaque_ids_only" }
+      }
+    },
+    "expeditionSpanTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_distinct_expeditions", "seed_ids", "callback_ids", "payoff_ids"],
+      "properties": {
+        "minimum_distinct_expeditions": { "type": "integer", "minimum": 2 },
+        "seed_ids": { "$ref": "#/$defs/uniqueSeedIds" },
+        "callback_ids": { "$ref": "#/$defs/uniqueCallbackIds" },
+        "payoff_ids": { "$ref": "#/$defs/uniquePayoffIds" }
+      }
+    },
+    "expeditionSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_distinct_expeditions", "seed_ids", "callback_ids", "payoff_ids"],
+      "properties": {
+        "minimum_distinct_expeditions": { "type": "integer", "minimum": 2 },
+        "seed_ids": { "$ref": "#/$defs/uniqueSeedIds", "minItems": 1 },
+        "callback_ids": { "$ref": "#/$defs/uniqueCallbackIds", "minItems": 1 },
+        "payoff_ids": { "$ref": "#/$defs/uniquePayoffIds", "minItems": 1 }
+      }
+    },
+    "qualityReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "meaningful_decision_or_discovery",
+        "class_perspective_or_systemic_solution",
+        "visible_evidence_precedes_interpretation",
+        "world_consequence",
+        "composition_independent_progression",
+        "callback_is_perceivable",
+        "unresolved_state_is_intentional"
+      ],
+      "properties": {
+        "meaningful_decision_or_discovery": { "$ref": "#/$defs/reviewStatus" },
+        "class_perspective_or_systemic_solution": { "$ref": "#/$defs/reviewStatus" },
+        "visible_evidence_precedes_interpretation": { "$ref": "#/$defs/reviewStatus" },
+        "world_consequence": { "$ref": "#/$defs/reviewStatus" },
+        "composition_independent_progression": { "$ref": "#/$defs/reviewStatus" },
+        "callback_is_perceivable": { "$ref": "#/$defs/reviewStatus" },
+        "unresolved_state_is_intentional": { "$ref": "#/$defs/reviewStatus" }
+      }
+    },
+    "questTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lifecycle", "expedition_span", "entry_condition_rule_ids", "node_ids", "edge_ids", "npc_arc_ids", "system_reference_ids", "accessibility_path_ids", "quality_review"],
+      "properties": {
+        "id": { "type": "null" },
+        "lifecycle": { "const": "draft" },
+        "expedition_span": { "$ref": "#/$defs/expeditionSpanTemplate" },
+        "entry_condition_rule_ids": { "$ref": "#/$defs/uniqueRuleIds" },
+        "node_ids": { "$ref": "#/$defs/uniqueNodeIds" },
+        "edge_ids": { "$ref": "#/$defs/uniqueEdgeIds" },
+        "npc_arc_ids": { "$ref": "#/$defs/uniqueArcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "accessibility_path_ids": { "$ref": "#/$defs/uniquePathIds" },
+        "quality_review": { "$ref": "#/$defs/qualityReview" }
+      }
+    },
+    "quest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lifecycle", "expedition_span", "entry_condition_rule_ids", "node_ids", "edge_ids", "npc_arc_ids", "system_reference_ids", "accessibility_path_ids", "quality_review"],
+      "properties": {
+        "id": { "$ref": "#/$defs/questId" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "expedition_span": { "$ref": "#/$defs/expeditionSpan" },
+        "entry_condition_rule_ids": { "$ref": "#/$defs/uniqueRuleIds" },
+        "node_ids": { "$ref": "#/$defs/uniqueNodeIds", "minItems": 1 },
+        "edge_ids": { "$ref": "#/$defs/uniqueEdgeIds" },
+        "npc_arc_ids": { "$ref": "#/$defs/uniqueArcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "accessibility_path_ids": { "$ref": "#/$defs/uniquePathIds", "minItems": 1 },
+        "quality_review": { "$ref": "#/$defs/qualityReview" }
+      }
+    },
+    "nodeKind": {
+      "enum": [
+        "visible_evidence",
+        "interpretation",
+        "meaningful_discovery",
+        "meaningful_decision",
+        "class_perspective",
+        "systemic_solution",
+        "callback",
+        "payoff",
+        "world_consequence",
+        "intentional_unresolved"
+      ]
+    },
+    "nodeTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "quest_id", "kind", "expedition_phase", "internal_description", "critical_progression", "prerequisite_node_ids", "alternate_node_ids", "visible_evidence_ids", "interpretation_ids", "class_capability_ids", "system_affordance_ids", "npc_reference_ids", "system_reference_ids", "world_consequence_ids", "lifecycle"],
+      "properties": {
+        "id": { "type": "null" },
+        "quest_id": { "type": "null" },
+        "kind": { "type": "null" },
+        "expedition_phase": { "type": "null" },
+        "internal_description": { "const": "" },
+        "critical_progression": { "const": false },
+        "prerequisite_node_ids": { "$ref": "#/$defs/uniqueNodeIds" },
+        "alternate_node_ids": { "$ref": "#/$defs/uniqueNodeIds" },
+        "visible_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds" },
+        "interpretation_ids": { "$ref": "#/$defs/uniqueInterpretationIds" },
+        "class_capability_ids": { "$ref": "#/$defs/uniqueCapabilityIds" },
+        "system_affordance_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" },
+        "lifecycle": { "const": "draft" }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "quest_id", "kind", "expedition_phase", "internal_description", "critical_progression", "prerequisite_node_ids", "alternate_node_ids", "visible_evidence_ids", "interpretation_ids", "class_capability_ids", "system_affordance_ids", "npc_reference_ids", "system_reference_ids", "world_consequence_ids", "lifecycle"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nodeId" },
+        "quest_id": { "$ref": "#/$defs/questId" },
+        "kind": { "$ref": "#/$defs/nodeKind" },
+        "expedition_phase": { "type": "integer", "minimum": 0 },
+        "internal_description": { "type": "string", "minLength": 1, "maxLength": 560 },
+        "critical_progression": { "type": "boolean" },
+        "prerequisite_node_ids": { "$ref": "#/$defs/uniqueNodeIds" },
+        "alternate_node_ids": { "$ref": "#/$defs/uniqueNodeIds" },
+        "visible_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds" },
+        "interpretation_ids": { "$ref": "#/$defs/uniqueInterpretationIds" },
+        "class_capability_ids": { "$ref": "#/$defs/uniqueCapabilityIds" },
+        "system_affordance_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "critical_progression": { "const": true } }, "required": ["critical_progression"] },
+          "then": { "properties": { "alternate_node_ids": { "minItems": 1 } } }
+        }
+      ]
+    },
+    "edgeTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "quest_id", "from_node_id", "to_node_id", "condition_rule_ids", "decision_id", "lifecycle"],
+      "properties": {
+        "id": { "type": "null" },
+        "quest_id": { "type": "null" },
+        "from_node_id": { "type": "null" },
+        "to_node_id": { "type": "null" },
+        "condition_rule_ids": { "$ref": "#/$defs/uniqueRuleIds" },
+        "decision_id": { "type": "null" },
+        "lifecycle": { "const": "draft" }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "quest_id", "from_node_id", "to_node_id", "condition_rule_ids", "decision_id", "lifecycle"],
+      "properties": {
+        "id": { "$ref": "#/$defs/edgeId" },
+        "quest_id": { "$ref": "#/$defs/questId" },
+        "from_node_id": { "$ref": "#/$defs/nodeId" },
+        "to_node_id": { "$ref": "#/$defs/nodeId" },
+        "condition_rule_ids": { "$ref": "#/$defs/uniqueRuleIds" },
+        "decision_id": { "type": ["string", "null"], "pattern": "^decision_[0-9a-f]{16}$" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" }
+      }
+    },
+    "unresolvedReasonCode": {
+      "enum": ["deliberate_ambiguity", "ongoing_arc", "deferred_callback", "mutually_exclusive_resolution", "future_content_boundary"]
+    },
+    "npcArcTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "npc_id", "internal_arc_intent", "quest_ids", "minimum_distinct_expeditions", "stage_node_ids", "memory_fact_ids", "relationship_edge_ids", "callback_ids", "world_consequence_ids", "intentional_unresolved", "unresolved_reason_code", "unresolved_reason", "lifecycle"],
+      "properties": {
+        "id": { "type": "null" },
+        "npc_id": { "type": "null" },
+        "internal_arc_intent": { "const": "" },
+        "quest_ids": { "$ref": "#/$defs/uniqueQuestIds" },
+        "minimum_distinct_expeditions": { "const": 2 },
+        "stage_node_ids": { "$ref": "#/$defs/uniqueNodeIds" },
+        "memory_fact_ids": { "$ref": "#/$defs/uniqueFactIds" },
+        "relationship_edge_ids": { "$ref": "#/$defs/uniqueEdgeIds" },
+        "callback_ids": { "$ref": "#/$defs/uniqueCallbackIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" },
+        "intentional_unresolved": { "type": "null" },
+        "unresolved_reason_code": { "type": "null" },
+        "unresolved_reason": { "const": "" },
+        "lifecycle": { "const": "draft" }
+      }
+    },
+    "npcArc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "npc_id", "internal_arc_intent", "quest_ids", "minimum_distinct_expeditions", "stage_node_ids", "memory_fact_ids", "relationship_edge_ids", "callback_ids", "world_consequence_ids", "intentional_unresolved", "unresolved_reason_code", "unresolved_reason", "lifecycle"],
+      "properties": {
+        "id": { "$ref": "#/$defs/arcId" },
+        "npc_id": { "$ref": "#/$defs/npcId" },
+        "internal_arc_intent": { "type": "string", "minLength": 1, "maxLength": 560 },
+        "quest_ids": { "$ref": "#/$defs/uniqueQuestIds", "minItems": 1 },
+        "minimum_distinct_expeditions": { "type": "integer", "minimum": 2 },
+        "stage_node_ids": { "$ref": "#/$defs/uniqueNodeIds", "minItems": 2 },
+        "memory_fact_ids": { "$ref": "#/$defs/uniqueFactIds" },
+        "relationship_edge_ids": { "$ref": "#/$defs/uniqueEdgeIds" },
+        "callback_ids": { "$ref": "#/$defs/uniqueCallbackIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" },
+        "intentional_unresolved": { "type": "boolean" },
+        "unresolved_reason_code": { "anyOf": [{ "$ref": "#/$defs/unresolvedReasonCode" }, { "type": "null" }] },
+        "unresolved_reason": { "type": "string", "maxLength": 280 },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "intentional_unresolved": { "const": true } }, "required": ["intentional_unresolved"] },
+          "then": {
+            "properties": {
+              "unresolved_reason_code": { "$ref": "#/$defs/unresolvedReasonCode" },
+              "unresolved_reason": { "type": "string", "minLength": 1, "maxLength": 280 }
+            }
+          },
+          "else": {
+            "properties": {
+              "unresolved_reason_code": { "type": "null" },
+              "unresolved_reason": { "const": "" }
+            }
+          }
+        }
+      ]
+    },
+    "qualityValidatorContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_or_discovery_required", "class_perspective_or_systemic_solution_required", "world_consequence_required", "visible_evidence_before_interpretation_required", "critical_progression_class_lock_forbidden", "alternate_access_path_required", "perceivable_callback_required", "unresolved_content_requires_reason", "all_references_must_resolve", "runtime_gate_required_before_population"],
+      "properties": {
+        "decision_or_discovery_required": { "const": true },
+        "class_perspective_or_systemic_solution_required": { "const": true },
+        "world_consequence_required": { "const": true },
+        "visible_evidence_before_interpretation_required": { "const": true },
+        "critical_progression_class_lock_forbidden": { "const": true },
+        "alternate_access_path_required": { "const": true },
+        "perceivable_callback_required": { "const": true },
+        "unresolved_content_requires_reason": { "const": true },
+        "all_references_must_resolve": { "const": true },
+        "runtime_gate_required_before_population": { "const": "comfort.accepted_and_four_player.accepted" }
+      }
+    },
+    "validationIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue_id", "subject_ids", "code", "status"],
+      "properties": {
+        "issue_id": { "$ref": "#/$defs/issueId" },
+        "subject_ids": { "$ref": "#/$defs/uniqueOpaqueIds", "minItems": 1 },
+        "code": {
+          "enum": [
+            "broken_reference",
+            "duplicate_reference",
+            "unsupported_interpretation",
+            "evidence_not_visible",
+            "callback_not_perceivable",
+            "same_expedition_payoff",
+            "missing_world_consequence",
+            "missing_meaningful_decision_or_discovery",
+            "missing_class_perspective_or_systemic_solution",
+            "fixed_class_lock",
+            "missing_alternate_path",
+            "unresolved_without_reason",
+            "version_incompatible"
+          ]
+        },
+        "status": { "enum": ["open", "resolved", "accepted"] }
+      }
+    },
+    "questGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "content_revision", "artifact_type", "status", "visibility", "runtime_implemented", "authority", "compatibility", "id_policy", "quest_record_template", "node_template", "edge_template", "npc_arc_template", "quality_validator_contract", "quests", "nodes", "edges", "npc_arcs", "validation_issues"],
+      "properties": {
+        "schema_version": { "const": 1 },
+        "content_revision": { "type": "integer", "minimum": 0 },
+        "artifact_type": { "const": "quest_graph" },
+        "status": { "enum": ["empty_template", "draft", "reviewed", "validated"] },
+        "visibility": { "const": "hidden" },
+        "runtime_implemented": { "type": "boolean" },
+        "authority": { "$ref": "#/$defs/authority" },
+        "compatibility": { "$ref": "#/$defs/compatibility" },
+        "id_policy": { "$ref": "#/$defs/idPolicy" },
+        "quest_record_template": { "$ref": "#/$defs/questTemplate" },
+        "node_template": { "$ref": "#/$defs/nodeTemplate" },
+        "edge_template": { "$ref": "#/$defs/edgeTemplate" },
+        "npc_arc_template": { "$ref": "#/$defs/npcArcTemplate" },
+        "quality_validator_contract": { "$ref": "#/$defs/qualityValidatorContract" },
+        "quests": { "type": "array", "items": { "$ref": "#/$defs/quest" } },
+        "nodes": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } },
+        "npc_arcs": { "type": "array", "items": { "$ref": "#/$defs/npcArc" } },
+        "validation_issues": { "type": "array", "items": { "$ref": "#/$defs/validationIssue" } }
+      }
+    },
+    "plant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed_id", "expedition_offset", "visible_evidence_ids", "delivery_system_ids"],
+      "properties": {
+        "seed_id": { "$ref": "#/$defs/seedId" },
+        "expedition_offset": { "type": "integer", "minimum": 0 },
+        "visible_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds", "minItems": 1 },
+        "delivery_system_ids": { "$ref": "#/$defs/uniqueSystemIds", "minItems": 1 }
+      }
+    },
+    "plantTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed_id", "expedition_offset", "visible_evidence_ids", "delivery_system_ids"],
+      "properties": {
+        "seed_id": { "type": "null" },
+        "expedition_offset": { "const": 0 },
+        "visible_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds" },
+        "delivery_system_ids": { "$ref": "#/$defs/uniqueSystemIds" }
+      }
+    },
+    "interpretationTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "internal_statement", "supported_by_evidence_ids", "known_context_fact_ids", "npc_reference_ids", "system_reference_ids"],
+      "properties": {
+        "id": { "type": "null" },
+        "internal_statement": { "const": "" },
+        "supported_by_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds" },
+        "known_context_fact_ids": { "$ref": "#/$defs/uniqueFactIds" },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" }
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "internal_statement", "supported_by_evidence_ids", "known_context_fact_ids", "npc_reference_ids", "system_reference_ids"],
+      "properties": {
+        "id": { "$ref": "#/$defs/interpretationId" },
+        "internal_statement": { "type": "string", "minLength": 1, "maxLength": 560 },
+        "supported_by_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds", "minItems": 1 },
+        "known_context_fact_ids": { "$ref": "#/$defs/uniqueFactIds" },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" }
+      }
+    },
+    "callbackTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "earliest_expedition_offset", "internal_description", "trigger_rule_ids", "references_seed_id", "visible_evidence_ids", "npc_reference_ids", "system_reference_ids", "world_consequence_ids"],
+      "properties": {
+        "id": { "type": "null" },
+        "earliest_expedition_offset": { "const": 1 },
+        "internal_description": { "const": "" },
+        "trigger_rule_ids": { "$ref": "#/$defs/uniqueRuleIds" },
+        "references_seed_id": { "type": "null" },
+        "visible_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds" },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" }
+      }
+    },
+    "callback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "earliest_expedition_offset", "internal_description", "trigger_rule_ids", "references_seed_id", "visible_evidence_ids", "npc_reference_ids", "system_reference_ids", "world_consequence_ids"],
+      "properties": {
+        "id": { "$ref": "#/$defs/callbackId" },
+        "earliest_expedition_offset": { "type": "integer", "minimum": 1 },
+        "internal_description": { "type": "string", "minLength": 1, "maxLength": 560 },
+        "trigger_rule_ids": { "$ref": "#/$defs/uniqueRuleIds", "minItems": 1 },
+        "references_seed_id": { "$ref": "#/$defs/seedId" },
+        "visible_evidence_ids": { "$ref": "#/$defs/uniqueEvidenceIds", "minItems": 1 },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" }
+      }
+    },
+    "payoffTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["payoff_id", "earliest_expedition_offset", "internal_description", "requires_callback_ids", "world_consequence_ids"],
+      "properties": {
+        "payoff_id": { "type": "null" },
+        "earliest_expedition_offset": { "const": 1 },
+        "internal_description": { "const": "" },
+        "requires_callback_ids": { "$ref": "#/$defs/uniqueCallbackIds" },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds" }
+      }
+    },
+    "payoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["payoff_id", "earliest_expedition_offset", "internal_description", "requires_callback_ids", "world_consequence_ids"],
+      "properties": {
+        "payoff_id": { "$ref": "#/$defs/payoffId" },
+        "earliest_expedition_offset": { "type": "integer", "minimum": 1 },
+        "internal_description": { "type": "string", "minLength": 1, "maxLength": 560 },
+        "requires_callback_ids": { "$ref": "#/$defs/uniqueCallbackIds", "minItems": 1 },
+        "world_consequence_ids": { "$ref": "#/$defs/uniqueConsequenceIds", "minItems": 1 }
+      }
+    },
+    "resolutionTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "intentional_unresolved", "unresolved_reason_code", "unresolved_reason"],
+      "properties": {
+        "state": { "const": "pending" },
+        "intentional_unresolved": { "const": false },
+        "unresolved_reason_code": { "type": "null" },
+        "unresolved_reason": { "const": "" }
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "intentional_unresolved", "unresolved_reason_code", "unresolved_reason"],
+      "properties": {
+        "state": { "enum": ["pending", "resolved", "intentionally_unresolved"] },
+        "intentional_unresolved": { "type": "boolean" },
+        "unresolved_reason_code": { "anyOf": [{ "$ref": "#/$defs/unresolvedReasonCode" }, { "type": "null" }] },
+        "unresolved_reason": { "type": "string", "maxLength": 280 }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "state": { "const": "intentionally_unresolved" },
+            "intentional_unresolved": { "const": true },
+            "unresolved_reason_code": { "$ref": "#/$defs/unresolvedReasonCode" },
+            "unresolved_reason": { "type": "string", "minLength": 1, "maxLength": 280 }
+          }
+        },
+        {
+          "properties": {
+            "state": { "enum": ["pending", "resolved"] },
+            "intentional_unresolved": { "const": false },
+            "unresolved_reason_code": { "type": "null" },
+            "unresolved_reason": { "const": "" }
+          }
+        }
+      ]
+    },
+    "ledgerValidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_is_player_visible", "interpretation_is_evidence_supported", "spans_distinct_expeditions", "callback_is_perceivable", "payoff_changes_world_state", "references_resolve"],
+      "properties": {
+        "evidence_is_player_visible": { "$ref": "#/$defs/reviewStatus" },
+        "interpretation_is_evidence_supported": { "$ref": "#/$defs/reviewStatus" },
+        "spans_distinct_expeditions": { "$ref": "#/$defs/reviewStatus" },
+        "callback_is_perceivable": { "$ref": "#/$defs/reviewStatus" },
+        "payoff_changes_world_state": { "$ref": "#/$defs/reviewStatus" },
+        "references_resolve": { "$ref": "#/$defs/reviewStatus" }
+      }
+    },
+    "ledgerEntryTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lifecycle", "quest_ids", "npc_reference_ids", "system_reference_ids", "minimum_distinct_expeditions", "plant", "interpretations", "callbacks", "payoff", "resolution", "validation"],
+      "properties": {
+        "id": { "type": "null" },
+        "lifecycle": { "const": "draft" },
+        "quest_ids": { "$ref": "#/$defs/uniqueQuestIds" },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "minimum_distinct_expeditions": { "const": 2 },
+        "plant": { "$ref": "#/$defs/plantTemplate" },
+        "interpretations": { "const": [] },
+        "callbacks": { "const": [] },
+        "payoff": { "$ref": "#/$defs/payoffTemplate" },
+        "resolution": { "$ref": "#/$defs/resolutionTemplate" },
+        "validation": { "$ref": "#/$defs/ledgerValidation" }
+      }
+    },
+    "ledgerEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lifecycle", "quest_ids", "npc_reference_ids", "system_reference_ids", "minimum_distinct_expeditions", "plant", "interpretations", "callbacks", "payoff", "resolution", "validation"],
+      "properties": {
+        "id": { "$ref": "#/$defs/seedId" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "quest_ids": { "$ref": "#/$defs/uniqueQuestIds", "minItems": 1 },
+        "npc_reference_ids": { "$ref": "#/$defs/uniqueNpcIds" },
+        "system_reference_ids": { "$ref": "#/$defs/uniqueSystemIds" },
+        "minimum_distinct_expeditions": { "type": "integer", "minimum": 2 },
+        "plant": { "$ref": "#/$defs/plant" },
+        "interpretations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/interpretation" } },
+        "callbacks": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/callback" } },
+        "payoff": { "anyOf": [{ "$ref": "#/$defs/payoff" }, { "type": "null" }] },
+        "resolution": { "$ref": "#/$defs/resolution" },
+        "validation": { "$ref": "#/$defs/ledgerValidation" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "resolution": { "properties": { "state": { "const": "resolved" } }, "required": ["state"] } }, "required": ["resolution"] },
+          "then": { "properties": { "payoff": { "$ref": "#/$defs/payoff" } } }
+        }
+      ]
+    },
+    "seedPayoffLedger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "content_revision", "artifact_type", "status", "visibility", "runtime_implemented", "authority", "compatibility", "id_policy", "ledger_entry_template", "interpretation_template", "callback_template", "unresolved_reason_codes", "entries", "validation_issues"],
+      "properties": {
+        "schema_version": { "const": 1 },
+        "content_revision": { "type": "integer", "minimum": 0 },
+        "artifact_type": { "const": "seed_payoff_ledger" },
+        "status": { "enum": ["empty_template", "draft", "reviewed", "validated"] },
+        "visibility": { "const": "hidden" },
+        "runtime_implemented": { "type": "boolean" },
+        "authority": { "$ref": "#/$defs/authority" },
+        "compatibility": { "$ref": "#/$defs/ledgerCompatibility" },
+        "id_policy": { "$ref": "#/$defs/idPolicy" },
+        "ledger_entry_template": { "$ref": "#/$defs/ledgerEntryTemplate" },
+        "interpretation_template": { "$ref": "#/$defs/interpretationTemplate" },
+        "callback_template": { "$ref": "#/$defs/callbackTemplate" },
+        "unresolved_reason_codes": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "deliberate_ambiguity" },
+            { "const": "ongoing_arc" },
+            { "const": "deferred_callback" },
+            { "const": "mutually_exclusive_resolution" },
+            { "const": "future_content_boundary" }
+          ],
+          "items": false,
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "entries": { "type": "array", "items": { "$ref": "#/$defs/ledgerEntry" } },
+        "validation_issues": { "type": "array", "items": { "$ref": "#/$defs/validationIssue" } }
+      }
+    }
+  }
+}

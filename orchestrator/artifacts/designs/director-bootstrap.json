@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_type": "director_bootstrap_recommendation",
+  "role": "director",
+  "created_utc": "2026-10-04",
+  "inspected_revision": "750e25210876efdbc20f6262e5e71dcd74342d40",
+  "scope": "spoiler-safe engineering priorities and gate policy",
+  "status": "recommendation",
+  "priorities": [
+    "meaningful discovery",
+    "qualitative development",
+    "class-specific experience",
+    "systemic interaction",
+    "changing expeditions with retained progress"
+  ],
+  "immediate_disposition": {
+    "orchestration_implementation": "proceed",
+    "unchanged_baseline_build_attempt": "proceed",
+    "comfort_engine_integration": "hold_pending_baseline_build_and_runtime_evidence",
+    "adventure_implementation": "hold_pending_baseline_comfort_and_four_player_runtime_evidence",
+    "playable_custom_build_claim": "not_supported",
+    "continuous_daemon_claim": "not_supported"
+  },
+  "gate_sequence": [
+    {
+      "id": "orchestration",
+      "requires": ["real bounded task execution", "durable resume state", "validated role artifacts", "independent review and QA", "spoiler-safe exports"],
+      "observed_status": "untested"
+    },
+    {
+      "id": "baseline_compile",
+      "requires": ["clean pinned upstream", "game and editor compiler success", "toolchain and flags", "binary identity and command provenance"],
+      "observed_status": "no_pass_recorded"
+    },
+    {
+      "id": "baseline_runtime",
+      "requires": ["matching target and licensed data", "isolated configuration and saves", "game and editor lifecycle", "working audio", "identified runtime observer and binary"],
+      "observed_status": "untested"
+    },
+    {
+      "id": "comfort",
+      "requires": ["accepted baseline runtime", "compiled comfort revision", "short target-player comparison", "input and camera-state regression checks", "preserved gameplay feedback"],
+      "observed_status": "untested"
+    },
+    {
+      "id": "four_player",
+      "requires": ["host plus three identical-build clients", "join movement combat transition", "disconnect reconnect host quit save reload", "explicit transport scope"],
+      "observed_status": "untested"
+    },
+    {
+      "id": "adventure_foundation",
+      "requires": ["all prerequisite runtime gates", "public fixtures first", "host-owned state", "idempotency and recovery", "version compatibility", "four-player consistency"],
+      "observed_status": "gated"
+    }
+  ],
+  "mandatory_evidence_rules": [
+    "File existence alone cannot pass a gate.",
+    "Missing, empty, malformed, failed, stale or inconclusive evidence must fail closed.",
+    "Evidence identifies subject revision or binary, configuration, observer or role, time, results and limitations.",
+    "Changed subjects require affected gates to be revalidated.",
+    "Compiler success cannot prove runtime, audio, networking or player comfort.",
+    "Implementer self-approval cannot replace independent review and QA."
+  ],
+  "capability_limits": [
+    "Current tools provide no native desktop control.",
+    "Target-machine human observations are required for unresolved runtime and comfort checks.",
+    "Native roles exist only when actually invoked; repository labels alone do not instantiate agents.",
+    "No persistent background service has been installed or observed."
+  ],
+  "open_findings": [
+    {"id": "BUG-GATE-001", "priority": "P0", "summary": "Existing comfort staging guard accepts evidence filename presence without validating contents or provenance."},
+    {"id": "BLOCK-TARGET-001", "priority": "P0", "summary": "Target OS and installed game version remain unconfirmed."},
+    {"id": "BLOCK-RUN-001", "priority": "P0", "summary": "No baseline runtime, audio or save isolation result is recorded."}
+  ],
+  "safe_documents": [
+    "docs/DESIGN_BIBLE.md",
+    "docs/ROADMAP.md",
+    "docs/DECISIONS.md",
+    "docs/TEST_MATRIX.md",
+    "docs/PLAYER_FEEDBACK.md",
+    "docs/BUGS.md"
+  ],
+  "hidden_content_created": false,
+  "source_modified_by_director": false,
+  "final_approval": false
+}

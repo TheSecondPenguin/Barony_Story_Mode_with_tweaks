@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "collected_at_utc": "2026-10-04T07:43:58.155953+00:00",
+  "repository_head": "750e25210876efdbc20f6262e5e71dcd74342d40",
+  "runtime": {
+    "executable": {
+      "path": null,
+      "available": false
+    },
+    "data": {
+      "path": "/workspace/scratch/9090f71aae17/barony",
+      "required_entries": {
+        "lang/en.txt": true,
+        "images/sprites.txt": false,
+        "images/tiles.txt": false,
+        "models/models.txt": false,
+        "sound/sounds.txt": false,
+        "maps/*.lmp": false,
+        "music/*.ogg": false
+      },
+      "complete": false
+    },
+    "display_session_available": false,
+    "audio_device_available": false
+  },
+  "build": {
+    "cmake": {
+      "available": false,
+      "path": null,
+      "version": null
+    },
+    "cxx": {
+      "available": true,
+      "path": "/usr/bin/c++",
+      "version": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+    },
+    "ninja": {
+      "available": false,
+      "path": null,
+      "version": null
+    },
+    "runtime_libraries": {
+      "SDL2": true,
+      "SDL2_image": false,
+      "SDL2_net": false,
+      "SDL2_ttf": false,
+      "physfs": false,
+      "GL": true,
+      "png": true,
+      "z": true
+    },
+    "development_headers": {
+      "SDL2": false,
+      "SDL2_image": false,
+      "SDL2_net": false,
+      "SDL2_ttf": false,
+      "physfs": false,
+      "rapidjson": false,
+      "OpenGL": false
+    }
+  },
+  "launch_attempted": false,
+  "runtime_gate": "blocked",
+  "blockers": [
+    {
+      "id": "PT-ENV-001",
+      "reason": "No game executable was supplied or found."
+    },
+    {
+      "id": "PT-ENV-002",
+      "reason": "Required runtime data is incomplete."
+    },
+    {
+      "id": "PT-ENV-003",
+      "reason": "No native display session is available."
+    },
+    {
+      "id": "PT-ENV-004",
+      "reason": "No local audio device is visible."
+    }
+  ],
+  "manual_checks": []
+}

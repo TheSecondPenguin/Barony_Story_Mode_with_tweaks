@@ -1,0 +1,16 @@
+{
+  "id": "fix.legacy.baseline",
+  "title": "Fail closed on legacy claims without artifact baselines",
+  "role": "engineer",
+  "description": "Replace the null-baseline completion crash with explicit release-and-reclaim recovery and test it.",
+  "depends_on": ["fix.gate.runner"],
+  "required_gates": [],
+  "read_paths": ["orchestrator/engine.py"],
+  "write_paths": ["orchestrator/engine.py", "orchestrator/tests/test_orchestrator.py"],
+  "required_artifacts": [
+    {"name": "engine", "kind": "file", "path": "orchestrator/engine.py"}
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}

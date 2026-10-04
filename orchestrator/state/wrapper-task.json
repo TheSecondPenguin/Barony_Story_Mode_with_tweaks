@@ -1,0 +1,16 @@
+{
+  "id": "fix.vanilla.wrapper",
+  "title": "Add canonical logged vanilla build runner",
+  "role": "engineer",
+  "description": "Run the existing vanilla build command without a shell while capturing its real output in the gate artifact.",
+  "depends_on": [],
+  "required_gates": [],
+  "read_paths": ["scripts/build.py"],
+  "write_paths": ["scripts/verify_vanilla.py"],
+  "required_artifacts": [
+    {"name": "runner", "kind": "file", "path": "scripts/verify_vanilla.py"}
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}

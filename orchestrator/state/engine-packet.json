@@ -1,0 +1,66 @@
+{
+  "packet_schema": 1,
+  "task": {
+    "attempt_count": 1,
+    "category": "tooling",
+    "claimed_at": "2026-10-04T07:42:48+00:00",
+    "claimed_by": "/root/orchestration_engineer",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T07:42:48+00:00",
+    "depends_on": [],
+    "description": "Finish reviewed artifact queue implementation. Work started under native root before queue became available; enrollment timestamp is not work-start timestamp.",
+    "handoff_history": [],
+    "id": "bootstrap.engine",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "AGENTS.md"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "file",
+        "name": "engine",
+        "path": "orchestrator/engine.py"
+      }
+    ],
+    "required_gates": [],
+    "role": "engineer",
+    "status": "claimed",
+    "title": "Implement durable orchestration core",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/engine.py",
+      "orchestrator/cli.py",
+      "orchestrator/config",
+      "orchestrator/prompts",
+      "orchestrator/tests",
+      "orchestrator/README.md"
+    ]
+  },
+  "worker": {
+    "worker_id": "/root/orchestration_engineer",
+    "role": "engineer",
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high"
+  },
+  "role_prompt": "# Engineer\n\nImplement only the packet's owned paths. Preserve upstream notices and keep custom code and authored content separate from retail assets. Use the documented build and save-isolation boundaries. Run meaningful checks and preserve full command results as artifacts; a successful edit or patch application is not build or runtime evidence.\n\nDo not bypass gates or weaken fail-closed checks. Do not read secret paths for a public task, follow symlinks outside the repository, or write outside owned paths. Do not generate hidden content before `adventure_core.ready`. Return the required handoff JSON with exact artifact paths.\n",
+  "required_handoff": {
+    "task_id": "bootstrap.engine",
+    "worker_id": "/root/orchestration_engineer",
+    "role": "engineer",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "artifacts": [
+      {
+        "kind": "file",
+        "name": "engine",
+        "path": "orchestrator/engine.py"
+      }
+    ],
+    "notes": []
+  },
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`."
+}

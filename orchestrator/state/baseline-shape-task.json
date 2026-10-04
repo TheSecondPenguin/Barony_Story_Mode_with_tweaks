@@ -1,0 +1,14 @@
+{
+  "id": "fix.baseline.shape",
+  "title": "Validate every persisted artifact baseline shape",
+  "role": "engineer",
+  "description": "Fail closed for null or malformed baselines even when a completed task requires no artifacts.",
+  "depends_on": ["fix.legacy.baseline"],
+  "required_gates": [],
+  "read_paths": ["orchestrator/engine.py"],
+  "write_paths": ["orchestrator/engine.py", "orchestrator/tests/test_orchestrator.py"],
+  "required_artifacts": [{"name": "engine", "kind": "file", "path": "orchestrator/engine.py"}],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}
