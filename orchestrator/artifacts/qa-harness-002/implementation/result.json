@@ -1,0 +1,70 @@
+{
+  "changes": [
+    "Each required suite reports discovery_status and discovered_test_count; empty or erroneous discovery fails before execution.",
+    "Explicit output directories are created once and reject existing paths plus leaf or ancestor symlinks.",
+    "No-argument output location and the six canonical check commands remain unchanged.",
+    "Engineering documentation distinguishes fresh-run evidence from the configured canonical quality gate."
+  ],
+  "intermediate_evidence": [
+    {
+      "note": "First draft exposed a repository import-path mismatch during preflight; retained and fixed.",
+      "path": "orchestrator/artifacts/qa-harness-002/implementation/fresh-run",
+      "status": "FAIL"
+    },
+    {
+      "note": "Passed before the final report-field rename and ancestor-symlink hardening; not final-source evidence.",
+      "path": "orchestrator/artifacts/qa-harness-002/implementation/fresh-run-v2",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "The final source was not run through the complete repository harness; independent QA is assigned to do that with another fresh output path.",
+    "The coordinator's local Python 3.12 reproduction records exit code 5 for empty unittest CLI discovery, so this work does not claim an exit-zero false pass was reproduced in that environment.",
+    "No canonical no-argument run was executed, and no existing archived QA evidence was edited.",
+    "Fresh --output-dir reports are independent QA artifacts and do not match or refresh the configured quality.tests gate runner.",
+    "No runtime, comfort, audio, multiplayer, or playable-build gate result is claimed."
+  ],
+  "schema_version": 1,
+  "source_files": [
+    {
+      "path": "scripts/qa/run_qa.py",
+      "sha256": "55ac45eb50eed87742c49da57f3df5f2acb2ec8e414e223fcae2b36796c489dc"
+    },
+    {
+      "path": "tests/qa/test_harness_runner.py",
+      "sha256": "806a44d0504d55bd4326bd80b3c29bb0d1b95f826071bdf7095f257472f52927"
+    },
+    {
+      "path": "docs/engineering/QA.md",
+      "sha256": "ec3152bd4e8705042bedf49557899a1fe02a1b1f953479f552b1973a9312e01d"
+    }
+  ],
+  "status": "completed",
+  "summary": "Added fail-closed preflight discovery for all four required unittest suites and exclusive fresh --output-dir artifacts while retaining the no-argument contract.",
+  "task_id": "qa-harness.002.implement",
+  "verification": [
+    {
+      "command": "python3 -m unittest discover -s tests/qa -p test_harness_runner.py -v",
+      "coverage": [
+        "actual empty suite discovery",
+        "actual discovery import error",
+        "positive discovered counts for all four suite slots",
+        "distinct fresh reports preserve earlier bytes",
+        "existing output refusal",
+        "leaf and ancestor symlink refusal"
+      ],
+      "log": "orchestrator/artifacts/qa-harness-002/implementation/harness-runner-tests-v3.log",
+      "status": "PASS",
+      "tests_run": 4
+    },
+    {
+      "command": "python3 -m py_compile scripts/qa/run_qa.py tests/qa/test_harness_runner.py",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check -- scripts/qa/run_qa.py tests/qa/test_harness_runner.py docs/engineering/QA.md",
+      "status": "PASS"
+    }
+  ],
+  "worker_id": "/root/qa_harness_engineer"
+}
