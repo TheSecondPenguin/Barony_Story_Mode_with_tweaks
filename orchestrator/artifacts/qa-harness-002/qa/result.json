@@ -1,0 +1,142 @@
+{
+  "artifacts": [
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/harness-result.json",
+      "sha256": "da063bf3f787d3bffea6602b4c00d43e41c5410ba1e97c0cc94521fbf881daed"
+    },
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/build-gate-tests.log",
+      "sha256": "1d00641930dd614d1b58c546873ca91e19ee55f73328ad1c74e811eb8d9fbfc5"
+    },
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/qa-tests.log",
+      "sha256": "53a81153eea5e8f994f6e7e654ab85e216075fa224b388e82ba0c08991d7e704"
+    },
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/playtest-tool-tests.log",
+      "sha256": "5958e64b18089b52af7f7a00665d53eb2b157f150077da75bb57b5cbd32835e9"
+    },
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/orchestrator-tests.log",
+      "sha256": "6dc94951f43da5fca5cfb6048b70f808f134006d386bd8fc2245bab6be533a9c"
+    },
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/comfort-integration.log",
+      "sha256": "4b493c385aac5a6f14ea4e566ee81833f181684dcb5cbc6fef3575039bd6d14e"
+    },
+    {
+      "path": "orchestrator/artifacts/qa-harness-002/qa/final-run/python-compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "execution": {
+    "command": [
+      "python3",
+      "scripts/qa/run_qa.py",
+      "--output-dir",
+      "orchestrator/artifacts/qa-harness-002/qa/final-run"
+    ],
+    "environment": {
+      "architecture": "x86_64",
+      "kernel": "6.18.44",
+      "os": "Linux",
+      "python": "3.12.14"
+    },
+    "exit_code": 0,
+    "harness_recorded_at": "2026-10-04T09:25:59.968147+00:00",
+    "harness_status": "PASS",
+    "output_path_was_absent_before_run": true,
+    "working_directory": "/workspace/scratch/9090f71aae17/barony"
+  },
+  "expected_behavior": {
+    "all_required_suites_must_discover_more_than_zero_tests": true,
+    "all_six_checks_must_exit_zero_for_pass": true,
+    "existing_or_symlink_output_paths_must_fail_closed": true,
+    "fresh_output_directory_required": true
+  },
+  "observed_behavior": {
+    "additional_checks": [
+      {
+        "exit_code": 0,
+        "name": "comfort-integration"
+      },
+      {
+        "exit_code": 0,
+        "name": "python-compile"
+      }
+    ],
+    "failure_path_tests_passed": [
+      "actual empty discovery fails closed",
+      "discovery error fails closed",
+      "existing output path is refused without changes",
+      "symlink output components are refused without changes"
+    ],
+    "total_discovered_unit_tests": 65,
+    "total_executed_unit_tests_from_logs": 65,
+    "unit_test_suites": [
+      {
+        "discovered_test_count": 14,
+        "discovery_status": "OK",
+        "executed_test_count_from_log": 14,
+        "exit_code": 0,
+        "name": "build-gate-tests"
+      },
+      {
+        "discovered_test_count": 15,
+        "discovery_status": "OK",
+        "executed_test_count_from_log": 15,
+        "exit_code": 0,
+        "name": "qa-tests"
+      },
+      {
+        "discovered_test_count": 13,
+        "discovery_status": "OK",
+        "executed_test_count_from_log": 13,
+        "exit_code": 0,
+        "name": "playtest-tool-tests"
+      },
+      {
+        "discovered_test_count": 23,
+        "discovery_status": "OK",
+        "executed_test_count_from_log": 23,
+        "exit_code": 0,
+        "name": "orchestrator-tests"
+      }
+    ]
+  },
+  "preservation": {
+    "canonical_default_output_path_invoked": false,
+    "comparison_target": "origin/main",
+    "git_diff_exit_code_after_run": 0,
+    "git_status_entries_after_run": [],
+    "protected_paths": [
+      "orchestrator/config",
+      "orchestrator/engine.py",
+      "orchestrator/artifacts/qa",
+      "orchestrator/state/runs"
+    ],
+    "unchanged": true
+  },
+  "recorded_at": "2026-10-04T09:26:40.892981+00:00",
+  "role": "qa",
+  "schema_version": 1,
+  "scope_limits": [
+    "Automated source-level QA only.",
+    "No game executable was launched.",
+    "No playable build, target-platform runtime, audio, multiplayer, save recovery, or subjective comfort result is claimed."
+  ],
+  "source_under_test": {
+    "frozen_files_sha256": {
+      "docs/engineering/QA.md": "ec3152bd4e8705042bedf49557899a1fe02a1b1f953479f552b1973a9312e01d",
+      "scripts/qa/run_qa.py": "55ac45eb50eed87742c49da57f3df5f2acb2ec8e414e223fcae2b36796c489dc",
+      "tests/qa/test_harness_runner.py": "806a44d0504d55bd4326bd80b3c29bb0d1b95f826071bdf7095f257472f52927"
+    },
+    "frozen_hashes_unchanged_after_run": true,
+    "git_head": "36e3e17834a383e744c585529f2c7397a5889af3",
+    "origin_main": "36e3e17834a383e744c585529f2c7397a5889af3"
+  },
+  "status": "PASS",
+  "summary": "Independent fresh-path repository QA passed all six checks; 65 unit tests were discovered and executed, and protected canonical/archived evidence remained unchanged.",
+  "task_id": "qa-harness.002.qa",
+  "worker_id": "/root/qa_harness_qa"
+}
