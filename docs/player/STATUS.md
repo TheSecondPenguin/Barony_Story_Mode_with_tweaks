@@ -15,3 +15,9 @@ No authored story content has been added. Adventure Core stays gated behind runt
 QA-HARNESS-002 passed independent code review and fresh QA: 65 Python tests plus isolated comfort checks and Python compilation. Repeat QA now supports new output directories without replacing archived reports. This is tooling verification only.
 
 A fresh runtime-readiness check found no game executable in the project workspace, incomplete required game data, and no native display/audio session. The available cloud browser is not the player’s Windows Steam desktop. No launch was attempted. Next acceptance is an actual compatible native game reaching its menu, responding to movement/input, and saving and reloading an isolated profile. Further generic tooling expansion and Adventure content are deferred; runtime-dependent gates remain blocked.
+
+## Windows connection investigation
+
+The integrated directive is active. Independent Runtime Operator and Blocker Resolver investigated real Windows access. Existing Jump Desktop offers browser/CLI control, but this environment received an unavailable page from both the dashboard and official CLI installer. The next attempt is an existing host-created screen-sharing invitation with host approval. That connection is not yet established, and no game was launched. Previous review/QA and compiler results remain preserved.
+
+The Jump browser client has a documented cursor-lock limitation. A successful browser connection would enable installation inspection and startup/menu checks; full camera/gameplay validation still needs an appropriate input path.
