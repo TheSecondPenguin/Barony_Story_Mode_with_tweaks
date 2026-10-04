@@ -70,6 +70,27 @@
       "status": "handoff_recorded",
       "task_id": "bootstrap.qa",
       "worker_id": "/root/qa_agent"
+    },
+    {
+      "dispatch_id": "5394ee8b83c440b8b7483ff0ba78d10d",
+      "recorded_at": "2026-10-04T09:15:04+00:00",
+      "status": "handoff_recorded",
+      "task_id": "qa-harness.002.implement",
+      "worker_id": "/root/qa_harness_engineer"
+    },
+    {
+      "dispatch_id": "dbcf8e09d0064dfeb6a871c3e5aee0b9",
+      "recorded_at": "2026-10-04T09:21:07+00:00",
+      "status": "handoff_recorded",
+      "task_id": "qa-harness.002.review",
+      "worker_id": "/root/qa_harness_reviewer"
+    },
+    {
+      "dispatch_id": "fe320ecd15794193a0f2c288fc8d007d",
+      "recorded_at": "2026-10-04T09:25:32+00:00",
+      "status": "handoff_recorded",
+      "task_id": "qa-harness.002.qa",
+      "worker_id": "/root/qa_harness_qa"
     }
   ],
   "events": [
@@ -316,6 +337,66 @@
       "revision": 36,
       "type": "evidence.recorded",
       "worker_id": "/root/qa_agent/local-verifier"
+    },
+    {
+      "at": "2026-10-04T09:15:04+00:00",
+      "revision": 37,
+      "task_id": "qa-harness.002.implement",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T09:15:04+00:00",
+      "revision": 38,
+      "task_id": "qa-harness.002.review",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T09:15:04+00:00",
+      "revision": 39,
+      "task_id": "qa-harness.002.qa",
+      "type": "task.added"
+    },
+    {
+      "at": "2026-10-04T09:15:04+00:00",
+      "revision": 40,
+      "task_id": "qa-harness.002.implement",
+      "type": "task.claimed",
+      "worker_id": "/root/qa_harness_engineer"
+    },
+    {
+      "at": "2026-10-04T09:21:07+00:00",
+      "revision": 41,
+      "task_id": "qa-harness.002.implement",
+      "type": "task.completed",
+      "worker_id": "/root/qa_harness_engineer"
+    },
+    {
+      "at": "2026-10-04T09:21:07+00:00",
+      "revision": 42,
+      "task_id": "qa-harness.002.review",
+      "type": "task.claimed",
+      "worker_id": "/root/qa_harness_reviewer"
+    },
+    {
+      "at": "2026-10-04T09:25:31+00:00",
+      "revision": 43,
+      "task_id": "qa-harness.002.review",
+      "type": "task.completed",
+      "worker_id": "/root/qa_harness_reviewer"
+    },
+    {
+      "at": "2026-10-04T09:25:32+00:00",
+      "revision": 44,
+      "task_id": "qa-harness.002.qa",
+      "type": "task.claimed",
+      "worker_id": "/root/qa_harness_qa"
+    },
+    {
+      "at": "2026-10-04T09:27:33+00:00",
+      "revision": 45,
+      "task_id": "qa-harness.002.qa",
+      "type": "task.completed",
+      "worker_id": "/root/qa_harness_qa"
     }
   ],
   "evidence": [
@@ -357,7 +438,7 @@
     }
   ],
   "project": "barony-adventurer",
-  "revision": 36,
+  "revision": 45,
   "runs": [
     {
       "argv": [
@@ -1244,6 +1325,240 @@
       "write_paths": [
         "orchestrator/artifacts/qa"
       ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/qa-harness-002/implementation/result.json": null
+      },
+      "attempt_count": 1,
+      "category": "tooling",
+      "claimed_at": "2026-10-04T09:15:04+00:00",
+      "claimed_by": "/root/qa_harness_engineer",
+      "completed_at": "2026-10-04T09:21:07+00:00",
+      "completed_by": "/root/qa_harness_engineer",
+      "created_at": "2026-10-04T09:15:04+00:00",
+      "depends_on": [],
+      "description": "P0 verification harness: fail on zero discovered tests; new output directory support, preserving canonical default contract and existing evidence. No runtime or comfort claims.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "implementation",
+            "path": "orchestrator/artifacts/qa-harness-002/implementation/result.json",
+            "sha256": "d08c1780f9109f8d405f40ba2fca4205084f50ded621c4e49a42d218872ae8fc"
+          }
+        ],
+        "notes": [
+          "Engineer reports4 targetedintegrationtests passing; independentreviewandQA follow. No canonical archivedoutput overwritten; runtime remains unexecuted."
+        ],
+        "recorded_at": "2026-10-04T09:21:07+00:00",
+        "role": "engineer",
+        "status": "completed",
+        "summary": "Implemented required-suite preflight discovery and fresh exclusive output directories.",
+        "task_id": "qa-harness.002.implement",
+        "worker_id": "/root/qa_harness_engineer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "implementation",
+              "path": "orchestrator/artifacts/qa-harness-002/implementation/result.json",
+              "sha256": "d08c1780f9109f8d405f40ba2fca4205084f50ded621c4e49a42d218872ae8fc"
+            }
+          ],
+          "notes": [
+            "Engineer reports4 targetedintegrationtests passing; independentreviewandQA follow. No canonical archivedoutput overwritten; runtime remains unexecuted."
+          ],
+          "recorded_at": "2026-10-04T09:21:07+00:00",
+          "role": "engineer",
+          "status": "completed",
+          "summary": "Implemented required-suite preflight discovery and fresh exclusive output directories.",
+          "task_id": "qa-harness.002.implement",
+          "worker_id": "/root/qa_harness_engineer"
+        }
+      ],
+      "id": "qa-harness.002.implement",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "scripts/qa/run_qa.py",
+        "tests/qa",
+        "orchestrator/config/gates.json"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "implementation",
+          "path": "orchestrator/artifacts/qa-harness-002/implementation/result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "engineer",
+      "status": "completed",
+      "title": "Reject empty QA suites and preserve repeat-run artifacts",
+      "visibility": "internal",
+      "write_paths": [
+        "scripts/qa/run_qa.py",
+        "tests/qa/test_harness_runner.py",
+        "docs/engineering/QA.md",
+        "orchestrator/artifacts/qa-harness-002/implementation"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/qa-harness-002/review/result.json": null
+      },
+      "attempt_count": 1,
+      "category": "verification",
+      "claimed_at": "2026-10-04T09:21:07+00:00",
+      "claimed_by": "/root/qa_harness_reviewer",
+      "completed_at": "2026-10-04T09:25:31+00:00",
+      "completed_by": "/root/qa_harness_reviewer",
+      "created_at": "2026-10-04T09:15:04+00:00",
+      "depends_on": [
+        "qa-harness.002.implement"
+      ],
+      "description": "Inspect actual diff and adversarial cases; require empty-suite failures and immutable previous output.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "review",
+            "path": "orchestrator/artifacts/qa-harness-002/review/result.json",
+            "sha256": "ffbfc796a07ebc4f877aeb1d96156d3a643981390eb6adef31359e62672deaa3"
+          }
+        ],
+        "notes": [
+          "Actual Python 3.12 empty discovery returned 5; no baseline false PASS claimed."
+        ],
+        "recorded_at": "2026-10-04T09:25:31+00:00",
+        "role": "reviewer",
+        "status": "completed",
+        "summary": "Independent frozen-source review accepted with no open findings. No runtime claim.",
+        "task_id": "qa-harness.002.review",
+        "worker_id": "/root/qa_harness_reviewer"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "review",
+              "path": "orchestrator/artifacts/qa-harness-002/review/result.json",
+              "sha256": "ffbfc796a07ebc4f877aeb1d96156d3a643981390eb6adef31359e62672deaa3"
+            }
+          ],
+          "notes": [
+            "Actual Python 3.12 empty discovery returned 5; no baseline false PASS claimed."
+          ],
+          "recorded_at": "2026-10-04T09:25:31+00:00",
+          "role": "reviewer",
+          "status": "completed",
+          "summary": "Independent frozen-source review accepted with no open findings. No runtime claim.",
+          "task_id": "qa-harness.002.review",
+          "worker_id": "/root/qa_harness_reviewer"
+        }
+      ],
+      "id": "qa-harness.002.review",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "scripts/qa/run_qa.py",
+        "tests/qa/test_harness_runner.py"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "review",
+          "path": "orchestrator/artifacts/qa-harness-002/review/result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "reviewer",
+      "status": "completed",
+      "title": "Independent harness review",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/qa-harness-002/review"
+      ]
+    },
+    {
+      "artifact_baseline": {
+        "orchestrator/artifacts/qa-harness-002/qa/result.json": null
+      },
+      "attempt_count": 1,
+      "category": "verification",
+      "claimed_at": "2026-10-04T09:25:32+00:00",
+      "claimed_by": "/root/qa_harness_qa",
+      "completed_at": "2026-10-04T09:27:33+00:00",
+      "completed_by": "/root/qa_harness_qa",
+      "created_at": "2026-10-04T09:15:04+00:00",
+      "depends_on": [
+        "qa-harness.002.review"
+      ],
+      "description": "Actual fresh suite execution with new output paths; old manifest-bound evidence must remain unchanged.",
+      "handoff": {
+        "artifacts": [
+          {
+            "name": "qa",
+            "path": "orchestrator/artifacts/qa-harness-002/qa/result.json",
+            "sha256": "9296e0b030ebb6fc480a7343629960762e92f87c714c6a194d72f9b6ce8e7b83"
+          }
+        ],
+        "notes": [
+          "No default QA output path invoked. No game execution or playable-build result claimed."
+        ],
+        "recorded_at": "2026-10-04T09:27:33+00:00",
+        "role": "qa",
+        "status": "completed",
+        "summary": "Independent fresh-path QA passed all six checks and 65 unit tests; frozen source and archived evidence unchanged.",
+        "task_id": "qa-harness.002.qa",
+        "worker_id": "/root/qa_harness_qa"
+      },
+      "handoff_history": [
+        {
+          "artifacts": [
+            {
+              "name": "qa",
+              "path": "orchestrator/artifacts/qa-harness-002/qa/result.json",
+              "sha256": "9296e0b030ebb6fc480a7343629960762e92f87c714c6a194d72f9b6ce8e7b83"
+            }
+          ],
+          "notes": [
+            "No default QA output path invoked. No game execution or playable-build result claimed."
+          ],
+          "recorded_at": "2026-10-04T09:27:33+00:00",
+          "role": "qa",
+          "status": "completed",
+          "summary": "Independent fresh-path QA passed all six checks and 65 unit tests; frozen source and archived evidence unchanged.",
+          "task_id": "qa-harness.002.qa",
+          "worker_id": "/root/qa_harness_qa"
+        }
+      ],
+      "id": "qa-harness.002.qa",
+      "metadata": {},
+      "priority": 0,
+      "read_paths": [
+        "scripts",
+        "tests",
+        "orchestrator"
+      ],
+      "release_history": [],
+      "required_artifacts": [
+        {
+          "kind": "json",
+          "name": "qa",
+          "path": "orchestrator/artifacts/qa-harness-002/qa/result.json"
+        }
+      ],
+      "required_gates": [],
+      "role": "qa",
+      "status": "completed",
+      "title": "Independent final-source QA",
+      "visibility": "internal",
+      "write_paths": [
+        "orchestrator/artifacts/qa-harness-002/qa"
+      ]
     }
   ],
   "workers": [
@@ -1286,6 +1601,30 @@
       "registered_at": "2026-10-04T08:07:52+00:00",
       "role": "qa",
       "worker_id": "/root/qa_agent/local-verifier"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T09:15:04+00:00",
+      "role": "engineer",
+      "worker_id": "/root/qa_harness_engineer"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T09:21:07+00:00",
+      "role": "reviewer",
+      "worker_id": "/root/qa_harness_reviewer"
+    },
+    {
+      "mode": "native",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "registered_at": "2026-10-04T09:25:32+00:00",
+      "role": "qa",
+      "worker_id": "/root/qa_harness_qa"
     }
   ]
 }
