@@ -13,3 +13,5 @@ Sources: official repository README.md, INSTALL.md, LICENSE.txt, EDITING.txt, CM
 
 9. User selected Steam and the TheSecondPenguin repository. Import source as a dedicated baseline commit; maintain project work in following commits. Exclude only upstream CI and IDE databases. Keep source origin and commit recorded, preserve all license notices. Steam ownership does not supply Steamworks or FMOD development SDK credentials.
 10. Local build environment remains unchanged; add manually dispatched dependency-provisioned compiler CI so the build gate can be attempted after remote access. It is not a runtime gate.
+
+11. On 2026-10-04 the user declined agent access to the personal PC via Jump. Treat personal-desktop remote control as excluded, including replacement tools. Preserve prior runtime investigation as history. A separate interactive Windows host is a candidate requiring legitimate game data, access, cost approval where applicable, and actual input/audio verification; an owner-operated isolated build is the alternative without agent control. Neither has been executed.
