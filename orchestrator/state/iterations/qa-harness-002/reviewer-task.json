@@ -1,0 +1,27 @@
+{
+  "id": "qa-harness.002.review",
+  "title": "Independent harness review",
+  "role": "reviewer",
+  "description": "Inspect actual diff and adversarial cases; require empty-suite failures and immutable previous output.",
+  "depends_on": [
+    "qa-harness.002.implement"
+  ],
+  "required_gates": [],
+  "read_paths": [
+    "scripts/qa/run_qa.py",
+    "tests/qa/test_harness_runner.py"
+  ],
+  "write_paths": [
+    "orchestrator/artifacts/qa-harness-002/review"
+  ],
+  "required_artifacts": [
+    {
+      "name": "review",
+      "kind": "json",
+      "path": "orchestrator/artifacts/qa-harness-002/review/result.json"
+    }
+  ],
+  "visibility": "internal",
+  "category": "verification",
+  "priority": 0
+}

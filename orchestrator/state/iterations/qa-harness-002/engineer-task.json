@@ -1,0 +1,29 @@
+{
+  "id": "qa-harness.002.implement",
+  "title": "Reject empty QA suites and preserve repeat-run artifacts",
+  "role": "engineer",
+  "description": "P0 verification harness: fail on zero discovered tests; new output directory support, preserving canonical default contract and existing evidence. No runtime or comfort claims.",
+  "depends_on": [],
+  "required_gates": [],
+  "read_paths": [
+    "scripts/qa/run_qa.py",
+    "tests/qa",
+    "orchestrator/config/gates.json"
+  ],
+  "write_paths": [
+    "scripts/qa/run_qa.py",
+    "tests/qa/test_harness_runner.py",
+    "docs/engineering/QA.md",
+    "orchestrator/artifacts/qa-harness-002/implementation"
+  ],
+  "required_artifacts": [
+    {
+      "name": "implementation",
+      "kind": "json",
+      "path": "orchestrator/artifacts/qa-harness-002/implementation/result.json"
+    }
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}

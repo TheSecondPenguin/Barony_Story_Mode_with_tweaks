@@ -1,0 +1,68 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "json",
+        "name": "qa",
+        "path": "orchestrator/artifacts/qa-harness-002/qa/result.json"
+      }
+    ],
+    "notes": [],
+    "role": "qa",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "qa-harness.002.qa",
+    "worker_id": "/root/qa_harness_qa"
+  },
+  "role_prompt": "# QA\n\nValidate independently from the implementation worker using reproducible commands and controlled fixtures. Confirm the exact source and artifact under test, expected behavior, observed behavior, exit status, and environment. Cover failure paths that enforce gates, ownership, persistence, and compatibility. A command that did not run cannot pass.\n\nKeep logs internal and use opaque issue identifiers in player-facing text. Never leak hidden names, conditions, outcomes, or counts. Motion and multiplayer checks require real target sessions and cannot be simulated by unit tests. Return the required handoff JSON.\n\n",
+  "task": {
+    "artifact_baseline": {
+      "orchestrator/artifacts/qa-harness-002/qa/result.json": null
+    },
+    "attempt_count": 1,
+    "category": "verification",
+    "claimed_at": "2026-10-04T09:25:32+00:00",
+    "claimed_by": "/root/qa_harness_qa",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T09:15:04+00:00",
+    "depends_on": [
+      "qa-harness.002.review"
+    ],
+    "description": "Actual fresh suite execution with new output paths; old manifest-bound evidence must remain unchanged.",
+    "handoff_history": [],
+    "id": "qa-harness.002.qa",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "scripts",
+      "tests",
+      "orchestrator"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "json",
+        "name": "qa",
+        "path": "orchestrator/artifacts/qa-harness-002/qa/result.json"
+      }
+    ],
+    "required_gates": [],
+    "role": "qa",
+    "status": "claimed",
+    "title": "Independent final-source QA",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/artifacts/qa-harness-002/qa"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "qa",
+    "worker_id": "/root/qa_harness_qa"
+  }
+}

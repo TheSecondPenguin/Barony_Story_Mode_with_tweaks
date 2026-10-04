@@ -1,0 +1,69 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "json",
+        "name": "implementation",
+        "path": "orchestrator/artifacts/qa-harness-002/implementation/result.json"
+      }
+    ],
+    "notes": [],
+    "role": "engineer",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "qa-harness.002.implement",
+    "worker_id": "/root/qa_harness_engineer"
+  },
+  "role_prompt": "# Engineer\n\nImplement only the packet's owned paths. Preserve upstream notices and keep custom code and authored content separate from retail assets. Use the documented build and save-isolation boundaries. Run meaningful checks and preserve full command results as artifacts; a successful edit or patch application is not build or runtime evidence.\n\nDo not bypass gates or weaken fail-closed checks. Do not read secret paths for a public task, follow symlinks outside the repository, or write outside owned paths. Do not generate hidden content before `adventure_core.ready`. Return the required handoff JSON with exact artifact paths.\n",
+  "task": {
+    "artifact_baseline": {
+      "orchestrator/artifacts/qa-harness-002/implementation/result.json": null
+    },
+    "attempt_count": 1,
+    "category": "tooling",
+    "claimed_at": "2026-10-04T09:15:04+00:00",
+    "claimed_by": "/root/qa_harness_engineer",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T09:15:04+00:00",
+    "depends_on": [],
+    "description": "P0 verification harness: fail on zero discovered tests; new output directory support, preserving canonical default contract and existing evidence. No runtime or comfort claims.",
+    "handoff_history": [],
+    "id": "qa-harness.002.implement",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "scripts/qa/run_qa.py",
+      "tests/qa",
+      "orchestrator/config/gates.json"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "json",
+        "name": "implementation",
+        "path": "orchestrator/artifacts/qa-harness-002/implementation/result.json"
+      }
+    ],
+    "required_gates": [],
+    "role": "engineer",
+    "status": "claimed",
+    "title": "Reject empty QA suites and preserve repeat-run artifacts",
+    "visibility": "internal",
+    "write_paths": [
+      "scripts/qa/run_qa.py",
+      "tests/qa/test_harness_runner.py",
+      "docs/engineering/QA.md",
+      "orchestrator/artifacts/qa-harness-002/implementation"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "engineer",
+    "worker_id": "/root/qa_harness_engineer"
+  }
+}

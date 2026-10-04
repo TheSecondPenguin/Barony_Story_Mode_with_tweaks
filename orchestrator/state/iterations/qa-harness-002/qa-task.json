@@ -1,0 +1,28 @@
+{
+  "id": "qa-harness.002.qa",
+  "title": "Independent final-source QA",
+  "role": "qa",
+  "description": "Actual fresh suite execution with new output paths; old manifest-bound evidence must remain unchanged.",
+  "depends_on": [
+    "qa-harness.002.review"
+  ],
+  "required_gates": [],
+  "read_paths": [
+    "scripts",
+    "tests",
+    "orchestrator"
+  ],
+  "write_paths": [
+    "orchestrator/artifacts/qa-harness-002/qa"
+  ],
+  "required_artifacts": [
+    {
+      "name": "qa",
+      "kind": "json",
+      "path": "orchestrator/artifacts/qa-harness-002/qa/result.json"
+    }
+  ],
+  "visibility": "internal",
+  "category": "verification",
+  "priority": 0
+}
