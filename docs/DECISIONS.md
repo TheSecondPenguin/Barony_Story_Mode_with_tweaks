@@ -18,3 +18,7 @@ Date: 2026-10-04. Existing engine decisions remain in `docs/engineering/DECISION
 | D-012 | Bind final tooling acceptance to final-source review and QA. | Earlier passing harness records and fixed-finding claims can predate later edits. Record independent closure and a fresh passing harness after final fixes before accepting the bootstrap. |
 
 Final director disposition: conditionally accept the tooling direction and actual native-worker execution; require final-source independent review and QA before recording bootstrap tooling PASS. Hold runtime-dependent gates; authorized repository publication may proceed with the spoiler-safe boundary. The conditions and inspected artifact identities are recorded in `orchestrator/artifacts/designs/director-final.json`.
+
+## Runtime-first instruction — 2026-10-04
+
+The user explicitly required actual execution verification first. Close the in-flight QA-HARNESS-002 change, then prioritize unchanged game startup, movement/input and isolated save/reload over new tooling or content. The fresh environment probe found no project game executable, complete retail data, native display or audio. Native desktop control is unavailable; the cloud browser cannot establish Windows gameplay. This is a recorded blocker, not a launch result. Do not fill later runs with unrelated orchestration features.
