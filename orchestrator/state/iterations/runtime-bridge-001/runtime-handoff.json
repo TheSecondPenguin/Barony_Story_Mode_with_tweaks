@@ -1,0 +1,16 @@
+{
+  "task_id": "runtime-bridge.001.runtime",
+  "worker_id": "/root/runtime_operator",
+  "role": "researcher",
+  "status": "completed",
+  "summary": "The official Jump browser path is the narrowest reversible route to inspect the user's Windows Steam installation and run the existing isolated preflight, but it is currently unconnected and cannot support full Barony gameplay because browser cursor lock and controllers are unavailable. Next test is a user-approved direct screen-sharing link; even if it works, use it only for install/version/isolation and startup/menu evidence, leaving audio, camera, comfort, saves, and multiplayer to an independent native playtest.",
+  "artifacts": [
+    {
+      "name": "runtime-options",
+      "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+    }
+  ],
+  "notes": [
+    "Browser cursor lock/controllers unsupported perofficialdocs; do not claim fullgamecontrol frombrowserconnection."
+  ]
+}

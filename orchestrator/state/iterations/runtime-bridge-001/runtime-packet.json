@@ -1,0 +1,66 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "json",
+        "name": "runtime-options",
+        "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+      }
+    ],
+    "notes": [],
+    "role": "researcher",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "runtime-bridge.001.runtime",
+    "worker_id": "/root/runtime_operator"
+  },
+  "role_prompt": "# Researcher\n\nEstablish facts from primary project or upstream sources, distinguish observation from inference, and attach exact artifact paths. Read the project instructions and current engineering decisions first. Investigate only the task packet's scope and paths. Record unknowns instead of filling them with plausible details. Do not alter implementation files unless the packet owns them.\n\nApply the spoiler firewall: research artifacts are internal unless explicitly public, and player-facing output cannot disclose hidden material. Before the comfort gate, identify content capability gaps without inventing NPCs, items, quests, events, outcomes, or world secrets. Return the required handoff JSON.\n\n",
+  "task": {
+    "artifact_baseline": {
+      "orchestrator/artifacts/runtime-bridge-001/runtime-options.json": null
+    },
+    "attempt_count": 1,
+    "category": "tooling",
+    "claimed_at": "2026-10-04T09:56:04+00:00",
+    "claimed_by": "/root/runtime_operator",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T09:56:04+00:00",
+    "depends_on": [],
+    "description": "Runtime connection investigation under integrated user directive; distinct native specialist. Preserve retail/saves and require actual independent playtest.",
+    "handoff_history": [],
+    "id": "runtime-bridge.001.runtime",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "docs/engineering",
+      "scripts/playtest",
+      "orchestrator/artifacts/playtests"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "json",
+        "name": "runtime-options",
+        "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+      }
+    ],
+    "required_gates": [],
+    "role": "researcher",
+    "status": "claimed",
+    "title": "Windows Runtime Operator: establish existing interactive connection",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "researcher",
+    "worker_id": "/root/runtime_operator"
+  }
+}

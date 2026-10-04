@@ -1,0 +1,30 @@
+{
+  "id": "runtime-bridge.001.review",
+  "title": "Independent runtime route and evidence review",
+  "role": "reviewer",
+  "description": "Check actual transport observations, evidence limits and minimal user activation without game-runtime claims.",
+  "depends_on": [
+    "runtime-bridge.001.runtime",
+    "runtime-bridge.001.resolver"
+  ],
+  "required_gates": [],
+  "read_paths": [
+    "AGENTS.md",
+    "docs/player/STATUS.md",
+    "orchestrator/state/CURRENT_GOAL.md",
+    "orchestrator/artifacts/runtime-bridge-001"
+  ],
+  "write_paths": [
+    "orchestrator/artifacts/runtime-bridge-001/review.json"
+  ],
+  "required_artifacts": [
+    {
+      "name": "review",
+      "kind": "json",
+      "path": "orchestrator/artifacts/runtime-bridge-001/review.json"
+    }
+  ],
+  "visibility": "internal",
+  "category": "verification",
+  "priority": 0
+}

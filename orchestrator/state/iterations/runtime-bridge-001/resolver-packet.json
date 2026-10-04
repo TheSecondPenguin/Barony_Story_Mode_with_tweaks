@@ -1,0 +1,78 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "json",
+        "name": "attempt-ledger",
+        "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json"
+      },
+      {
+        "kind": "json",
+        "name": "resolver-result",
+        "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+      }
+    ],
+    "notes": [],
+    "role": "engineer",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "runtime-bridge.001.resolver",
+    "worker_id": "/root/blocker_resolver"
+  },
+  "role_prompt": "# Engineer\n\nImplement only the packet's owned paths. Preserve upstream notices and keep custom code and authored content separate from retail assets. Use the documented build and save-isolation boundaries. Run meaningful checks and preserve full command results as artifacts; a successful edit or patch application is not build or runtime evidence.\n\nDo not bypass gates or weaken fail-closed checks. Do not read secret paths for a public task, follow symlinks outside the repository, or write outside owned paths. Do not generate hidden content before `adventure_core.ready`. Return the required handoff JSON with exact artifact paths.\n",
+  "task": {
+    "artifact_baseline": {
+      "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json": null,
+      "orchestrator/artifacts/runtime-bridge-001/resolver-result.json": null
+    },
+    "attempt_count": 1,
+    "category": "tooling",
+    "claimed_at": "2026-10-04T09:56:04+00:00",
+    "claimed_by": "/root/blocker_resolver",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T09:56:04+00:00",
+    "depends_on": [],
+    "description": "Runtime connection investigation under integrated user directive; distinct native specialist. Preserve retail/saves and require actual independent playtest.",
+    "handoff_history": [],
+    "id": "runtime-bridge.001.resolver",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "docs/engineering",
+      "scripts/playtest",
+      "orchestrator/artifacts/playtests"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "json",
+        "name": "attempt-ledger",
+        "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json"
+      },
+      {
+        "kind": "json",
+        "name": "resolver-result",
+        "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+      }
+    ],
+    "required_gates": [],
+    "role": "engineer",
+    "status": "claimed",
+    "title": "Blocker Resolver: identify materially different runtime paths",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json",
+      "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "engineer",
+    "worker_id": "/root/blocker_resolver"
+  }
+}

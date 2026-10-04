@@ -1,0 +1,17 @@
+{
+  "task_id": "runtime-bridge.001.review",
+  "worker_id": "/root/runtime_route_reviewer",
+  "role": "reviewer",
+  "status": "completed",
+  "summary": "Final runtime route review accepted with no open findings. Browser scope limited to connection/preflight/menu; full gameplay requires native relative input and auditable audio. Saved installer response independently verified; no network or game run repeated.",
+  "artifacts": [
+    {
+      "name": "review",
+      "path": "orchestrator/artifacts/runtime-bridge-001/review.json"
+    }
+  ],
+  "notes": [
+    "All runtime gates remain blocked.",
+    "Actual UTC timestamp and final source hashes bound in review."
+  ]
+}

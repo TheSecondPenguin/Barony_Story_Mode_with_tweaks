@@ -1,0 +1,70 @@
+{
+  "dispatch_boundary": "This packet is durable work input. It does not prove a native agent was spawned. The active Work Mode root must dispatch the named native worker and record the returned handoff with `complete`.",
+  "packet_schema": 1,
+  "required_handoff": {
+    "artifacts": [
+      {
+        "kind": "json",
+        "name": "review",
+        "path": "orchestrator/artifacts/runtime-bridge-001/review.json"
+      }
+    ],
+    "notes": [],
+    "role": "reviewer",
+    "status": "completed | failed | blocked",
+    "summary": "non-empty string",
+    "task_id": "runtime-bridge.001.review",
+    "worker_id": "/root/runtime_route_reviewer"
+  },
+  "role_prompt": "# Reviewer\n\nReview independently from the implementation worker. Start from the task contract and inspect correctness, regressions, path ownership, dependency assumptions, evidence quality, phase gates, and spoiler boundaries. Re-run focused validation where it resolves a concrete risk. Report findings by severity and use an empty findings list only after substantive inspection.\n\nDo not accept missing, stale, mismatched, or self-attested evidence. Do not expose hidden content in player-facing reports. Return the required handoff JSON and record unresolved issues as blockers rather than silently fixing outside owned paths.\n\n",
+  "task": {
+    "artifact_baseline": {
+      "orchestrator/artifacts/runtime-bridge-001/review.json": null
+    },
+    "attempt_count": 1,
+    "category": "verification",
+    "claimed_at": "2026-10-04T10:01:47+00:00",
+    "claimed_by": "/root/runtime_route_reviewer",
+    "completed_at": null,
+    "completed_by": null,
+    "created_at": "2026-10-04T09:59:39+00:00",
+    "depends_on": [
+      "runtime-bridge.001.runtime",
+      "runtime-bridge.001.resolver"
+    ],
+    "description": "Check actual transport observations, evidence limits and minimal user activation without game-runtime claims.",
+    "handoff_history": [],
+    "id": "runtime-bridge.001.review",
+    "metadata": {},
+    "priority": 0,
+    "read_paths": [
+      "AGENTS.md",
+      "docs/player/STATUS.md",
+      "orchestrator/state/CURRENT_GOAL.md",
+      "orchestrator/artifacts/runtime-bridge-001"
+    ],
+    "release_history": [],
+    "required_artifacts": [
+      {
+        "kind": "json",
+        "name": "review",
+        "path": "orchestrator/artifacts/runtime-bridge-001/review.json"
+      }
+    ],
+    "required_gates": [],
+    "role": "reviewer",
+    "status": "claimed",
+    "title": "Independent runtime route and evidence review",
+    "visibility": "internal",
+    "write_paths": [
+      "orchestrator/artifacts/runtime-bridge-001/review.json"
+    ]
+  },
+  "worker": {
+    "mode": "native",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "reviewer",
+    "worker_id": "/root/runtime_route_reviewer"
+  }
+}

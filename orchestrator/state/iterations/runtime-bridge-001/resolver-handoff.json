@@ -1,0 +1,21 @@
+{
+  "task_id": "runtime-bridge.001.resolver",
+  "worker_id": "/root/blocker_resolver",
+  "role": "engineer",
+  "status": "completed",
+  "summary": "Investigated distinct connection routes; existing host-created Jump sharing link is the smallest next activation. Dashboard and CLI installer returned unavailable pages of unknown cause. No Windows connection or game execution.",
+  "artifacts": [
+    {
+      "name": "attempt-ledger",
+      "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json"
+    },
+    {
+      "name": "resolver-result",
+      "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+    }
+  ],
+  "notes": [
+    "Sharing endpoint remains unattempted; no password or token in chat.",
+    "Custom bridge deferred until existing sharing route tested."
+  ]
+}

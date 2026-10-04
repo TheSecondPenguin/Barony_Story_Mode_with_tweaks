@@ -1,0 +1,32 @@
+{
+  "id": "runtime-bridge.001.resolver",
+  "title": "Blocker Resolver: identify materially different runtime paths",
+  "role": "engineer",
+  "description": "Runtime connection investigation under integrated user directive; distinct native specialist. Preserve retail/saves and require actual independent playtest.",
+  "depends_on": [],
+  "required_gates": [],
+  "read_paths": [
+    "docs/engineering",
+    "scripts/playtest",
+    "orchestrator/artifacts/playtests"
+  ],
+  "write_paths": [
+    "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json",
+    "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+  ],
+  "required_artifacts": [
+    {
+      "name": "attempt-ledger",
+      "kind": "json",
+      "path": "orchestrator/artifacts/runtime-bridge-001/attempt-ledger.json"
+    },
+    {
+      "name": "resolver-result",
+      "kind": "json",
+      "path": "orchestrator/artifacts/runtime-bridge-001/resolver-result.json"
+    }
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}

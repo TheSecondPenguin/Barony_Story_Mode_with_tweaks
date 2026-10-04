@@ -1,0 +1,26 @@
+{
+  "id": "runtime-bridge.001.runtime",
+  "title": "Windows Runtime Operator: establish existing interactive connection",
+  "role": "researcher",
+  "description": "Runtime connection investigation under integrated user directive; distinct native specialist. Preserve retail/saves and require actual independent playtest.",
+  "depends_on": [],
+  "required_gates": [],
+  "read_paths": [
+    "docs/engineering",
+    "scripts/playtest",
+    "orchestrator/artifacts/playtests"
+  ],
+  "write_paths": [
+    "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+  ],
+  "required_artifacts": [
+    {
+      "name": "runtime-options",
+      "kind": "json",
+      "path": "orchestrator/artifacts/runtime-bridge-001/runtime-options.json"
+    }
+  ],
+  "visibility": "internal",
+  "category": "tooling",
+  "priority": 0
+}
