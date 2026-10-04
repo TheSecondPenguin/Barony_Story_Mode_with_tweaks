@@ -1,53 +1,10 @@
-name: Import verified development snapshot once
+name: Completed development import
 on:
   workflow_dispatch:
 permissions:
-  contents: write
-concurrency:
-  group: import-reviewed-development
-  cancel-in-progress: false
+  contents: read
 jobs:
-  import:
+  completed:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Verify exact reviewed snapshot and preserve existing history
-        env:
-          EXPECTED_SNAPSHOT: 0a9f92f4666604c4cb849bcafc2df3493fe9ced0
-          EXPECTED_BUNDLE_SHA256: ce756e14cab7fc7fa8aa726edd4e43f6bdbb314635f07fed16efe273a996b846
-        run: |
-          set -euo pipefail
-          printf '%s  %s\n' "$EXPECTED_BUNDLE_SHA256" orchestration-bootstrap.bundle | sha256sum --check
-          git bundle verify orchestration-bootstrap.bundle
-          test "$(git bundle list-heads orchestration-bootstrap.bundle)" = "$EXPECTED_SNAPSHOT refs/heads/export/reviewed-bootstrap"
-          git fetch ./orchestration-bootstrap.bundle refs/heads/export/reviewed-bootstrap:refs/remotes/bootstrap/reviewed
-          test "$(git rev-parse refs/remotes/bootstrap/reviewed)" = "$EXPECTED_SNAPSHOT"
-          test "$(git show -s --format=%P "$EXPECTED_SNAPSHOT")" = '9c70dafa2da8715e4d59d90fabf1135c48ba1c19'
-          git diff --quiet 9c70dafa2da8715e4d59d90fabf1135c48ba1c19 "$EXPECTED_SNAPSHOT" -- .github/workflows
-          if git merge-base --is-ancestor "$EXPECTED_SNAPSHOT" HEAD; then
-            echo 'This snapshot is already imported; refusing another import.'
-            exit 1
-          fi
-          git config user.name 'Barony Development Automation'
-          git config user.email 'barony-automation@users.noreply.github.com'
-          git merge --no-commit --no-ff --allow-unrelated-histories refs/remotes/bootstrap/reviewed
-          git diff --cached --quiet -- .github/workflows
-      - name: Run independently reviewed regression harness before publication
-        run: python3 scripts/qa/run_qa.py
-      - name: Archive passing check without changing workflow definitions
-        run: |
-          set -euo pipefail
-          mkdir -p orchestrator/artifacts/qa/import-ci
-          cp orchestrator/artifacts/qa/harness-result.json orchestrator/artifacts/qa/import-ci/result.json
-          git add orchestrator/artifacts/qa/import-ci/result.json
-          git diff --cached --quiet -- .github/workflows
-          git -c core.hooksPath=/dev/null commit -m 'Import independently reviewed orchestration and staged comfort tools'
-      - name: Publish reviewed merge with short-lived write token
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git -c core.hooksPath=/dev/null -c credential.helper= -c 'credential.helper=!f() { echo username=x-access-token; echo "password=$GH_TOKEN"; }; f' push https://github.com/TheSecondPenguin/Barony_Story_Mode_with_tweaks.git HEAD:main
+      - run: echo 'The reviewed bootstrap has already been imported. Continue with ordinary reviewed development changes.'
